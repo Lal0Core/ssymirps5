@@ -1,0 +1,7 @@
+if (Ymir_ENABLE_SANDBOX)
+	add_subdirectory(ymir-sandbox)
+endif ()
+add_subdirectory(ymir-sdl3)
+if (Ymir_ENABLE_YMDASM)
+	add_subdirectory(ymdasm)
+endif ()

@@ -1,0 +1,34 @@
+add_library(ymir_libretro SHARED
+    src/libretro.cpp
+    src/cdrom_loader.cpp
+    src/vfs.cpp
+)
+
+set_target_properties(ymir_libretro PROPERTIES
+    OUTPUT_NAME "ymir_libretro"
+    PREFIX ""
+    POSITION_INDEPENDENT_CODE ON
+)
+
+target_include_directories(ymir_libretro PRIVATE
+    include
+)
+
+target_link_libraries(ymir_libretro PRIVATE
+    ymir::ymir-core
+)
+
+target_compile_features(ymir_libretro PUBLIC cxx_std_20)
+
+if (NOT MSVC)
+    target_compile_options(ymir_libretro PRIVATE -fvisibility=hidden)
+endif ()
+
+if (IPO_SUPPORTED AND Ymir_ENABLE_IPO)
+    set_property(TARGET ymir_libretro PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+endif ()
+
+# PS5 (PS5_RetroArch native shared core): link and import policy in the port's tooling.
+if (PS5)
+    include("${PS5_PORT_DIR}/native.cmake")
+endif ()

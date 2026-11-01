@@ -1,0 +1,16 @@
+# compilación
+ssymirps5/ps5/build/
+ssymirps5/build-core/
+ssymirps5/build-dav1d/
+ssymirps5/empty-libs/
+ymir-ps5/build/
+PS5_Vulkan/.deps/
+__pycache__/
+*.pyc
+build.log
+# nunca BIOS ni juegos
+*bios*.bin
+mpr-*.bin
+*.iso
+*.chd
+*.cue

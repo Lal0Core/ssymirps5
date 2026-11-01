@@ -1,0 +1,7 @@
+/* Export only the libretro API; the core's private libc++ stays hidden. */
+{
+    global:
+        retro_*;
+    local:
+        *;
+};

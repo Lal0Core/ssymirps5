@@ -1,0 +1,3 @@
+# SSYmirPS5: Saturn dumps the name table (nointro.tsv) does not list (fan translations, hacks, homebrew), by CRC32.
+# None yet: a Saturn disc is named by its file name and its header's product number (fe_games.cpp).
+# system<TAB>CRC32<TAB>the dump's own name: only the art matcher reads it.

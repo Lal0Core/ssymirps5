@@ -1,0 +1,1918 @@
+#include <cstdio>
+#include "libretro.h"
+
+#include "cdrom_loader.hpp"
+#include "vfs.hpp"
+
+#include <ymir/sys/saturn.hpp>
+
+#include <ymir/media/loader/loader.hpp>
+#include <ymir/savestate/savestate.hpp>
+
+#include <ymir/core/configuration.hpp>
+#include <ymir/hw/smpc/peripheral/peripheral_report.hpp>
+#include <ymir/hw/vdp/vdp_configs.hpp>
+#include <ymir/hw/vdp/vdp_defs.hpp>
+#include <ymir/hw/cart/cart.hpp>
+#include <ymir/core/hash.hpp>
+#include <ymir/db/game_db.hpp>
+#include <ymir/db/ipl_db.hpp>
+#include <ymir/db/rom_cart_db.hpp>
+#include <ymir/sys/backup_ram.hpp>
+#include <ymir/sys/clocks.hpp>
+#include <ymir/sys/memory_defs.hpp>
+#include <ymir/version.hpp>
+
+#include <algorithm>
+#include <cctype>
+#include <array>
+#include <cstdint>
+#include <cstring>
+#include <filesystem>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <type_traits>
+#include <vector>
+
+#include <ymir/util/dev_log.hpp>
+
+namespace vfs = ymir_libretro::vfs;
+
+// ---------------------------------------------------------------------------
+// Core options
+// ---------------------------------------------------------------------------
+
+static struct retro_core_option_v2_category option_categories[] = {
+    {"system", "System", "System-level emulation settings."},
+    {"video", "Video", "Graphics rendering settings."},
+    {"audio", "Audio", "Audio emulation settings."},
+    {"cdblock", "CD Drive", "CD Block emulation settings."},
+    {nullptr, nullptr, nullptr},
+};
+
+static struct retro_core_option_v2_definition option_definitions[] = {
+    {
+        "ymir_region",
+        "System Region",
+        "Region",
+        "Set the Saturn region. 'Auto' detects from the disc.",
+        nullptr,
+        "system",
+        {
+            {"auto", "Auto"},
+            {"japan", "Japan"},
+            {"north_america", "North America"},
+            {"europe", "Europe"},
+            {nullptr, nullptr},
+        },
+        "auto",
+    },
+    {
+        "ymir_sh2_cache",
+        "SH-2 Cache Emulation",
+        "SH-2 Cache",
+        "Improves accuracy for specific games at a small performance cost.",
+        nullptr,
+        "system",
+        {
+            {"disabled", "Disabled"},
+            {"enabled", "Enabled"},
+            {nullptr, nullptr},
+        },
+        "disabled",
+    },
+    {
+        "ymir_sh2_clock",
+        "SH-2 Clock Factor",
+        "SH-2 Clock",
+        "Adjusts the SH-2 CPU clock speed. Lower values improve performance but may cause slowdowns; higher values "
+        "may reduce lag in CPU-heavy games. Values other than 100% may lower compatibility with some games.",
+        nullptr,
+        "system",
+        {
+            {"25", "25%"},
+            {"50", "50%"},
+            {"75", "75%"},
+            {"100", "100% (Recommended)"},
+            {"125", "125%"},
+            {"150", "150%"},
+            {"200", "200%"},
+            {"300", "300%"},
+            {"400", "400%"},
+            {"500", "500%"},
+            {nullptr, nullptr},
+        },
+        "100",
+    },
+    {
+        "ymir_rtc_mode",
+        "RTC Mode",
+        "RTC",
+        "Virtual: clock advances with emulation (correct for fast-forward/save states). Host: syncs to real time.",
+        nullptr,
+        "system",
+        {
+            {"virtual", "Virtual (Recommended)"},
+            {"host", "Host"},
+            {nullptr, nullptr},
+        },
+        "virtual",
+    },
+    {
+        "ymir_cartridge",
+        "Cartridge",
+        "Cartridge",
+        "Select the cartridge to insert. 'Auto' uses the game database to pick the correct one. DRAM carts are required by many fighting games.",
+        nullptr,
+        "system",
+        {
+            {"auto", "Auto (Recommended)"},
+            {"none", "None"},
+            {"dram_8mbit", "1 MB DRAM Expansion"},
+            {"dram_32mbit", "4 MB DRAM Expansion"},
+            {"rom_kof95", "ROM: King of Fighters '95"},
+            {"rom_ultraman", "ROM: Ultraman"},
+            {nullptr, nullptr},
+        },
+        "auto",
+    },
+    // --- Video ---
+    {
+        "ymir_threaded_vdp1",
+        "Threaded VDP1 Rendering",
+        "Threaded VDP1",
+        "Run the VDP1 renderer in a dedicated thread for improved performance.",
+        nullptr,
+        "video",
+        {
+            {"enabled", "Enabled"},
+            {"disabled", "Disabled"},
+            {nullptr, nullptr},
+        },
+        "enabled",
+    },
+    {
+        "ymir_threaded_vdp2",
+        "Threaded VDP2 Rendering",
+        "Threaded VDP2",
+        "Run the VDP2 renderer in a dedicated thread. Highly recommended for performance.",
+        nullptr,
+        "video",
+        {
+            {"enabled", "Enabled"},
+            {"disabled", "Disabled"},
+            {nullptr, nullptr},
+        },
+        "enabled",
+    },
+    {
+        "ymir_deinterlace",
+        "Deinterlace",
+        "Deinterlace",
+        "Render interlaced high-res modes in progressive mode. May cause artifacts in some games.",
+        nullptr,
+        "video",
+        {
+            {"disabled", "Disabled"},
+            {"enabled", "Enabled"},
+            {nullptr, nullptr},
+        },
+        "disabled",
+    },
+    {
+        "ymir_threaded_deinterlacer",
+        "Threaded Deinterlacer",
+        "Threaded Deinterlace",
+        "Run the deinterlacer in a dedicated thread. Requires threaded VDP2 and deinterlace enabled.",
+        nullptr,
+        "video",
+        {
+            {"enabled", "Enabled"},
+            {"disabled", "Disabled"},
+            {nullptr, nullptr},
+        },
+        "enabled",
+    },
+    {
+        "ymir_transparent_meshes",
+        "Transparent Meshes",
+        "Transparent Meshes",
+        "Render mesh patterns as semi-transparent instead of checkerboard.",
+        nullptr,
+        "video",
+        {
+            {"disabled", "Disabled"},
+            {"enabled", "Enabled"},
+            {nullptr, nullptr},
+        },
+        "disabled",
+    },
+    // --- Audio ---
+    {
+        "ymir_audio_interpolation",
+        "Sample Interpolation",
+        "Interpolation",
+        "Linear interpolation matches real hardware. Nearest neighbor is harsher.",
+        nullptr,
+        "audio",
+        {
+            {"linear", "Linear (Accurate)"},
+            {"nearest_neighbor", "Nearest Neighbor"},
+            {nullptr, nullptr},
+        },
+        "linear",
+    },
+    {
+        "ymir_threaded_scsp",
+        "Threaded SCSP",
+        "Threaded SCSP",
+        "Run the SCSP and its MC68EC000 sound CPU in a dedicated thread for improved performance.",
+        nullptr,
+        "audio",
+        {
+            {"disabled", "Disabled"},
+            {"enabled", "Enabled"},
+            {nullptr, nullptr},
+        },
+        "disabled",
+    },
+    {
+        "ymir_audio_step_granularity",
+        "SCSP Step Granularity",
+        "SCSP Granularity",
+        "Controls SCSP emulation accuracy. Higher values are more accurate but slower.",
+        nullptr,
+        "audio",
+        {
+            {"0", "0 - Fastest"},
+            {"1", "1"},
+            {"2", "2"},
+            {"3", "3"},
+            {"4", "4"},
+            {"5", "5 - Most Accurate"},
+            {nullptr, nullptr},
+        },
+        "0",
+    },
+    // --- CD Drive ---
+    {
+        "ymir_cd_speed",
+        "CD Read Speed",
+        "CD Speed",
+        "Higher values reduce loading times.",
+        nullptr,
+        "cdblock",
+        {
+            {"2", "2x (Accurate)"},
+            {"4", "4x"},
+            {"8", "8x"},
+            {nullptr, nullptr},
+        },
+        "2",
+    },
+    {
+        "ymir_cdblock_lle",
+        "CD Block Low-Level Emulation",
+        "CD Block LLE",
+        "Use low-level CD block emulation for improved accuracy. Requires CD block ROM in system directory.",
+        nullptr,
+        "cdblock",
+        {
+            {"disabled", "Disabled"},
+            {"enabled", "Enabled"},
+            {nullptr, nullptr},
+        },
+        "disabled",
+    },
+    {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, {{nullptr, nullptr}}, nullptr},
+};
+
+static struct retro_core_options_v2 options_v2 = {
+    option_categories,
+    option_definitions,
+};
+
+// ---------------------------------------------------------------------------
+// Controller types
+// ---------------------------------------------------------------------------
+
+static constexpr unsigned DEVICE_ARCADE_RACER  = RETRO_DEVICE_SUBCLASS(RETRO_DEVICE_ANALOG, 1);
+static constexpr unsigned DEVICE_MISSION_STICK = RETRO_DEVICE_SUBCLASS(RETRO_DEVICE_ANALOG, 2);
+
+// ---------------------------------------------------------------------------
+// BIOS filenames to search for (in priority order)
+// ---------------------------------------------------------------------------
+
+static constexpr const char *kBiosFilenames[] = {
+    "sega_101.bin",
+    "mpr-17933.bin",
+    "saturn_bios.bin",
+};
+
+// ---------------------------------------------------------------------------
+// Global state
+// ---------------------------------------------------------------------------
+
+static struct {
+    std::unique_ptr<ymir::Saturn> saturn;
+
+    retro_environment_t env_cb = nullptr;
+    retro_video_refresh_t video_cb = nullptr;
+    retro_audio_sample_batch_t audio_batch_cb = nullptr;
+    retro_input_poll_t input_poll_cb = nullptr;
+    retro_input_state_t input_state_cb = nullptr;
+    retro_log_printf_t log_cb = nullptr;
+    bool use_input_bitmasks = false;
+
+    // Video state
+    const uint32_t *fb_ptr = nullptr;
+    uint32_t fb_width = 320;
+    uint32_t fb_height = 224;
+    uint32_t last_notified_width = 320;
+    uint32_t last_notified_height = 224;
+    bool frame_ready = false;
+
+    // Audio buffer (interleaved stereo int16)
+    std::vector<int16_t> audio_buffer;
+
+    // Paths
+    std::string system_dir;
+    std::string save_dir;
+
+    // Video standard (cached for retro_get_system_av_info / retro_get_region)
+    bool is_pal = false;
+
+    // Save state reuse: avoids multi-MB heap alloc/free per serialize call
+    std::unique_ptr<ymir::savestate::SaveState> reusable_state;
+    size_t cached_state_size = 0;
+
+    // Device type per port
+    unsigned port_device[2] = {RETRO_DEVICE_JOYPAD, RETRO_DEVICE_JOYPAD};
+
+    // CD block LLE
+    bool cdblock_rom_loaded = false;
+
+    // Multi-disc state
+    std::vector<std::string> disc_paths;
+    unsigned disc_index = 0;
+
+    // PS5 patch: the cheats on (Action Replay codes), written to memory every frame
+    struct CheatCode {
+        uint8_t type;      // 0x1: a 16-bit write, 0x3: an 8-bit write, 0xD: the next code only if the word here is value
+        uint32_t address;
+        uint16_t value;
+    };
+    std::vector<std::vector<CheatCode>> cheats; // by index (retro_cheat_set's)
+} core;
+
+// ---------------------------------------------------------------------------
+// Logging helper
+// ---------------------------------------------------------------------------
+
+#define LOG(...) \
+    do { \
+        if (core.log_cb) core.log_cb(__VA_ARGS__); \
+    } while (0)
+
+// ---------------------------------------------------------------------------
+// Ymir callback functions (C-style with void* context parameter)
+// ---------------------------------------------------------------------------
+
+static void on_frame_complete(uint32 *fb, uint32 width, uint32 height, void *) {
+    core.fb_ptr = fb;
+    core.fb_width = width;
+    core.fb_height = height;
+    core.frame_ready = true;
+}
+
+static void on_audio_sample(sint16 left, sint16 right, void *) {
+    core.audio_buffer.push_back(left);
+    core.audio_buffer.push_back(right);
+}
+
+static ymir::peripheral::Button read_saturn_buttons(unsigned port) {
+    using ymir::peripheral::Button;
+    auto buttons = Button::All; // All released (1 = released)
+
+    int16_t mask;
+    if (core.use_input_bitmasks) {
+        mask = core.input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_MASK);
+    } else {
+        mask = 0;
+        for (unsigned i = 0; i <= RETRO_DEVICE_ID_JOYPAD_R3; i++)
+            mask |= core.input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, i) ? (1 << i) : 0;
+    }
+
+    auto check = [&](unsigned retro_id, Button btn) {
+        if (mask & (1 << retro_id))
+            buttons &= ~btn; // Clear bit = pressed
+    };
+    check(RETRO_DEVICE_ID_JOYPAD_UP, Button::Up);
+    check(RETRO_DEVICE_ID_JOYPAD_DOWN, Button::Down);
+    check(RETRO_DEVICE_ID_JOYPAD_LEFT, Button::Left);
+    check(RETRO_DEVICE_ID_JOYPAD_RIGHT, Button::Right);
+    check(RETRO_DEVICE_ID_JOYPAD_START, Button::Start);
+    check(RETRO_DEVICE_ID_JOYPAD_A, Button::B);
+    check(RETRO_DEVICE_ID_JOYPAD_B, Button::A);
+    check(RETRO_DEVICE_ID_JOYPAD_X, Button::Y);
+    check(RETRO_DEVICE_ID_JOYPAD_Y, Button::X);
+    check(RETRO_DEVICE_ID_JOYPAD_L, Button::Z);
+    check(RETRO_DEVICE_ID_JOYPAD_R, Button::C);
+    check(RETRO_DEVICE_ID_JOYPAD_R2, Button::R);
+    check(RETRO_DEVICE_ID_JOYPAD_L2, Button::L);
+    return buttons;
+}
+
+// Convert libretro analog range [-32768..32767] to Saturn [0..255]
+static uint8_t analog_to_u8(int16_t val) {
+    return static_cast<uint8_t>((val + 32768) >> 8);
+}
+
+static void on_peripheral_report(ymir::peripheral::PeripheralReport &report, void *ctx) {
+    using ymir::peripheral::PeripheralType;
+    auto port = static_cast<unsigned>(reinterpret_cast<uintptr_t>(ctx));
+
+    switch (core.port_device[port]) {
+    default:
+    case RETRO_DEVICE_JOYPAD: {
+        report.type = PeripheralType::ControlPad;
+        report.report.controlPad.buttons = read_saturn_buttons(port);
+        break;
+    }
+    case RETRO_DEVICE_ANALOG: {
+        report.type = PeripheralType::AnalogPad;
+        auto &rpt = report.report.analogPad;
+        rpt.buttons = read_saturn_buttons(port);
+        rpt.analog = true;
+        auto lx = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT, RETRO_DEVICE_ID_ANALOG_X);
+        auto ly = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT, RETRO_DEVICE_ID_ANALOG_Y);
+        rpt.x = analog_to_u8(lx);
+        rpt.y = analog_to_u8(ly);
+        rpt.l = core.input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L) ? 0xFF : 0x00;
+        rpt.r = core.input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R) ? 0xFF : 0x00;
+        break;
+    }
+    case DEVICE_ARCADE_RACER: {
+        report.type = PeripheralType::ArcadeRacer;
+        auto &rpt = report.report.arcadeRacer;
+        rpt.buttons = read_saturn_buttons(port);
+        auto lx = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT, RETRO_DEVICE_ID_ANALOG_X);
+        rpt.wheel = analog_to_u8(lx);
+        break;
+    }
+    case DEVICE_MISSION_STICK: {
+        report.type = PeripheralType::MissionStick;
+        auto &rpt = report.report.missionStick;
+        rpt.buttons = read_saturn_buttons(port);
+        rpt.sixAxis = true;
+        auto lx = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT, RETRO_DEVICE_ID_ANALOG_X);
+        auto ly = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT, RETRO_DEVICE_ID_ANALOG_Y);
+        auto rx = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_RIGHT, RETRO_DEVICE_ID_ANALOG_X);
+        auto ry = core.input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_RIGHT, RETRO_DEVICE_ID_ANALOG_Y);
+        rpt.x1 = analog_to_u8(lx);
+        rpt.y1 = analog_to_u8(ly);
+        rpt.z1 = 0x80; // Main throttle at neutral
+        rpt.x2 = analog_to_u8(rx);
+        rpt.y2 = analog_to_u8(ry);
+        rpt.z2 = 0x80; // Sub throttle at neutral
+        break;
+    }
+    case RETRO_DEVICE_MOUSE: {
+        report.type = PeripheralType::ShuttleMouse;
+        auto &rpt = report.report.shuttleMouse;
+        rpt.x = static_cast<int16_t>(core.input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_X));
+        rpt.y = static_cast<int16_t>(core.input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_Y));
+        rpt.left = core.input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_LEFT) != 0;
+        rpt.right = core.input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_RIGHT) != 0;
+        rpt.middle = core.input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_MIDDLE) != 0;
+        rpt.start = core.input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_START) != 0;
+        break;
+    }
+    case RETRO_DEVICE_LIGHTGUN: {
+        report.type = PeripheralType::VirtuaGun;
+        auto &rpt = report.report.virtuaGun;
+        rpt.trigger = core.input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_TRIGGER) != 0;
+        rpt.start = core.input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_START) != 0;
+        rpt.reload = core.input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_RELOAD) != 0;
+        bool offscreen = core.input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_IS_OFFSCREEN) != 0;
+        if (offscreen) {
+            rpt.x = 0xFFFF;
+            rpt.y = 0xFFFF;
+        } else {
+            auto gx = core.input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X);
+            auto gy = core.input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_SCREEN_Y);
+            rpt.x = static_cast<uint16_t>((gx + 32768) * core.fb_width / 65536);
+            rpt.y = static_cast<uint16_t>((gy + 32768) * core.fb_height / 65536);
+        }
+        break;
+    }
+    case RETRO_DEVICE_NONE:
+        report.type = PeripheralType::None;
+        break;
+    }
+}
+
+// Helper to create a peripheral callback with the port number as context
+static ymir::peripheral::CBPeripheralReport make_peripheral_cb(unsigned port) {
+    return {reinterpret_cast<void *>(static_cast<uintptr_t>(port)), on_peripheral_report};
+}
+
+// ---------------------------------------------------------------------------
+// Core option handling
+// ---------------------------------------------------------------------------
+
+static std::string get_variable(const char *key) {
+    struct retro_variable var{key, nullptr};
+    if (core.env_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+        return var.value;
+    return {};
+}
+
+static void apply_core_options() {
+    if (!core.saturn)
+        return;
+
+    auto &config = core.saturn->configuration;
+
+    // --- System ---
+    config.system.emulateSH2Cache = (get_variable("ymir_sh2_cache") == "enabled");
+
+    auto sh2_clock = get_variable("ymir_sh2_clock");
+    if (!sh2_clock.empty())
+        core.saturn->SetSH2ClockFactor(Ratio::FromPercentage(static_cast<uint32_t>(std::stoi(sh2_clock))));
+
+    auto rtc_mode = get_variable("ymir_rtc_mode");
+    if (rtc_mode == "host")
+        config.rtc.mode = ymir::core::config::rtc::Mode::Host;
+    else
+        config.rtc.mode = ymir::core::config::rtc::Mode::Virtual;
+
+    // Region -- applied at load time, changing at runtime would require a reset.
+
+    // --- Video ---
+    config.swRenderer.threadedVDP1 = (get_variable("ymir_threaded_vdp1") == "enabled");
+    config.swRenderer.threadedVDP2 = (get_variable("ymir_threaded_vdp2") == "enabled");
+    config.swRenderer.threadedDeinterlacer = (get_variable("ymir_threaded_deinterlacer") == "enabled");
+
+    core.saturn->VDP.ModifyEnhancements([](ymir::vdp::config::Enhancements &enh) {
+        enh.deinterlace = (get_variable("ymir_deinterlace") == "enabled");
+        enh.transparentMeshes = (get_variable("ymir_transparent_meshes") == "enabled");
+    });
+
+    // --- Audio ---
+    config.audio.threadedSCSP = (get_variable("ymir_threaded_scsp") == "enabled");
+
+    auto interp = get_variable("ymir_audio_interpolation");
+    if (interp == "nearest_neighbor")
+        config.audio.interpolation = ymir::core::config::audio::SampleInterpolationMode::NearestNeighbor;
+    else
+        config.audio.interpolation = ymir::core::config::audio::SampleInterpolationMode::Linear;
+
+    auto granularity = get_variable("ymir_audio_step_granularity");
+    if (!granularity.empty())
+        core.saturn->SCSP.SetStepGranularity(static_cast<uint32_t>(std::stoi(granularity)));
+
+    // --- CD Drive ---
+    auto cd_speed = get_variable("ymir_cd_speed");
+    if (!cd_speed.empty())
+        config.cdblock.readSpeedFactor = static_cast<uint8_t>(std::stoi(cd_speed));
+
+    if (get_variable("ymir_cdblock_lle") == "enabled") {
+        if (core.cdblock_rom_loaded)
+            config.cdblock.useLLE = true;
+        else
+            LOG(RETRO_LOG_WARN, "[Ymir] CD Block LLE requires a ROM in system/cdb/; falling back to HLE\n");
+    } else {
+        config.cdblock.useLLE = false;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// BIOS loading
+// ---------------------------------------------------------------------------
+
+struct BiosCandidate {
+    const char *name;
+    std::array<uint8_t, ymir::sys::kIPLSize> data;
+    const ymir::db::IPLROMInfo *info; // nullptr if the dump isn't in ymir-core's IPL database
+    ymir::db::SystemRegion region;    // best-known region: from `info` if present, otherwise from
+                                       // kLocalBiosHashes below, otherwise None
+};
+
+// Fallback identification, by hash, for common BIOS dumps not currently in ymir-core's IPL
+// database (libs/ymir-core/src/ymir/db/ipl_db.cpp). Region corroborated against this core's own
+// dist/info firmware descriptions and mednafen_saturn_libretro's, which agree on both.
+static const struct {
+    ymir::XXH128Hash hash;
+    ymir::db::SystemRegion region;
+} kLocalBiosHashes[] = {
+    // sega_101.bin
+    {{0x4F, 0x38, 0x04, 0xED, 0x5A, 0xB3, 0x2B, 0xFC, 0xEF, 0xBB, 0x7C, 0x7A, 0xD7, 0xA4, 0x92, 0xC7},
+     ymir::db::SystemRegion::JP},
+    // mpr-17933.bin
+    {{0x62, 0xF6, 0x13, 0x11, 0xBA, 0x6D, 0x42, 0x98, 0x2A, 0xDA, 0x24, 0x7A, 0xB1, 0x37, 0xF0, 0x72},
+     ymir::db::SystemRegion::US_EU},
+};
+
+static ymir::db::SystemRegion local_bios_region(const ymir::XXH128Hash &hash) {
+    for (const auto &entry : kLocalBiosHashes) {
+        if (entry.hash == hash)
+            return entry.region;
+    }
+    return ymir::db::SystemRegion::None;
+}
+
+static const char *bios_region_name(ymir::db::SystemRegion region) {
+    switch (region) {
+    case ymir::db::SystemRegion::JP: return "JP";
+    case ymir::db::SystemRegion::US_EU: return "US_EU";
+    case ymir::db::SystemRegion::KR: return "KR";
+    default: return "none";
+    }
+}
+
+// Maps the ymir_region core option to the IPL database region it should prefer. Returns
+// SystemRegion::None for "auto", meaning no BIOS is preferred over another by this option alone.
+static ymir::db::SystemRegion preferred_bios_region() {
+    auto region_str = get_variable("ymir_region");
+    ymir::db::SystemRegion region;
+    if (region_str == "japan")
+        region = ymir::db::SystemRegion::JP;
+    else if (region_str == "north_america" || region_str == "europe")
+        region = ymir::db::SystemRegion::US_EU;
+    else
+        region = ymir::db::SystemRegion::None;
+    LOG(RETRO_LOG_INFO, "[Ymir] ymir_region=%s -> preferred BIOS region: %s\n", region_str.c_str(),
+        bios_region_name(region));
+    return region;
+}
+
+// Maps an SMPC area code (as returned by SMPC::GetAreaCode()) to the closest IPL database region.
+static ymir::db::SystemRegion area_code_to_bios_region(uint8_t area_code) {
+    switch (area_code) {
+    case 0x1: return ymir::db::SystemRegion::JP;
+    case 0x6: return ymir::db::SystemRegion::KR;
+    default: return ymir::db::SystemRegion::US_EU;
+    }
+}
+
+// Scans the system directory for known BIOS dumps and hashes each against the IPL database.
+static std::vector<BiosCandidate> scan_bios_candidates() {
+    std::vector<BiosCandidate> candidates;
+    for (const char *name : kBiosFilenames) {
+        auto path = vfs::Join(core.system_dir, name);
+#if defined(PS5)
+        // PS5_RetroArch keeps Beetle Saturn's BIOS, which uses the same file names, in system/Saturn.
+        if (vfs::FileSize(path) != ymir::sys::kIPLSize)
+            path = vfs::Join(vfs::Join(core.system_dir, "Saturn"), name);
+#endif
+        if (vfs::FileSize(path) != ymir::sys::kIPLSize)
+            continue;
+
+        auto file = vfs::ReadFile(path);
+        if (!file || file->size() != ymir::sys::kIPLSize)
+            continue;
+
+        BiosCandidate candidate{name, {}, nullptr, ymir::db::SystemRegion::None};
+        std::copy(file->begin(), file->end(), candidate.data.begin());
+
+        auto hash = ymir::CalcHash128(candidate.data.data(), candidate.data.size());
+        candidate.info = ymir::db::GetIPLROMInfo(hash);
+        if (candidate.info != nullptr) {
+            candidate.region = candidate.info->region;
+            LOG(RETRO_LOG_INFO, "[Ymir] Found BIOS candidate: %s (version %s, region %s)\n", candidate.name,
+                candidate.info->version, bios_region_name(candidate.region));
+        } else {
+            candidate.region = local_bios_region(hash);
+            if (candidate.region != ymir::db::SystemRegion::None) {
+                LOG(RETRO_LOG_INFO,
+                    "[Ymir] Found BIOS candidate: %s (not in IPL database, region %s from local hash list, hash "
+                    "%s)\n",
+                    candidate.name, bios_region_name(candidate.region), ymir::ToString(hash).c_str());
+            } else {
+                LOG(RETRO_LOG_INFO, "[Ymir] Found BIOS candidate: %s (unrecognized dump, hash %s)\n", candidate.name,
+                    ymir::ToString(hash).c_str());
+            }
+        }
+        candidates.push_back(std::move(candidate));
+    }
+    if (candidates.empty()) {
+        LOG(RETRO_LOG_INFO, "[Ymir] No BIOS candidates found in system directory.\n");
+    }
+    return candidates;
+}
+
+// Picks the index of the best candidate for the given preferred region, falling back to the
+// first candidate found (kBiosFilenames priority order) if none match.
+static size_t select_bios_candidate(const std::vector<BiosCandidate> &candidates,
+                                    ymir::db::SystemRegion preferred_region) {
+    if (preferred_region != ymir::db::SystemRegion::None) {
+        for (size_t i = 0; i < candidates.size(); i++) {
+            if (candidates[i].region == preferred_region)
+                return i;
+        }
+    }
+    return 0;
+}
+
+static void load_bios_candidate(BiosCandidate &candidate) {
+    core.saturn->LoadIPL(std::span<uint8_t, ymir::sys::kIPLSize>(candidate.data));
+    if (candidate.info != nullptr) {
+        LOG(RETRO_LOG_INFO, "[Ymir] Loaded BIOS: %s (version %s)\n", candidate.name, candidate.info->version);
+    } else if (candidate.region != ymir::db::SystemRegion::None) {
+        LOG(RETRO_LOG_INFO, "[Ymir] Loaded BIOS: %s (not in IPL database, region %s from local hash list)\n",
+            candidate.name, bios_region_name(candidate.region));
+    } else {
+        LOG(RETRO_LOG_INFO, "[Ymir] Loaded BIOS: %s (unrecognized dump)\n", candidate.name);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// CD block ROM loading
+// ---------------------------------------------------------------------------
+
+static bool load_cdblock_rom() {
+    const auto cdb_dir = vfs::Join(core.system_dir, "cdb");
+    for (const auto &entry : vfs::ListDir(cdb_dir)) {
+        if (entry.isDirectory)
+            continue;
+        const auto path = vfs::Join(cdb_dir, entry.name);
+        if (vfs::FileSize(path) != ymir::sh1::kROMSize)
+            continue;
+
+        auto rom = vfs::ReadFile(path);
+        if (!rom || rom->size() != ymir::sh1::kROMSize)
+            continue;
+
+        core.saturn->LoadCDBlockROM(std::span<uint8_t, ymir::sh1::kROMSize>(rom->data(), ymir::sh1::kROMSize));
+        LOG(RETRO_LOG_INFO, "[Ymir] Loaded CD block ROM: %s\n", entry.name.c_str());
+        return true;
+    }
+    return false;
+}
+
+// ---------------------------------------------------------------------------
+// Cartridge configuration
+// ---------------------------------------------------------------------------
+
+static bool load_rom_cartridge(const char *filename, const ymir::db::ROMCartInfo &info) {
+    const auto path = vfs::Join(core.system_dir, filename);
+    if (vfs::FileSize(path) != ymir::cart::kROMCartSize)
+        return false;
+
+    auto rom = vfs::ReadFile(path);
+    if (!rom || rom->size() != ymir::cart::kROMCartSize)
+        return false;
+
+    auto *cart = core.saturn->InsertCartridge<ymir::cart::ROMCartridge>();
+    cart->LoadROM(std::span<const uint8_t>(rom->data(), rom->size()));
+    LOG(RETRO_LOG_INFO, "[Ymir] Loaded ROM cartridge: %s (%s)\n", info.gameName, filename);
+    return true;
+}
+
+// ROM cart filenames to search for (same as standalone)
+static constexpr const char *kKOF95Files[] = {"mpr-18811-mx.ic1", nullptr};
+static constexpr const char *kUltramanFiles[] = {"mpr-19367-mx.ic1", nullptr};
+
+static void configure_cartridge(const ymir::db::GameInfo *game_info) {
+    auto cart_str = get_variable("ymir_cartridge");
+
+    // Determine effective cartridge type
+    ymir::db::Cartridge db_cart = ymir::db::Cartridge::None;
+    if (game_info)
+        db_cart = game_info->GetCartridge();
+
+    if (cart_str == "none") {
+        core.saturn->RemoveCartridge();
+        return;
+    }
+
+    // PS5 patch: the 4 Mbit backup memory cartridge (Sega's "Power Memory"); the frontend keeps its contents in a file
+    // (ymir_ps5_cart_backup)
+    if (cart_str == "backup_4mbit") {
+        ymir::bup::BackupMemory bup;
+        bup.CreateInMemory(ymir::bup::BackupMemorySize::_4Mbit);
+        core.saturn->InsertCartridge<ymir::cart::BackupMemoryCartridge>(std::move(bup));
+        LOG(RETRO_LOG_INFO, "[Ymir] Inserted 4 Mbit backup memory cartridge\n");
+        return;
+    }
+
+    if (cart_str == "dram_8mbit") {
+        core.saturn->InsertCartridge<ymir::cart::DRAM8MbitCartridge>();
+        LOG(RETRO_LOG_INFO, "[Ymir] Inserted 1 MB DRAM expansion cartridge\n");
+        return;
+    }
+
+    if (cart_str == "dram_32mbit") {
+        core.saturn->InsertCartridge<ymir::cart::DRAM32MbitCartridge>();
+        LOG(RETRO_LOG_INFO, "[Ymir] Inserted 4 MB DRAM expansion cartridge\n");
+        return;
+    }
+
+    if (cart_str == "rom_kof95") {
+        for (auto *f = kKOF95Files; *f; ++f)
+            if (load_rom_cartridge(*f, ymir::db::kKOF95ROMInfo))
+                return;
+        LOG(RETRO_LOG_WARN, "[Ymir] KoF95 ROM cart not found in system directory\n");
+        return;
+    }
+
+    if (cart_str == "rom_ultraman") {
+        for (auto *f = kUltramanFiles; *f; ++f)
+            if (load_rom_cartridge(*f, ymir::db::kUltramanROMInfo))
+                return;
+        LOG(RETRO_LOG_WARN, "[Ymir] Ultraman ROM cart not found in system directory\n");
+        return;
+    }
+
+    // "auto" — use game database
+    if (cart_str.empty() || cart_str == "auto") {
+        switch (db_cart) {
+        case ymir::db::Cartridge::DRAM8Mbit:
+            core.saturn->InsertCartridge<ymir::cart::DRAM8MbitCartridge>();
+            LOG(RETRO_LOG_INFO, "[Ymir] Auto: inserted 1 MB DRAM expansion\n");
+            break;
+        case ymir::db::Cartridge::DRAM32Mbit:
+            core.saturn->InsertCartridge<ymir::cart::DRAM32MbitCartridge>();
+            LOG(RETRO_LOG_INFO, "[Ymir] Auto: inserted 4 MB DRAM expansion\n");
+            break;
+        case ymir::db::Cartridge::ROM_KOF95:
+            for (auto *f = kKOF95Files; *f; ++f)
+                if (load_rom_cartridge(*f, ymir::db::kKOF95ROMInfo))
+                    return;
+            LOG(RETRO_LOG_WARN, "[Ymir] Auto: KoF95 ROM cart needed but not found\n");
+            break;
+        case ymir::db::Cartridge::ROM_Ultraman:
+            for (auto *f = kUltramanFiles; *f; ++f)
+                if (load_rom_cartridge(*f, ymir::db::kUltramanROMInfo))
+                    return;
+            LOG(RETRO_LOG_WARN, "[Ymir] Auto: Ultraman ROM cart needed but not found\n");
+            break;
+        default:
+            // PS5 patch: a game that needs no cartridge of its own gets the backup memory one, when the frontend asks
+            if (get_variable("ymir_ps5_auto_backup_cart") == "enabled") {
+                ymir::bup::BackupMemory bup;
+                bup.CreateInMemory(ymir::bup::BackupMemorySize::_4Mbit);
+                core.saturn->InsertCartridge<ymir::cart::BackupMemoryCartridge>(std::move(bup));
+                LOG(RETRO_LOG_INFO, "[Ymir] Auto: inserted 4 Mbit backup memory cartridge\n");
+            }
+            break;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// M3U playlist parsing
+// ---------------------------------------------------------------------------
+
+static std::vector<std::string> parse_m3u(const std::string &m3u_path) {
+    std::vector<std::string> paths;
+    auto data = vfs::ReadFile(m3u_path);
+    if (!data)
+        return paths;
+
+    auto base_dir = vfs::ToPath(m3u_path).parent_path();
+    std::istringstream f(std::string(data->begin(), data->end()));
+    std::string line;
+    while (std::getline(f, line)) {
+        // Trim trailing whitespace/CR
+        while (!line.empty() && (line.back() == '\r' || line.back() == ' ' || line.back() == '\t'))
+            line.pop_back();
+        if (line.empty() || line[0] == '#')
+            continue;
+        // PS5 patch: a playlist written on Windows separates folders with '\'
+        std::replace(line.begin(), line.end(), '\\', '/');
+        while (line.rfind("./", 0) == 0)
+            line.erase(0, 2);
+
+        auto p = vfs::ToPath(line);
+        if (p.is_relative())
+            p = base_dir / p;
+        paths.push_back(vfs::FromPath(p));
+    }
+    return paths;
+}
+
+// ---------------------------------------------------------------------------
+// Disc control callbacks
+// ---------------------------------------------------------------------------
+
+// Loads a disc image (through the frontend VFS when available) or a physical CD-ROM drive. Loader exceptions, e.g.
+// for a file that can be stat'ed but not opened or a malformed cue sheet, must not cross the libretro C API.
+static bool load_disc(const std::string &path, ymir::media::Disc &disc, ymir::media::CbLoaderMessage disc_log) {
+#if defined(__cpp_exceptions)
+    try {
+#endif
+        if (ymir_libretro::IsCDROMPath(path))
+            return ymir_libretro::LoadCDROMDisc(vfs::Interface(), path, disc, disc_log);
+        return ymir::media::LoadDisc(vfs::ToPath(path), disc, false, disc_log);
+#if defined(__cpp_exceptions)
+    } catch (const std::exception &e) {
+        LOG(RETRO_LOG_ERROR, "[Ymir] %s\n", e.what());
+        disc.Invalidate();
+        return false;
+    }
+#endif
+}
+
+static bool disc_set_eject_state(bool ejected) {
+    if (!core.saturn)
+        return false;
+
+    if (ejected) {
+        core.saturn->OpenTray();
+    } else {
+        // Load the selected disc before closing the tray
+        if (core.disc_index < core.disc_paths.size()) {
+            const auto &path = core.disc_paths[core.disc_index];
+            auto disc_log = [](ymir::media::MessageType type, std::string msg) {
+                auto level = (type == ymir::media::MessageType::Error) ? RETRO_LOG_ERROR : RETRO_LOG_INFO;
+                LOG(level, "[Ymir] %s\n", msg.c_str());
+            };
+            ymir::media::Disc disc;
+            if (load_disc(path, disc, disc_log)) {
+                core.saturn->EjectDisc();
+                core.saturn->LoadDisc(std::move(disc));
+            }
+        }
+        core.saturn->CloseTray();
+    }
+    return true;
+}
+
+static bool disc_get_eject_state(void) {
+    return core.saturn && core.saturn->IsTrayOpen();
+}
+
+static unsigned disc_get_image_index(void) {
+    return core.disc_index;
+}
+
+static bool disc_set_image_index(unsigned index) {
+    if (index >= core.disc_paths.size() && index != 0)
+        return false;
+    core.disc_index = index;
+    return true;
+}
+
+static unsigned disc_get_num_images(void) {
+    return static_cast<unsigned>(core.disc_paths.size());
+}
+
+static bool disc_replace_image_index(unsigned index, const struct retro_game_info *info) {
+    if (index >= core.disc_paths.size())
+        return false;
+
+    if (info && info->path) {
+        core.disc_paths[index] = info->path;
+    } else {
+        core.disc_paths.erase(core.disc_paths.begin() + index);
+        if (core.disc_index >= core.disc_paths.size() && core.disc_index > 0)
+            core.disc_index = static_cast<unsigned>(core.disc_paths.size()) - 1;
+    }
+    return true;
+}
+
+static bool disc_add_image_index(void) {
+    core.disc_paths.emplace_back();
+    return true;
+}
+
+static bool disc_get_image_path(unsigned index, char *buf, size_t len) {
+    if (index >= core.disc_paths.size() || core.disc_paths[index].empty())
+        return false;
+    std::strncpy(buf, core.disc_paths[index].c_str(), len - 1);
+    buf[len - 1] = '\0';
+    return true;
+}
+
+static bool disc_get_image_label(unsigned index, char *buf, size_t len) {
+    if (index >= core.disc_paths.size() || core.disc_paths[index].empty())
+        return false;
+    auto name = std::filesystem::path(core.disc_paths[index]).stem().string();
+    std::strncpy(buf, name.c_str(), len - 1);
+    buf[len - 1] = '\0';
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+// SMPC persistent data (RTC, language, area code)
+//
+// The frontend owns file I/O for this data; SMPC only holds it in memory.
+// The binary format below matches ymir-sdl3's PersistenceService so save
+// files are interchangeable between frontends.
+// ---------------------------------------------------------------------------
+
+static constexpr uint8_t kPersistentSMPCDataVersion = 0x01;
+
+static bool load_persistent_smpc_data(const std::string &path, ymir::smpc::PersistentSMPCData &data) {
+    auto file = vfs::ReadFile(path);
+    if (!file)
+        return false;
+    std::istringstream in{std::string(file->begin(), file->end()), std::ios::binary};
+
+    int version = in.get();
+    if (version != kPersistentSMPCDataVersion)
+        return false;
+    in.seekg(3, std::ios::cur); // skip 3 reserved bytes
+
+    std::array<uint8_t, 4> smem{};
+    bool ste{};
+    uint64_t rtc_offset{};
+    uint64_t rtc_timestamp{};
+
+    in.read(reinterpret_cast<char *>(smem.data()), sizeof(smem));
+    in.read(reinterpret_cast<char *>(&ste), sizeof(ste));
+    in.read(reinterpret_cast<char *>(&rtc_offset), sizeof(rtc_offset));
+    in.read(reinterpret_cast<char *>(&rtc_timestamp), sizeof(rtc_timestamp));
+    if (!in)
+        return false;
+
+    data.SMEM = smem;
+    data.STE = ste;
+    data.rtc.offset = bit::little_endian_swap<uint64_t>(rtc_offset);
+    data.rtc.timestamp = bit::little_endian_swap<uint64_t>(rtc_timestamp);
+    return true;
+}
+
+static void save_persistent_smpc_data(const ymir::smpc::PersistentSMPCData &data, void *) {
+    if (core.save_dir.empty())
+        return;
+
+    std::ostringstream out{std::ios::binary};
+    out.put(kPersistentSMPCDataVersion);
+    out.put(0x00); // reserved for future expansion
+    out.put(0x00); // reserved for future expansion
+    out.put(0x00); // reserved for future expansion
+
+    const uint64_t rtc_offset = bit::little_endian_swap<uint64_t>(data.rtc.offset);
+    const uint64_t rtc_timestamp = bit::little_endian_swap<uint64_t>(data.rtc.timestamp);
+
+    out.write(reinterpret_cast<const char *>(data.SMEM.data()), sizeof(data.SMEM));
+    out.write(reinterpret_cast<const char *>(&data.STE), sizeof(data.STE));
+    out.write(reinterpret_cast<const char *>(&rtc_offset), sizeof(rtc_offset));
+    out.write(reinterpret_cast<const char *>(&rtc_timestamp), sizeof(rtc_timestamp));
+
+    const std::string bytes = out.str();
+    vfs::WriteFile(vfs::Join(core.save_dir, "smpc.bin"),
+                   std::span(reinterpret_cast<const uint8_t *>(bytes.data()), bytes.size()));
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: callback setters
+// ---------------------------------------------------------------------------
+
+extern "C" {
+
+RETRO_API void retro_set_environment(retro_environment_t cb) {
+    core.env_cb = cb;
+
+    bool no_game = false;
+    cb(RETRO_ENVIRONMENT_SET_SUPPORT_NO_GAME, &no_game);
+
+    cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_V2, &options_v2);
+
+    static const struct retro_controller_description port_controllers[] = {
+        {"Control Pad", RETRO_DEVICE_JOYPAD},
+        {"3D Control Pad", RETRO_DEVICE_ANALOG},
+        {"Arcade Racer", DEVICE_ARCADE_RACER},
+        {"Mission Stick", DEVICE_MISSION_STICK},
+        {"Mouse", RETRO_DEVICE_MOUSE},
+        {"Stunner / Virtua Gun", RETRO_DEVICE_LIGHTGUN},
+    };
+    static const struct retro_controller_info ports[] = {
+        {port_controllers, sizeof(port_controllers) / sizeof(port_controllers[0])},
+        {port_controllers, sizeof(port_controllers) / sizeof(port_controllers[0])},
+        {nullptr, 0},
+    };
+    cb(RETRO_ENVIRONMENT_SET_CONTROLLER_INFO, (void *)ports);
+
+    static const struct retro_input_descriptor input_desc[] = {
+#define DESC(port, id, name) {port, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_##id, name}
+        DESC(0, UP, "D-Pad Up"), DESC(0, DOWN, "D-Pad Down"),
+        DESC(0, LEFT, "D-Pad Left"), DESC(0, RIGHT, "D-Pad Right"),
+        DESC(0, A, "B"), DESC(0, B, "A"), DESC(0, R, "C"),
+        DESC(0, X, "Y"), DESC(0, Y, "X"), DESC(0, L, "Z"),
+        DESC(0, L2, "L"), DESC(0, R2, "R"), DESC(0, START, "Start"),
+        DESC(1, UP, "D-Pad Up"), DESC(1, DOWN, "D-Pad Down"),
+        DESC(1, LEFT, "D-Pad Left"), DESC(1, RIGHT, "D-Pad Right"),
+        DESC(1, A, "B"), DESC(1, B, "A"), DESC(1, R, "C"),
+        DESC(1, X, "Y"), DESC(1, Y, "X"), DESC(1, L, "Z"),
+        DESC(1, L2, "L"), DESC(1, R2, "R"), DESC(1, START, "Start"),
+#undef DESC
+        {0, 0, 0, 0, nullptr},
+    };
+    cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS, (void *)input_desc);
+
+    static struct retro_disk_control_ext_callback disc_cb = {
+        disc_set_eject_state,
+        disc_get_eject_state,
+        disc_get_image_index,
+        disc_set_image_index,
+        disc_get_num_images,
+        disc_replace_image_index,
+        disc_add_image_index,
+        nullptr, // set_initial_image
+        disc_get_image_path,
+        disc_get_image_label,
+    };
+    cb(RETRO_ENVIRONMENT_SET_DISK_CONTROL_EXT_INTERFACE, &disc_cb);
+
+    bool bitmasks = false;
+    if (cb(RETRO_ENVIRONMENT_GET_INPUT_BITMASKS, &bitmasks))
+        core.use_input_bitmasks = bitmasks;
+
+    // Request the VFS interface (v3+) so all file access goes through the frontend. That's the only way to reach
+    // content the host file system can't open, e.g. Android SAF URIs or physical CD-ROM drives ("cdrom://"). Only
+    // install it on success: RetroArch also calls retro_set_environment on a running core while probing core info,
+    // with every request ignored, and that must not drop the VFS. retro_deinit clears it.
+    struct retro_vfs_interface_info vfs_info{};
+    vfs_info.required_interface_version = 3;
+    vfs_info.iface = nullptr;
+    if (cb(RETRO_ENVIRONMENT_GET_VFS_INTERFACE, &vfs_info))
+        vfs::Init(vfs_info.iface);
+
+    struct retro_log_callback log{};
+    if (cb(RETRO_ENVIRONMENT_GET_LOG_INTERFACE, &log))
+        core.log_cb = log.log;
+}
+
+RETRO_API void retro_set_video_refresh(retro_video_refresh_t cb) {
+    core.video_cb = cb;
+}
+
+RETRO_API void retro_set_audio_sample(retro_audio_sample_t) {
+    // We use batch callback instead.
+}
+
+RETRO_API void retro_set_audio_sample_batch(retro_audio_sample_batch_t cb) {
+    core.audio_batch_cb = cb;
+}
+
+RETRO_API void retro_set_input_poll(retro_input_poll_t cb) {
+    core.input_poll_cb = cb;
+}
+
+RETRO_API void retro_set_input_state(retro_input_state_t cb) {
+    core.input_state_cb = cb;
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: lifecycle
+// ---------------------------------------------------------------------------
+
+static void devlog_to_libretro(devlog::Level level, const char *message) {
+    if (!core.log_cb)
+        return;
+    enum retro_log_level rl = RETRO_LOG_DEBUG;
+    if (level >= devlog::level::error)
+        rl = RETRO_LOG_ERROR;
+    else if (level >= devlog::level::warn)
+        rl = RETRO_LOG_WARN;
+    else if (level >= devlog::level::info)
+        rl = RETRO_LOG_INFO;
+    core.log_cb(rl, "[Ymir] %s\n", message);
+}
+
+RETRO_API void retro_init(void) {
+    core.audio_buffer.reserve(882 * 2); // PAL worst case per frame
+    devlog::setSink(devlog_to_libretro);
+}
+
+RETRO_API void retro_deinit(void) {
+    core.saturn.reset();
+    core.audio_buffer.clear();
+    core.audio_buffer.shrink_to_fit();
+    vfs::Init(nullptr);
+}
+
+RETRO_API unsigned retro_api_version(void) {
+    return RETRO_API_VERSION;
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: system info
+// ---------------------------------------------------------------------------
+
+RETRO_API void retro_get_system_info(struct retro_system_info *info) {
+    std::memset(info, 0, sizeof(*info));
+    info->library_name = "Emir";
+    info->library_version = ymir::version::string;
+    info->valid_extensions = "cue|chd|mds|ccd|iso|m3u";
+    info->need_fullpath = true;
+    info->block_extract = false;
+}
+
+RETRO_API void retro_get_system_av_info(struct retro_system_av_info *info) {
+    info->geometry.base_width = 320;
+    info->geometry.base_height = 224;
+    info->geometry.max_width = ymir::vdp::kMaxResH;
+    info->geometry.max_height = ymir::vdp::kMaxResV;
+    info->geometry.aspect_ratio = 4.0f / 3.0f;
+
+    info->timing.fps = core.is_pal ? 50.0 : 59.82;
+    info->timing.sample_rate = 44100.0;
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: game loading
+// ---------------------------------------------------------------------------
+
+RETRO_API bool retro_load_game(const struct retro_game_info *game) {
+    if (!game || !game->path)
+        return false;
+
+    // Get directories
+    {
+        const char *dir = nullptr;
+        if (core.env_cb(RETRO_ENVIRONMENT_GET_SYSTEM_DIRECTORY, &dir) && dir)
+            core.system_dir = dir;
+        if (core.env_cb(RETRO_ENVIRONMENT_GET_SAVE_DIRECTORY, &dir) && dir)
+            core.save_dir = dir;
+    }
+
+    // Pixel format
+    enum retro_pixel_format fmt = RETRO_PIXEL_FORMAT_XRGB8888;
+    if (!core.env_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &fmt)) {
+        LOG(RETRO_LOG_ERROR, "[Ymir] XRGB8888 pixel format not supported.\n");
+        return false;
+    }
+
+    // Create Saturn
+    core.saturn = std::make_unique<ymir::Saturn>();
+
+    // Seed virtual RTC from host clock on first hard reset (before persistence loads)
+    core.saturn->configuration.rtc.virtHardResetStrategy =
+        ymir::core::config::rtc::HardResetStrategy::SyncToHost;
+
+    // Apply region preference before disc load triggers AutodetectRegion
+    auto region_str = get_variable("ymir_region");
+    if (region_str == "japan") {
+        core.saturn->configuration.system.autodetectRegion = false;
+        core.saturn->configuration.system.preferredRegionOrder =
+            std::vector{ymir::core::config::sys::Region::Japan};
+    } else if (region_str == "north_america") {
+        core.saturn->configuration.system.autodetectRegion = false;
+        core.saturn->configuration.system.preferredRegionOrder =
+            std::vector{ymir::core::config::sys::Region::NorthAmerica};
+    } else if (region_str == "europe") {
+        core.saturn->configuration.system.autodetectRegion = false;
+        core.saturn->configuration.system.preferredRegionOrder =
+            std::vector{ymir::core::config::sys::Region::EuropePAL};
+        core.saturn->SetVideoStandard(ymir::core::config::sys::VideoStandard::PAL);
+    } else {
+        core.saturn->configuration.system.autodetectRegion = true;
+    }
+
+    // Scan for known BIOS dumps and load the best match for ymir_region (or the first one found,
+    // if set to auto). The disc's actual region isn't known yet at this point; see the BIOS
+    // reconciliation step after LoadDisc() below.
+    auto bios_candidates = scan_bios_candidates();
+    if (bios_candidates.empty()) {
+        LOG(RETRO_LOG_ERROR, "[Ymir] No Saturn BIOS found in system directory.\n");
+        LOG(RETRO_LOG_ERROR, "[Ymir] Looked for: sega_101.bin, mpr-17933.bin, saturn_bios.bin\n");
+#if defined(PS5)
+        LOG(RETRO_LOG_ERROR, "[Ymir] (in the system folder and in its Saturn subfolder)\n");
+#endif
+        return false;
+    }
+    size_t bios_index = select_bios_candidate(bios_candidates, preferred_bios_region());
+    load_bios_candidate(bios_candidates[bios_index]);
+
+    // Load CD block ROM for LLE (optional)
+    core.cdblock_rom_loaded = load_cdblock_rom();
+
+    // Register video callback
+    core.saturn->VDP.SetSoftwareRenderCallback({on_frame_complete});
+
+    // Register audio callback
+    core.saturn->SCSP.SetSampleCallback({on_audio_sample});
+
+    // Connect controllers and register input callbacks
+    core.saturn->SMPC.GetPeripheralPort1().ConnectControlPad();
+    core.saturn->SMPC.GetPeripheralPort1().SetPeripheralReportCallback(make_peripheral_cb(0));
+
+    core.saturn->SMPC.GetPeripheralPort2().ConnectControlPad();
+    core.saturn->SMPC.GetPeripheralPort2().SetPeripheralReportCallback(make_peripheral_cb(1));
+
+    // Build disc list: parse M3U playlist or use single path
+    core.disc_paths.clear();
+    std::filesystem::path game_path(game->path);
+    auto ext = game_path.extension().string();
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+    if (ext == ".m3u") {
+        core.disc_paths = parse_m3u(game->path);
+        if (core.disc_paths.empty()) {
+            LOG(RETRO_LOG_ERROR, "[Ymir] M3U file is empty or unreadable: %s\n", game->path);
+            core.saturn.reset();
+            return false;
+        }
+    } else {
+        core.disc_paths.emplace_back(game->path);
+    }
+    core.disc_index = 0;
+
+    // Load first disc
+    auto disc_log = [](ymir::media::MessageType type, std::string msg) {
+        auto level = (type == ymir::media::MessageType::Error) ? RETRO_LOG_ERROR : RETRO_LOG_INFO;
+        LOG(level, "[Ymir] %s\n", msg.c_str());
+    };
+    ymir::media::Disc disc;
+    if (!load_disc(core.disc_paths[0], disc, disc_log)) {
+        LOG(RETRO_LOG_ERROR, "[Ymir] Failed to load disc: %s\n", core.disc_paths[0].c_str());
+        core.saturn.reset();
+        return false;
+    }
+
+    core.saturn->LoadDisc(std::move(disc)); // Also triggers AutodetectRegion
+
+    // Now that the disc's region is known (via SMPC's autodetected area code), reload a
+    // better-matching BIOS if one is available. Safe to do here: LoadIPL() has no side effects
+    // beyond copying into memory, and Reset() (which starts CPU execution) hasn't run yet.
+    {
+        auto area_code = core.saturn->SMPC.GetAreaCode();
+        auto detected_region = area_code_to_bios_region(area_code);
+        LOG(RETRO_LOG_INFO, "[Ymir] Disc region detected: area code 0x%X -> BIOS region %s\n", area_code,
+            bios_region_name(detected_region));
+
+        size_t best_index = select_bios_candidate(bios_candidates, detected_region);
+        bool have_confirmed_match = bios_candidates[best_index].region == detected_region;
+        if (best_index != bios_index && have_confirmed_match) {
+            LOG(RETRO_LOG_INFO, "[Ymir] Switching to better BIOS match: %s\n", bios_candidates[best_index].name);
+            bios_index = best_index;
+            load_bios_candidate(bios_candidates[bios_index]);
+        } else if (!have_confirmed_match) {
+            LOG(RETRO_LOG_INFO,
+                "[Ymir] No BIOS candidate confirmed for region %s; keeping %s\n",
+                bios_region_name(detected_region), bios_candidates[bios_index].name);
+        }
+    }
+
+    if (core.disc_paths.size() > 1)
+        LOG(RETRO_LOG_INFO, "[Ymir] M3U: loaded disc 1 of %zu\n", core.disc_paths.size());
+
+    // Configure cartridge using game database
+    {
+        const auto &loaded_disc = core.saturn->GetCDInterface().GetDiscHeader();
+        auto *game_info = ymir::db::GetGameInfo(loaded_disc.productNumber,
+                                                core.saturn->GetDiscHash());
+        configure_cartridge(game_info);
+    }
+
+    // Determine video standard for AV info
+    core.is_pal =
+        (core.saturn->GetVideoStandard() == ymir::core::config::sys::VideoStandard::PAL);
+
+    // Expose memory map for RetroAchievements (matches rcheevos Saturn region definitions).
+    // WRAM is stored in host-native uint16 byte order (via MapArraySwapped in the bus),
+    // so rcheevos can read the arrays directly without byte-swapping.
+    struct retro_memory_descriptor descs[2] = {};
+    descs[0].flags = RETRO_MEMDESC_SYSTEM_RAM;
+    descs[0].ptr   = core.saturn->mem.WRAMLow.data();
+    descs[0].start = 0x00200000;
+    descs[0].len   = core.saturn->mem.WRAMLow.size();
+    descs[0].addrspace = "LowWram";
+    descs[1].flags = RETRO_MEMDESC_SYSTEM_RAM;
+    descs[1].ptr   = core.saturn->mem.WRAMHigh.data();
+    descs[1].start = 0x06000000;
+    descs[1].len   = core.saturn->mem.WRAMHigh.size();
+    descs[1].addrspace = "HighWram";
+    struct retro_memory_map mmap = { descs, 2 };
+    core.env_cb(RETRO_ENVIRONMENT_SET_MEMORY_MAPS, &mmap);
+
+    bool cheevos_supported = true;
+    core.env_cb(RETRO_ENVIRONMENT_SET_SUPPORT_ACHIEVEMENTS, &cheevos_supported);
+
+    // Initialize internal backup RAM in memory so the BIOS finds a valid
+    // header during boot.  RetroArch manages save data via .srm files,
+    // reading/writing the raw buffer returned by retro_get_memory_data.
+    {
+        ymir::bup::BackupMemory bup;
+        bup.CreateInMemory(ymir::bup::BackupMemorySize::_256Kbit);
+        core.saturn->mem.SetInternalBackupRAM(std::move(bup));
+    }
+
+    // Load SMPC persistent data (RTC, language, area code) before hard reset
+    if (!core.save_dir.empty()) {
+        ymir::smpc::PersistentSMPCData smpc_data{};
+        if (load_persistent_smpc_data(vfs::Join(core.save_dir, "smpc.bin"), smpc_data)) {
+            core.saturn->SMPC.LoadPersistentData(smpc_data);
+        }
+        core.saturn->SMPC.SetPersistDataCallback({nullptr, save_persistent_smpc_data});
+    }
+
+    // Apply remaining options
+    apply_core_options();
+
+    // Hard reset to boot
+    core.saturn->Reset(true);
+
+    return true;
+}
+
+RETRO_API bool retro_load_game_special(unsigned, const struct retro_game_info *, size_t) {
+    return false;
+}
+
+RETRO_API void retro_unload_game(void) {
+    core.saturn.reset();
+    core.reusable_state.reset();
+    core.audio_buffer.clear();
+    core.frame_ready = false;
+    core.cached_state_size = 0;
+    core.disc_paths.clear();
+    core.disc_index = 0;
+    core.cheats.clear();
+}
+
+static void apply_cheats();
+
+// ---------------------------------------------------------------------------
+// libretro API: execution
+// ---------------------------------------------------------------------------
+
+RETRO_API void retro_run(void) {
+    // Check for option changes
+    bool options_updated = false;
+    if (core.env_cb(RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE, &options_updated) && options_updated)
+        apply_core_options();
+
+    // Clear per-frame state
+    core.frame_ready = false;
+    core.audio_buffer.clear();
+
+    // Latch input
+    core.input_poll_cb();
+
+    // PS5 patch: the cheats, before the frame (the game reads them during it)
+    apply_cheats();
+
+    // Run one frame
+    core.saturn->RunFrame();
+
+    // Notify frontend if resolution changed
+    if (core.frame_ready &&
+        (core.fb_width != core.last_notified_width ||
+         core.fb_height != core.last_notified_height)) {
+        struct retro_game_geometry geom{};
+        geom.base_width = core.fb_width;
+        geom.base_height = core.fb_height;
+        geom.aspect_ratio = 4.0f / 3.0f;
+        core.env_cb(RETRO_ENVIRONMENT_SET_GEOMETRY, &geom);
+        core.last_notified_width = core.fb_width;
+        core.last_notified_height = core.fb_height;
+    }
+
+    // Submit video
+    if (core.frame_ready) {
+        core.video_cb(core.fb_ptr, core.fb_width, core.fb_height,
+                      core.fb_width * sizeof(uint32_t));
+    } else {
+        // Frame not ready -- dupe previous
+        core.video_cb(nullptr, core.fb_width, core.fb_height,
+                      core.fb_width * sizeof(uint32_t));
+    }
+
+    // Submit audio
+    if (!core.audio_buffer.empty()) {
+        core.audio_batch_cb(core.audio_buffer.data(),
+                            core.audio_buffer.size() / 2);
+    }
+}
+
+RETRO_API void retro_reset(void) {
+    if (core.saturn)
+        core.saturn->Reset(true);
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: controller port
+// ---------------------------------------------------------------------------
+
+RETRO_API void retro_set_controller_port_device(unsigned port, unsigned device) {
+    if (!core.saturn || port > 1)
+        return;
+
+    core.port_device[port] = device;
+
+    auto &pp = (port == 0) ? core.saturn->SMPC.GetPeripheralPort1()
+                           : core.saturn->SMPC.GetPeripheralPort2();
+
+    switch (device) {
+    case RETRO_DEVICE_JOYPAD:
+        pp.ConnectControlPad();
+        break;
+    case RETRO_DEVICE_ANALOG:
+        pp.ConnectAnalogPad();
+        break;
+    case DEVICE_ARCADE_RACER:
+        pp.ConnectArcadeRacer();
+        break;
+    case DEVICE_MISSION_STICK:
+        pp.ConnectMissionStick();
+        break;
+    case RETRO_DEVICE_MOUSE:
+        pp.ConnectShuttleMouse();
+        break;
+    case RETRO_DEVICE_LIGHTGUN:
+        pp.ConnectVirtuaGun();
+        break;
+    case RETRO_DEVICE_NONE:
+        pp.DisconnectPeripherals();
+        return;
+    default:
+        pp.ConnectControlPad();
+        core.port_device[port] = RETRO_DEVICE_JOYPAD;
+        break;
+    }
+    pp.SetPeripheralReportCallback(make_peripheral_cb(port));
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: region
+// ---------------------------------------------------------------------------
+
+RETRO_API unsigned retro_get_region(void) {
+    return core.is_pal ? RETRO_REGION_PAL : RETRO_REGION_NTSC;
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: memory
+// ---------------------------------------------------------------------------
+
+RETRO_API void *retro_get_memory_data(unsigned id) {
+    switch (id & RETRO_MEMORY_MASK) {
+    case RETRO_MEMORY_SAVE_RAM:
+        return core.saturn ? core.saturn->mem.GetInternalBackupRAM().Data() : nullptr;
+    default:
+        return nullptr;
+    }
+}
+
+RETRO_API size_t retro_get_memory_size(unsigned id) {
+    switch (id & RETRO_MEMORY_MASK) {
+    case RETRO_MEMORY_SAVE_RAM:
+        return core.saturn ? core.saturn->mem.GetInternalBackupRAM().Size() : 0;
+    default:
+        return 0;
+    }
+}
+
+} // extern "C"
+
+// ---------------------------------------------------------------------------
+// Save state serialization helpers
+// ---------------------------------------------------------------------------
+
+namespace {
+
+static constexpr uint32_t kStateMagic = 0x53524D59; // "YMRS" little-endian
+static constexpr uint32_t kStateVersion = 1;
+
+struct StateWriter {
+    uint8_t *buf;
+    size_t pos = 0;
+
+    void raw(const void *data, size_t len) {
+        if (buf)
+            std::memcpy(buf + pos, data, len);
+        pos += len;
+    }
+
+    template <typename T>
+    void pod(const T &v) {
+        static_assert(std::is_trivially_copyable_v<T>);
+        raw(&v, sizeof(T));
+    }
+
+    void vec(const std::vector<uint8_t> &v) {
+        uint32_t sz = static_cast<uint32_t>(v.size());
+        pod(sz);
+        if (sz > 0)
+            raw(v.data(), sz);
+    }
+};
+
+struct StateReader {
+    const uint8_t *buf;
+    size_t pos = 0;
+    size_t cap;
+
+    bool raw(void *data, size_t len) {
+        if (pos + len > cap)
+            return false;
+        std::memcpy(data, buf + pos, len);
+        pos += len;
+        return true;
+    }
+
+    template <typename T>
+    bool pod(T &v) {
+        static_assert(std::is_trivially_copyable_v<T>);
+        return raw(&v, sizeof(T));
+    }
+
+    bool vec(std::vector<uint8_t> &v, size_t max_size) {
+        uint32_t sz;
+        if (!pod(sz) || sz > max_size)
+            return false;
+        v.resize(sz);
+        return sz == 0 || raw(v.data(), sz);
+    }
+};
+
+void write_scu(StateWriter &w, const ymir::savestate::SCUSaveState &s) {
+    for (const auto &dma : s.dma)
+        w.pod(dma);
+    w.pod(s.dsp);
+    w.pod(s.cartType);
+    w.vec(s.cartData);
+    w.pod(s.intrMask);
+    w.pod(s.intrStatus);
+    w.pod(s.abusIntrsPendingAck);
+    w.pod(s.pendingIntrLevel);
+    w.pod(s.pendingIntrIndex);
+    w.pod(s.timer0Counter);
+    w.pod(s.timer0Compare);
+    w.pod(s.timer1Reload);
+    w.pod(s.timer1Mode);
+    w.pod(s.timerEnable);
+    w.pod(s.wramSizeSelect);
+}
+
+bool read_scu(StateReader &r, ymir::savestate::SCUSaveState &s) {
+    for (auto &dma : s.dma)
+        if (!r.pod(dma))
+            return false;
+    if (!r.pod(s.dsp))
+        return false;
+    if (!r.pod(s.cartType))
+        return false;
+    if (!r.vec(s.cartData, 6u * 1024 * 1024))
+        return false;
+    return r.pod(s.intrMask) && r.pod(s.intrStatus) && r.pod(s.abusIntrsPendingAck)
+        && r.pod(s.pendingIntrLevel) && r.pod(s.pendingIntrIndex) && r.pod(s.timer0Counter)
+        && r.pod(s.timer0Compare) && r.pod(s.timer1Reload) && r.pod(s.timer1Mode)
+        && r.pod(s.timerEnable) && r.pod(s.wramSizeSelect);
+}
+
+void write_smpc(StateWriter &w, const ymir::savestate::SMPCSaveState &s) {
+    w.pod(s.IREG);
+    w.pod(s.OREG);
+    w.pod(s.COMREG);
+    w.pod(s.SR);
+    w.pod(s.SF);
+    w.pod(s.PDR1);
+    w.pod(s.PDR2);
+    w.pod(s.DDR1);
+    w.pod(s.DDR2);
+    w.pod(s.IOSEL);
+    w.pod(s.EXLE);
+    w.pod(s.intback.getPeripheralData);
+    w.pod(s.intback.optimize);
+    w.pod(s.intback.port1mode);
+    w.pod(s.intback.port2mode);
+    w.vec(s.intback.report);
+    w.pod(s.intback.reportOffset);
+    w.pod(s.intback.inProgress);
+    w.pod(s.busValue);
+    w.pod(s.resetDisable);
+    w.pod(s.commandEventState);
+    w.pod(s.rtcTimestamp);
+    w.pod(s.rtcSysClockCount);
+}
+
+bool read_smpc(StateReader &r, ymir::savestate::SMPCSaveState &s) {
+    return r.pod(s.IREG) && r.pod(s.OREG) && r.pod(s.COMREG) && r.pod(s.SR) && r.pod(s.SF)
+        && r.pod(s.PDR1) && r.pod(s.PDR2) && r.pod(s.DDR1) && r.pod(s.DDR2) && r.pod(s.IOSEL)
+        && r.pod(s.EXLE) && r.pod(s.intback.getPeripheralData) && r.pod(s.intback.optimize)
+        && r.pod(s.intback.port1mode) && r.pod(s.intback.port2mode)
+        && r.vec(s.intback.report, 4096) && r.pod(s.intback.reportOffset)
+        && r.pod(s.intback.inProgress) && r.pod(s.busValue) && r.pod(s.resetDisable)
+        && r.pod(s.commandEventState) && r.pod(s.rtcTimestamp) && r.pod(s.rtcSysClockCount);
+}
+
+size_t write_state(const ymir::savestate::SaveState &s, uint8_t *buf) {
+    StateWriter w{buf};
+    w.pod(kStateMagic);
+    w.pod(kStateVersion);
+    w.pod(s.scheduler);
+    w.pod(s.system);
+    w.pod(s.msh2);
+    w.pod(s.ssh2);
+    write_scu(w, s.scu);
+    write_smpc(w, s.smpc);
+    w.pod(s.vdp);
+    w.pod(s.scsp);
+    w.pod(s.cdblockLLE);
+    w.pod(s.cdblock);
+    w.pod(s.sh1);
+    w.pod(s.ygr);
+    w.pod(s.cddrive);
+    w.pod(s.cdblockDRAM);
+    w.pod(s.discHash);
+    w.pod(s.msh2SpilloverCycles);
+    w.pod(s.ssh2SpilloverCycles);
+    w.pod(s.sh1SpilloverCycles);
+    w.pod(s.sh1FracCycles);
+    return w.pos;
+}
+
+bool read_state(ymir::savestate::SaveState &s, const uint8_t *buf, size_t size) {
+    StateReader r{buf, 0, size};
+    uint32_t magic, version;
+    if (!r.pod(magic) || magic != kStateMagic)
+        return false;
+    if (!r.pod(version) || version != kStateVersion)
+        return false;
+    return r.pod(s.scheduler) && r.pod(s.system) && r.pod(s.msh2) && r.pod(s.ssh2)
+        && read_scu(r, s.scu) && read_smpc(r, s.smpc) && r.pod(s.vdp) && r.pod(s.scsp)
+        && r.pod(s.cdblockLLE) && r.pod(s.cdblock) && r.pod(s.sh1) && r.pod(s.ygr)
+        && r.pod(s.cddrive) && r.pod(s.cdblockDRAM) && r.pod(s.discHash)
+        && r.pod(s.msh2SpilloverCycles) && r.pod(s.ssh2SpilloverCycles)
+        && r.pod(s.sh1SpilloverCycles) && r.pod(s.sh1FracCycles);
+}
+
+} // namespace
+
+// ---------------------------------------------------------------------------
+// libretro API: save states
+// ---------------------------------------------------------------------------
+
+extern "C" {
+
+RETRO_API size_t retro_serialize_size(void) {
+    if (!core.saturn)
+        return 0;
+
+    if (core.cached_state_size == 0) {
+        if (!core.reusable_state)
+            core.reusable_state = std::make_unique<ymir::savestate::SaveState>();
+        core.saturn->SaveState(*core.reusable_state);
+        core.cached_state_size = write_state(*core.reusable_state, nullptr) + 4096;
+    }
+    return core.cached_state_size;
+}
+
+RETRO_API bool retro_serialize(void *data, size_t size) {
+    if (!core.saturn || size < core.cached_state_size)
+        return false;
+
+    if (!core.reusable_state)
+        core.reusable_state = std::make_unique<ymir::savestate::SaveState>();
+    core.saturn->SaveState(*core.reusable_state);
+    write_state(*core.reusable_state, static_cast<uint8_t *>(data));
+    return true;
+}
+
+RETRO_API bool retro_unserialize(const void *data, size_t size) {
+    if (!core.saturn)
+        return false;
+
+    if (!core.reusable_state)
+        core.reusable_state = std::make_unique<ymir::savestate::SaveState>();
+    if (!read_state(*core.reusable_state, static_cast<const uint8_t *>(data), size)) {
+        LOG(RETRO_LOG_ERROR, "[Ymir] Failed to deserialize save state.\n");
+        return false;
+    }
+    if (!core.saturn->LoadState(*core.reusable_state)) {
+        LOG(RETRO_LOG_ERROR, "[Ymir] Failed to load save state (validation failed).\n");
+        return false;
+    }
+    return true;
+}
+
+// ---------------------------------------------------------------------------
+// libretro API: cheats (stubbed)
+// ---------------------------------------------------------------------------
+
+// PS5 patch: Saturn Action Replay codes, as RetroArch's .cht files have them: groups of 12 hex digits, AAAAAAAA VVVV,
+// separated by anything ("+", spaces, ":", new lines). 1AAAAAAA VVVV writes the word VVVV, 3AAAAAAA 00VV the byte VV,
+// DAAAAAAA VVVV makes the next code apply only while the word at AAAAAAA is VVVV. The master codes (F6000914 C305,
+// B6002800 0000) only start the cartridge on a real console: skipped. A code with anything else ("??") is left out.
+RETRO_API void retro_cheat_reset(void) {
+    core.cheats.clear();
+}
+
+RETRO_API void retro_cheat_set(unsigned index, bool enabled, const char *code) {
+    if (index > 4096)
+        return;
+    if (core.cheats.size() <= index)
+        core.cheats.resize(index + 1);
+    auto &out = core.cheats[index];
+    out.clear();
+    if (!enabled || !code)
+        return;
+    std::string hex;
+    std::vector<std::string> groups;
+    auto flush = [&] {
+        // a group: a run of hex digits; several codes may be written together without separators
+        if (hex.empty())
+            return;
+        if (hex.size() % 12 == 0) {
+            for (size_t i = 0; i < hex.size(); i += 12)
+                groups.push_back(hex.substr(i, 12));
+        } else
+            groups.push_back(hex); // an address and its value apart ("1605C942+270F"): joined below
+        hex.clear();
+    };
+    bool bad = false;
+    for (const char *c = code; *c; c++) {
+        if (std::isxdigit(static_cast<unsigned char>(*c)))
+            hex += *c;
+        else if (*c == '?')
+            bad = true;
+        else
+            flush();
+    }
+    flush();
+    if (bad)
+        return;
+    // "AAAAAAAA" + "VVVV" written apart
+    std::vector<std::string> codes;
+    for (size_t i = 0; i < groups.size(); i++) {
+        if (groups[i].size() == 12)
+            codes.push_back(groups[i]);
+        else if (groups[i].size() == 8 && i + 1 < groups.size() && groups[i + 1].size() == 4) {
+            codes.push_back(groups[i] + groups[i + 1]);
+            i++;
+        } else
+            return; // not a code this reads
+    }
+    for (const std::string &c : codes) {
+        const uint32_t a = static_cast<uint32_t>(std::stoul(c.substr(0, 8), nullptr, 16));
+        const uint16_t v = static_cast<uint16_t>(std::stoul(c.substr(8, 4), nullptr, 16));
+        const uint8_t type = static_cast<uint8_t>(a >> 28);
+        if (a == 0xF6000914u || a == 0xB6002800u)
+            continue; // the master code
+        if (type != 0x1 && type != 0x3 && type != 0xD)
+            continue;
+        out.push_back({type, a & 0x0FFFFFFFu, v});
+    }
+}
+
+static void apply_cheats() {
+    if (!core.saturn || core.cheats.empty())
+        return;
+    auto &bus = core.saturn->mainBus;
+    for (const auto &codes : core.cheats) {
+        bool skip = false;
+        for (const auto &c : codes) {
+            if (skip) {
+                skip = false;
+                continue;
+            }
+            switch (c.type) {
+            case 0x1: bus.Poke<uint16>(c.address, c.value); break;
+            case 0x3: bus.Poke<uint8>(c.address, static_cast<uint8>(c.value)); break;
+            case 0xD: skip = bus.Peek<uint16>(c.address) != c.value; break;
+            }
+        }
+    }
+}
+
+// PS5 patch: the backup memory cartridge's contents (4 Mbit), when one is in the slot: *data and *size, else false.
+RETRO_API bool ymir_ps5_cart_backup(uint8_t **data, size_t *size) {
+    if (!core.saturn || !data || !size)
+        return false;
+    auto *cart = core.saturn->GetCartridge().As<ymir::cart::CartType::BackupMemory>();
+    if (!cart)
+        return false;
+    auto &bup = static_cast<ymir::bup::BackupMemory &>(cart->GetBackupMemory());
+    *data = bup.Data();
+    *size = bup.Size();
+    return *data != nullptr && *size > 0;
+}
+
+// PS5 patch: formats (empties) the internal backup memory (which = 0) or the cartridge's (which = 1).
+RETRO_API bool ymir_ps5_format_backup(int which) {
+    if (!core.saturn)
+        return false;
+    if (which == 0) {
+        core.saturn->mem.GetInternalBackupRAM().Format();
+        return true;
+    }
+    auto *cart = core.saturn->GetCartridge().As<ymir::cart::CartType::BackupMemory>();
+    if (!cart)
+        return false;
+    cart->GetBackupMemory().Format();
+    return true;
+}
+
+// PS5 patch: the machine's state in one line, for the frontend's game log (a game stuck on a black screen).
+RETRO_API int ymir_ps5_debug_state(char *buf, size_t size) {
+    if (!buf || size == 0)
+        return 0;
+    buf[0] = 0;
+    if (!core.saturn)
+        return 0;
+    auto &s = *core.saturn;
+    const uint32_t mpc = s.masterSH2.GetProbe().PC();
+    const uint32_t spc = s.slaveSH2.GetProbe().PC();
+    return snprintf(buf, size, "master SH-2 PC %08X, slave SH-2 PC %08X (%s), tray %s, framebuffer %ux%u",
+                    (unsigned)mpc, (unsigned)spc, s.slaveSH2Enabled ? "running" : "off",
+                    s.IsTrayOpen() ? "open" : "closed", core.fb_width, core.fb_height);
+}
+
+} // extern "C"

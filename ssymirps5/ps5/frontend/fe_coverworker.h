@@ -1,0 +1,69 @@
+// SSYmirPS5: the covers downloaded in the background, by the helper payload.
+//
+// On the console the app itself can't download once it is out of its sandbox (fe_prefetch.h: every HTTPS
+// GET fails after the jailbreak), so up to 1.4 it downloaded at the very start, before the jailbreak, up to 30 s at a
+// time with the launch screen up, and restarted itself for new covers. The helper is a payload of its own
+// that keeps running while the app runs. So it downloads them: the app writes covers/wanted.txt after each scan (and
+// covers/priority.txt with the covers around the selection), the helper fetches them one by one into
+// /data/ssymirps5/covers, and the shelf shows each cover as it lands. covers/progress.txt says how far it got.
+//
+// 1.6: the console's libSceSsl fails in the helper too (1.5 on a PS5: every GET -> send 8095f00c in 20 ms; the
+// helper runs outside any sandbox, like the app after its jailbreak), so the helper brings its own HTTPS:
+// TlsHttp (fe_tlshttp.h, Mbed TLS with Mozilla's CA list, plain sockets).
+//
+// 2.1: the same thread downloads the borders (fe_borderfetch.h), as Snes9x PS5 2.7 does: borders/wanted.txt and
+// borders/priority.txt in the same format, the pictures into borders/<system folder>/, borders/progress.txt. The border of the
+// game being played goes first, then the covers around the selection, the other covers, and last the borders of the whole
+// library (Settings, Download all borders).
+//
+// SPDX-License-Identifier: MIT
+#pragma once
+
+#include "fe_http.h"
+
+#include <memory>
+#include <string>
+
+namespace fe
+{
+// The worker's HTTP client: the helper's TlsHttp (fe_tlshttp.cpp); a build without it (the app, which never runs
+// the worker) gets the libSceHttp2 one.
+std::unique_ptr<HttpClient> MakeCoverWorkerHttp();
+
+// The helper's download loop, one round at a time: the helper's thread runs it (StartCoverWorker), the tests step it with a
+// fake client. `covers_dir`: the covers folder (OrbisDir("covers")); `borders_dir`: the borders folder (OrbisDir("borders")).
+class DownloadWorker
+{
+public:
+	DownloadWorker(std::unique_ptr<HttpClient> http, const std::string& covers_dir, const std::string& borders_dir);
+	~DownloadWorker();
+	// Reloads the lists that changed, then fetches the next file wanted, if any. Returns how many milliseconds to wait before
+	// the next round (0: go on at once).
+	int Step();
+	void Run(); // Step, forever
+
+private:
+	struct Impl;
+	std::unique_ptr<Impl> m_i;
+};
+
+// The helper, once it serves requests: starts the download thread (once).
+void StartCoverWorker();
+// 3.11.8: the app, when no helper of ours runs: its own thread downloads the borders (borders/wanted.txt and
+// priority.txt, as the helper would; the covers the shelf downloads itself). Once; AppBorderWorkerRunning: it was started.
+void StartAppBorderWorker();
+bool AppBorderWorkerRunning();
+
+// <folder>/progress.txt, as the worker writes it: files left, fetched since the helper started, and its state.
+struct CoverProgress
+{
+	bool valid = false; // a progress file the worker updated in the last minute
+	int left = 0;
+	int fetched = 0;
+	std::string state; // "busy", "idle", "offline"
+};
+CoverProgress ReadCoverProgress(); // covers/progress.txt
+CoverProgress ReadBorderProgress(); // borders/progress.txt
+
+std::string PriorityListPath();
+} // namespace fe

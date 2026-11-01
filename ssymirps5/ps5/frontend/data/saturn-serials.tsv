@@ -1,0 +1,2428 @@
+# SSYmirPS5: Sega Saturn product numbers -> game (tools/make_saturn_serials.py, from niemasd/GameDB-Saturn, GPL-3.0)
+# serial<TAB>title<TAB>region
+0081052-50B	Virtua Cop 2	Europe
+12512H	Casper (USA)	NTSC-U
+12512H-50	Casper (Europe) (En,Fr,De)	PAL
+14002	Three Dirty Dwarves	USA
+14003	Scud: The Disposable Assassin	USA
+191306	Sonic R	USA, Brazil
+191546	Riven: A Sequência de Myst (Disc 4)	Brazil
+191x81	Clockwork Knight 2: Pepperouchau's Adventure	USA, Brazil
+193226	NiGHTS into Dreams...	USA, Brazil
+20160212CD	Shining Force III Scenario 1 English View Increase (USA) v21	NTSC-U
+20200927CD	X-Men Arcade Saturn Port V0.2	
+23201G	Pappara Paoon (Japan) (2M)	NTSC-J
+560-0003-50	WipEout 2097	Europe
+610 6717	Tactics Formula (Japan) (Demo)	NTSC-J
+610-5732-06	System-Disc (KD02) Columbia	Japan
+610-5913-0	Tech Saturn Tsuushin - Spring 1995 (Japan)	NTSC-J
+610-5913-01	Tech Saturn Tsuushin: Spring 1995	Japan
+610-5913-02	Tech Saturn Tsuushin: Autumn 1995: Special CD-ROM	Japan
+610-5913-03	Tech Saturn Tsuushin: Winter 1995: Taikenban & Demo-ban ga Tenkomori!	Japan
+610-5913-04	Tech Saturn Tsuushin Vol. 4: Spring 1996: Youriyou Meippai Kikaku Tenkomori	Japan
+610-5913-05	Tech Saturn Tsuushin Vol. 5: Summer 1996	Japan
+610-6020-006	Saturn Super Vol. 5	Japan
+610-6020-01	Saturn Super Vol. 1	Japan
+610-6020-02	Saturn Super Vol. 2	Japan
+610-6020-03	Saturn Super Vol. 3	Japan
+610-6020-04	Saturn Super Henshuubu Hen: Taikenban Saturn Soft Taizen	Japan
+610-6020-05	Saturn Super Vol. 4	Japan
+610-6020-07	Saturn Super Vol. 6	Japan
+610-6020-08	Saturn Super Vol. 7	Japan
+610-6020-09	Saturn Super Vol. 8	Japan
+610-6020-10	Saturn Super Vol. 9 Furoku CD-ROM	Japan
+610-6020-11	Saturn Super Vol. 10 Furoku CD-ROM	Japan
+610-6020-12	Saturn Super Vol. 11 Furoku CD-ROM	Japan
+610-6033	Prime Selection Vol. 1	Japan
+610-6083	Virtua Fighter CG Portrait Collection (Europe)	Europe
+610-6092-01	Wheel's	Japan
+610-6113	Saturn CG Selection Vol. 1	Japan
+610-6164	Rayman (USA) (Demo)	USA
+610-6165	Bootleg Sampler	Europe
+610-6166-01	Flash SegaSaturn Vol. 1	Japan
+610-6166-02	Flash SegaSaturn Vol. 2	Japan
+610-6166-03	Flash SegaSaturn Vol. 3	Japan
+610-6166-04	Flash SegaSaturn Vol. 4	Japan
+610-6166-05	Flash SegaSaturn Vol. 5	Japan
+610-6166-06	Flash SegaSaturn Vol. 6	Japan
+610-6166-07	Flash SegaSaturn Vol. 7	Japan
+610-6166-08	Flash SegaSaturn Vol. 8	Japan
+610-6166-09	Flash SegaSaturn Vol. 9	Japan
+610-6166-10	Flash SegaSaturn Vol. 10	Japan
+610-6166-11	Flash SegaSaturn Vol. 11	Japan
+610-6166-12	Flash SegaSaturn Vol. 12	Japan
+610-6166-13	Flash SegaSaturn Vol. 13	Japan
+610-6166-14	Flash SegaSaturn Vol. 14	Japan
+610-6166-15	Flash SegaSaturn Vol. 15	Japan
+610-6166-16	Flash SegaSaturn Vol. 16	Japan
+610-6166-17	Flash SegaSaturn Vol. 17	Japan
+610-6166-18	Flash SegaSaturn Vol. 18	Japan
+610-6166-19	Flash SegaSaturn Vol. 19	Japan
+610-6166-20	Flash SegaSaturn Vol. 20	Japan
+610-6166-21	Flash SegaSaturn Vol. 21	Japan
+610-6166-22	Flash SegaSaturn Vol. 22	Japan
+610-6166-23	Flash SegaSaturn Vol. 23	Japan
+610-6166-24	Flash SegaSaturn Vol. 24	Japan
+610-6166-25	Flash SegaSaturn Vol. 25	Japan
+610-6166-26	Flash SegaSaturn Vol. 26	Japan
+610-6166-27	Flash SegaSaturn Vol. 27	Japan
+610-6166-28	Flash SegaSaturn Vol. 28	Japan
+610-6166-29	Flash SegaSaturn Vol. 29	Japan
+610-6166-30	Flash SegaSaturn Vol. 30	Japan
+610-6166-31	Flash SegaSaturn Vol. 31	Japan
+610-6166-32	Flash SegaSaturn Vol. 32	Japan
+610-6166-99	Flash SegaSaturn: Ochikazuki-hen	Japan
+610-6200	Dark Savior	Japan
+610-6276	SegaSaturn FDD Operator (Japan)	NTSC-J
+610-6288A	Sega Flash Vol. 1 (Europe)	PAL
+610-6288B	Sega Flash Vol. 2 (Europe)	Europe
+610-6288C	Sega Flash Vol. 3 (Europe)	Europe
+610-6288D	Sega Flash Vol. 4 (Europe)	Europe
+610-6288E	Sega Flash Vol. 5 (Europe)	Europe
+610-6288F	Sega Flash Vol. 6	Europe
+610-6297	Dark Savior	Japan
+610-6300	NiGHTS into Dreams...	Japan
+610-6315	DecAthlete	Japan
+610-6321-0	Keiou Yuugekitai - Okiraku Tamatebako (Japan)	NTSC-J
+610-6321-01	Keiou Yuugekitai: Okiraku Tamatebako	Japan
+610-6360-01	Tech Saturn Vol. 1/1996: Yatchimatta!	Japan
+610-6360-02	Tech Saturn Vol. 2/1996: Maitsuki 8-nichi wa Tessa no Hi: Ataru to Sugo Iyo	Japan
+610-6360-03	Tech Saturn Jan.1997: Kizuitara Gekkan-ka	Japan
+610-6360-04	Tech Saturn Feb.1997: E, Chocolate? Kurereba Morau yo	Japan
+610-6360-05	Tech Saturn Mar.1997: Okaeshi wa? Marshmallow, Cookie, Howaito Choco	Japan
+610-6360-06	Tech Saturn Apr.1997	Japan
+610-6360-07	Tech Saturn May.1997	Japan
+610-6360-08	Tech Saturn Jun.1997	Japan
+610-6360-09	Tech Saturn Jul.1997	Japan
+610-6360-10	Tech Saturn Aug.1997	Japan
+610-6360-11	Tech Saturn Sep.1997	Japan
+610-6360-12	Tech Saturn Oct.1997	Japan
+610-6376	Fighting Vipers	Japan
+610-6377	Preview Sega Saturn Vol. 1	Europe
+610-6384-01	Gremlin Demo Disk	Europe
+610-6431	Christmas NiGHTS into Dreams... (Japan) (Rev A)	Japan
+610-6443	Dennou Senki - Virtual On - Cyber Troopers (Japan) (Demo)	Japan
+610-6455	Crimewave (Europe) (Demo)	Europe
+610-6458-01	Develo Magazine Appendix CD-ROM for SegaSaturn	Japan
+610-6459	Funky Head Boxers (Japan) (Demo)	NTSC-J
+610-6470	Nissan Presents: Over Drivin' GT-R	Japan
+610-6471	Farland Story - Habou no Mai (Japan) (Demo)	NTSC-J
+610-6483	Christmas NiGHTS into Dreams... (Europe)	PAL
+610-6484	Tengai Makyou: Daiyon no Mokushiroku: The Apocalypse IV	Japan
+610-6493	Pinball Graffiti	Europe
+610-6501	Farland Story: Habou no Mai	Japan
+610-6502	QuoVadis 2 - Wakusei Kyoushuu Ovan Rei (Japan) (Demo)	Japan
+610-6503	Drift King Shutokou Battle '97 - Tsuchiya Keiichi & Bandou Masaaki (Japan) (Demo)	Japan
+610-6529	Swagman	Europe
+610-6537	Monster Slider (Japan) (Demo)	Japan
+610-6541	Jantei Battle Cos-Player	Japan
+610-6567	Fully Cowled Mini Yonku: Super Factory	Japan
+610-6569	Magical Drop III: Toretate Zoukan-gou!	Japan
+610-6576	Core Demo Disc (Europe)	Europe
+610-6602	Yuukyuu Gensoukyoku	Japan
+610-6605	D-Xhird	Japan
+610-6611	Bouken Katsugeki Monomono	Japan
+610-6612	Waku Waku 7 (Japan) (Demo)	Japan
+610-6613	Rabbit	Japan
+610-6621	Moon Cradle (Disc 1)	Japan
+610-6663	Tokimeki Memorial Drama Series Vol. 1: Nijiiro no Seishun	Japan
+610-6664	Marvel Super Heroes	Japan
+610-6666	Mr. Bones	Japan
+610-6672	Street Fighter Collection	Japan
+610-6675	Gremlin Demo Disc	Europe
+610-6677	Gekitotsu Koushien	Japan
+610-6678	Side Pocket 3	Japan
+610-6679	Silhouette Mirage (Japan) (Demo)	Japan
+610-6680	Virus	Japan
+610-6692	Ninja Jajamaru-kun: Onigiri Ninpouchou Gold	Japan
+610-6695	Goiken Muyou: Anarchy in the Nippon	Japan
+610-6698	WipEout 2097	Europe
+610-6702	DoDonPachi	Japan
+610-6703	Devil Summoner: Soul Hackers / Ronde	Japan
+610-6704	Devil Summoner: Soul Hackers / Ronde	Japan
+610-6710	Soukuu no Tsubasa: Gotha World	Japan
+610-6716	Steep Slope Sliders	Japan
+610-6717	Tactics Formula	Japan
+610-6719	Blue Breaker: Ken yori mo Hohoemi o	Japan
+610-6725	Real Sound: Kaze no Regret (Disc 1)	Japan
+610-6727	Layer Section II (Japan) (Demo)	Japan
+610-6728	Message Navi	Japan
+610-6730	Samurai Spirits: Amakusa Kourin	Japan
+610-6731	Hansha de Spark!	Japan
+610-6732	Disc Station Bessatsu: I Miss You. Tanaka Katsumi	Japan
+610-6745	Super Robot Taisen F (Japan) (Demo)	Japan
+610-6747	Sega Touring Car Championship (Japan) (Demo)	Japan
+610-6749	Azel: Panzer Dragoon RPG	Japan
+610-6762	DJ Wars	Japan
+610-6777	Machi	Japan
+610-6800	Maria: Kimi-tachi ga Umareta Wake	Japan
+610-6801	Saturn Bomberman Fight!!	Japan
+610-6802	Solo Crisis	Japan
+610-6803	Delisoba Deluxe	Japan
+610-6804	Devil Summoner: Soul Hackers Extra Dungeon	Japan
+610-6805-01	SegaColle Sega Bible Mogitate SegaSaturn Soukan-gou	Japan
+610-6805-02	Mogitate SegaSaturn Vol. 2	Japan
+610-6805-03	Mogitate SegaSaturn Vol. 3	Japan
+610-6805-04	Mogitate SegaSaturn Vol. 4	Japan
+610-6805-05	Mogitate SegaSaturn Vol. 5	Japan
+610-6805-06	Mogitate SegaSaturn Vol. 6	Japan
+610-6815	Sonic R	Japan
+610-6816	Shining Force III: Scenario 1: Outo no Kyoshin	Japan
+610-6821	Tenant Wars	Japan
+610-6822	Pia Carrot e Youkoso!! We've Been Waiting for You	Japan
+610-6827	Stellar Assault SS	Japan
+610-6831	Code R	Japan
+610-6833	SatMag Sono CD	Japan
+610-6837	Eve: The Lost One	Japan
+610-6842	Yuukyuu Gensoukyoku 2nd Album	Japan
+610-6848	Baroque Report: CD Data File	Japan
+610-6856	Burning Rangers	Japan
+610-6860	Shiroki Majo: Mou Hitotsu no Eiyuu Densetsu	Japan
+610-6861	The House of the Dead	Japan
+610-6864	Sakura Taisen 2: Kimi, Shinitamou Koto Nakare	Japan
+610-6876	Cross Tantei Monogatari	Japan
+610-6877	Cross Tantei Monogatari	Japan
+610-6881	Vampire Savior: The Lord of Vampire	Japan
+610-6885	Keriotosse!	Japan
+610-6886	Princess Maker: Yumemiru Yousei	Japan
+610-6895	Waku Waku Puyo Puyo Dungeon	Japan
+610-6896	Gungriffon II	Japan
+610-6905	MeltyLancer: Re-inforce	Japan
+610-6929	Mogitate SegaSaturn: Special Movie	Japan
+610-6957	Deep Fear	Japan
+610-6979	Shining Force III Premium Disc	Japan
+610-6987	Big Thanks: Super Keirin: Dream with Keirin 50 Years	Japan
+61014419	DoDonPachi (Japan) (Demo)	NTSC-J
+610591302	Tech Saturn Tsuushin - Autumn 1995 - Special CD-ROM (Japan)	NTSC-J
+610591303	Tech Saturn Tsuushin - Winter 1995 - Taikenban & Demo-ban ga Tenkomori! (Japan)	NTSC-J
+610591304	Tech Saturn Tsuushin Vol. 4 - Spring 1996 - Youriyou Meippai Kikaku Tenkomori (Japan)	NTSC-J
+610591305	Tech Saturn Tsuushin Vol. 5 - Summer 1996 (Japan)	NTSC-J
+610602001	Saturn Super Vol. 1 (Japan) (8M)	NTSC-J
+610602002	Saturn Super Vol. 2 (Japan) (1M)	NTSC-J
+610602003	Saturn Super Vol. 3 (Japan) (Rev A) (3M)	NTSC-J
+610602004	Saturn Super Henshuubu Hen - Taikenban Saturn Soft Taizen (Japan) (2M)	NTSC-J
+610602005	Saturn Super Vol. 4 (Japan) (2M)	NTSC-J
+610602006	Saturn Super Vol. 5 (Japan) (2M)	NTSC-J
+610602007	Saturn Super Vol. 6 (Japan) (2M)	NTSC-J
+610602008	Saturn Super Vol. 7 (Japan) (2M)	NTSC-J
+610602009	Saturn Super Vol. 8 (Japan)	NTSC-J
+610602010	Saturn Super Vol. 9 Furoku CD-ROM (Japan)	NTSC-J
+610602011	Saturn Super Vol. 10 Furoku CD-ROM (Japan) (2M, 3M)	NTSC-J
+610602012	Saturn Super Vol. 11 Furoku CD-ROM (Japan)	NTSC-J
+610609201	Wheel's (Japan)	NTSC-J
+610616603	Flash SegaSaturn Vol. 3 (Japan)	NTSC-J
+610616604	Flash SegaSaturn Vol. 4 (Japan)	NTSC-J
+610616605	Flash SegaSaturn Vol. 5 (Japan)	NTSC-J
+610616606	Flash SegaSaturn Vol. 6 (Japan)	NTSC-J
+610616607	Flash SegaSaturn Vol. 7 (Japan)	NTSC-J
+610616608	Flash SegaSaturn Vol. 8 (Japan)	NTSC-J
+610616609	Flash SegaSaturn Vol. 9 (Japan)	NTSC-J
+610616610	Flash SegaSaturn Vol. 10 (Japan)	NTSC-J
+610616611	Flash SegaSaturn Vol. 11 (Japan)	NTSC-J
+610616612	Flash SegaSaturn Vol. 12 (Japan)	NTSC-J
+610616613	Flash SegaSaturn Vol. 13 (Japan)	NTSC-J
+610616614	Flash SegaSaturn Vol. 14 (Japan)	NTSC-J
+610616615	Flash SegaSaturn Vol. 15 (Japan)	NTSC-J
+610616616	Flash SegaSaturn Vol. 16 (Japan)	NTSC-J
+610616617	Flash SegaSaturn Vol. 17 (Japan)	NTSC-J
+610616618	Flash SegaSaturn Vol. 18 (Japan)	NTSC-J
+610616619	Flash SegaSaturn Vol. 19 (Japan)	NTSC-J
+610616620	Flash SegaSaturn Vol. 20 (Japan)	NTSC-J
+610616621	Flash SegaSaturn Vol. 21 (Japan)	NTSC-J
+610616624	Flash SegaSaturn Vol. 24 (Japan)	NTSC-J
+610616625	Flash SegaSaturn Vol. 25 (Japan)	NTSC-J
+610616626	Flash SegaSaturn Vol. 26 (Japan)	NTSC-J
+610616627	Flash SegaSaturn Vol. 27 (Japan)	NTSC-J
+610616628	Flash SegaSaturn Vol. 28 (Japan)	NTSC-J
+610616629	Flash SegaSaturn Vol. 29 (Japan) (3M)	NTSC-J
+610616630	Flash SegaSaturn Vol. 30 (Japan)	NTSC-J
+610616631	Flash SegaSaturn Vol. 31 (Japan)	NTSC-J
+610616632	Flash SegaSaturn Vol. 32 (Japan)	NTSC-J
+610616699	Flash SegaSaturn - Ochikazuki-hen (Japan)	NTSC-J
+6106288F	Sega Flash Vol. 6 (Europe)	PAL
+6106288G	Sega Flash Vol. 7 (Europe)	PAL
+610636001	Tech Saturn Vol. 1-1996 - Yatchimatta! (Japan)	NTSC-J
+610636002	Tech Saturn Vol. 2-1996 - Maitsuki 8-nichi wa Tessa no Hi - Ataru to Sugo Iyo (Japan)	NTSC-J
+610636003	Tech Saturn Jan.1997 - Kizuitara Gekkan-ka (Japan)	NTSC-J
+610636004	Tech Saturn Feb.1997 - E, Chocolate Kurereba Morau yo (Japan)	NTSC-J
+610636005	Tech Saturn Mar.1997 - Okaeshi wa Marshmallow, Cookie, Howaito Choco (Japan)	NTSC-J
+610636006	Tech Saturn Apr.1997 (Japan)	NTSC-J
+610636007	Tech Saturn May.1997 (Japan)	NTSC-J
+610636008	Tech Saturn Jun.1997 (Japan)	NTSC-J
+610636009	Tech Saturn Jul.1997 (Japan)	NTSC-J
+610636010	Tech Saturn Aug.1997 (Japan)	NTSC-J
+610636011	Tech Saturn Sep.1997 (Japan)	NTSC-J
+610636012	Tech Saturn Oct.1997 (Japan)	NTSC-J
+610645801	Develo Magazine Appendix CD-ROM for SegaSaturn (Japan)	NTSC-J
+6106539	Touge King the Spirits 2 (Japan) (Demo)	Japan
+6106540	Hudson Soft - New Soft Line Up for Sega Saturn (Japan)	Japan
+6106541	Jantei Battle Cos-Player (Japan) (Demo)	NTSC-J
+6106553	Jantei Battle Cos-Player - Original Genga-shuu (Japan)	Japan
+6106563	Thunder Force V (Japan) (Demo)	Japan
+6106567	Fully Cowled Mini Yonku - Super Factory (Japan) (Demo)	NTSC-J
+6106569	Magical Drop III - Toretate Zoukan-gou! (Japan) (Demo) (1M)	NTSC-J
+6106600	Grandia - Prelude (Japan)	Japan
+6106602	Yuukyuu Gensoukyoku (Japan) (Demo)	NTSC-J
+6106611	Bouken Katsugeki Monomono (Japan) (Demo)	NTSC-J
+6106613	Rabbit (Japan) (Demo)	NTSC-J
+6106663	Tokimeki Memorial Drama Series Vol. 1 - Nijiiro no Seishun (Japan) (Demo)	NTSC-J
+6106664	Marvel Super Heroes (Japan) (Demo)	NTSC-J
+6106672	Street Fighter Collection (Japan) (Demo)	NTSC-J
+6106677	Gekitotsu Koushien (Japan) (Demo)	NTSC-J
+6106678	Side Pocket 3 (Japan) (Demo)	NTSC-J
+6106680	Virus (Japan) (Demo)	NTSC-J
+6106692	Ninja Jajamaru-kun - Onigiri Ninpouchou Gold (Japan) (Demo)	NTSC-J
+6106695	Goiken Muyou - Anarchy in the Nippon (Japan) (Demo)	NTSC-J
+6106703	Devil Summoner - Soul Hackers + Ronde (Japan) (Demo 1)	NTSC-J
+6106704	Devil Summoner - Soul Hackers + Ronde (Japan) (Demo 2)	NTSC-J
+6106710	Soukuu no Tsubasa - Gotha World (Japan) (Demo)	NTSC-J
+6106716	Steep Slope Sliders (Japan) (Demo)	NTSC-J
+6106719	Blue Breaker - Ken yori mo Hohoemi o (Japan) (Demo)	NTSC-J
+6106728	Message Navi (Japan) (Demo)	NTSC-J
+6106730	Samurai Spirits - Amakusa Kourin (Japan) (En,Ja,Es,Pt) (Demo)	NTSC-J
+6106731	Hansha de Spark! (Japan) (Demo)	NTSC-J
+6106732	Disc Station Bessatsu - I Miss You. Tanaka Katsumi (Japan) (1M)	NTSC-J
+6106749	Azel - Panzer Dragoon RPG (Japan) (Demo)	NTSC-J
+6106762	DJ Wars (Japan) (Demo)	NTSC-J
+6106777	Machi (Japan) (Demo) (4M)	NTSC-J
+6106800	Maria - Kimi-tachi ga Umareta Wake (Japan) (Demo)	NTSC-J
+6106801	Saturn Bomberman Fight!! (Japan) (Demo)	NTSC-J
+6106802	Solo Crisis (Japan) (Demo)	NTSC-J
+6106803	Delisoba Deluxe (Japan)	NTSC-J
+6106804	Devil Summoner - Soul Hackers Extra Dungeon (Japan) (3M)	NTSC-J
+610680501	SegaColle Sega Bible Mogitate SegaSaturn Soukan-gou (Japan)	NTSC-J
+610680502	Mogitate SegaSaturn Vol. 2 (Japan)	NTSC-J
+610680503	Mogitate SegaSaturn Vol. 3 (Japan)	NTSC-J
+610680504	Mogitate SegaSaturn Vol. 4 (Japan)	NTSC-J
+610680505	Mogitate SegaSaturn Vol. 5 (Japan)	NTSC-J
+610680506	Mogitate SegaSaturn Vol. 6 (Japan)	NTSC-J
+6106815	Sonic R (Japan) (Demo)	NTSC-J
+6106816	Shining Force III - Scenario 1 - Outo no Kyoshin (Japan) (Demo)	NTSC-J
+6106821	Tenant Wars (Japan) (Demo)	NTSC-J
+6106822	Pia Carrot e Youkoso!! We've Been Waiting for You (Japan) (Demo)	NTSC-J
+6106827	Stellar Assault SS (Japan) (Demo)	NTSC-J
+6106831	Code R (Japan) (Demo)	NTSC-J
+6106833	SatMag Sono CD (Japan)	NTSC-J
+6106837	Eve - The Lost One (Japan) (Demo)	NTSC-J
+6106842	Yuukyuu Gensoukyoku 2nd Album (Japan) (Demo)	NTSC-J
+6106848	Baroque Report - CD Data File (Japan)	NTSC-J
+6106856	Burning Rangers (Japan) (Demo)	NTSC-J
+6106860	Shiroki Majo - Mou Hitotsu no Eiyuu Densetsu (Japan) (Demo)	NTSC-J
+6106861	House of the Dead, The (Japan) (Demo)	NTSC-J
+6106864	Sakura Taisen 2 - Kimi, Shinitamou Koto Nakare (Japan) (Demo)	NTSC-J
+6106876	Cross Tantei Monogatari (Japan) (Demo 1)	NTSC-J
+6106877	Cross Tantei Monogatari (Japan) (Demo 2)	NTSC-J
+6106885	Keriotosse! (Japan) (Demo)	NTSC-J
+6106886	Princess Maker - Yumemiru Yousei (Japan) (Demo) (2M)	NTSC-J
+6106895	Waku Waku Puyo Puyo Dungeon (Japan) (Demo)	NTSC-J
+6106896	Gungriffon II (Japan) (Demo)	NTSC-J
+6106905	MeltyLancer - Re-inforce (Japan) (Demo)	NTSC-J
+6106929	Mogitate SegaSaturn - Special Movie (Japan) (2M)	NTSC-J
+6106957	Deep Fear (Japan) (Demo)	NTSC-J
+6106979	Shining Force III Premium Disc (Japan)	NTSC-J
+6106987	Big Thanks - Super Keirin - Dream with Keirin 50 Years (Japan)	NTSC-J
+700-0012-PM	Panzer Dragoon Saga (Disc 1)	Europe
+790-0002-50	Core Demo Disc	Europe
+80012	Sega Rally Championship	USA
+80118	Custom Web Browser (Version 2)	USA
+80118B	Custom Web Browser (Version 2)	USA
+80118D	Custom Web Browser (Version 3.0)	USA
+81001	Ghen War	USA
+81003	BlackFire	USA
+81004	Bug!	USA
+81005	Virtua Fighter	USA
+81007	Clockwork Knight: Pepperouchau's Adventure	USA
+81009	Panzer Dragoon	USA
+81010	Congo: The Movie: The Lost City of Zinj	USA
+81012	The Mansion of Hidden Souls	USA
+81014	Virtua Fighter 2	USA
+81015	Virtua Cop	USA
+81016	Mr. Bones (Disc 2)	USA
+81018	Panzer Dragoon	USA
+81019	Astal	USA
+81020	NiGHTS into Dreams...	USA, Brazil
+81022	Panzer Dragoon II Zwei	USA
+81022-50	Panzer Dragoon II Zwei	Europe
+81023	Virtua Fighter Remix	USA
+81024	Wing Arms	USA
+81026	Virtua Cop	USA
+81027	Virtua Fighter Remix	USA
+81028	Virtua Fighter Remix	USA
+81029	Battle Arena Toshinden Remix	USA
+81030	Bug!	USA
+81031	Bootleg Sampler	USA
+81035	Guardian Heroes	USA
+81036	Clockwork Knight 2: Pepperouchau's Adventure	USA, Brazil
+81040	Bug Too!	USA
+81041	Fighting Vipers	USA
+81042	Virtual On: Cyber Troopers	USA
+81043	Virtua Cop 2	USA
+81045	Golden Axe: The Duel	USA
+81046	Gungriffon	USA
+81048B	NiGHTS into Dreams...	USA
+81049	Virtua Fighter Kids	USA
+81051	Sky Target	USA
+81052	Virtua Cop 2	USA
+81054	Battle Arena Toshinden URA: Ultimate Revenge Attack	USA
+81057	Die Hard Arcade	USA
+81062	Sonic 3D Blast	USA
+81063	NiGHTS into Dreams...	USA
+81064	Amok	USA
+81065	The Lost World: Jurassic Park	USA
+81066	Quake	USA
+81067	Christmas NiGHTS into Dreams...	USA
+81068	Sega Saturn Bootleg II: On the Road	USA
+81070	Saturn Bomberman	USA
+81071	Duke Nukem 3D	USA
+81072	Virtual On: Cyber Troopers Net Link Edition	USA
+81073	Fighters Megamix	USA
+81075	Sega Saturn Bootleg II: On the Road	USA
+81076	Enemy Zero (Disc 3)	USA
+81077	Sega Screams Volume 2	USA
+81078	Last Bronx	USA
+81079	Sonic Jam	USA
+81084-50	Exhumed	Europe
+81101	Pebble Beach Golf Links	USA
+81102	NHL All-Star Hockey	USA
+81103	NBA Action	USA
+81105	Worldwide Soccer: Sega International Victory Goal Edition	USA
+81109	World Series Baseball	USA
+81111	NFL '97	USA
+81112	Sega Worldwide Soccer '97	USA
+81113	World Series Baseball II	USA
+81115	DecAthlete	USA
+81122	NHL All-Star Hockey 98	USA
+81123	Worldwide Soccer '98	USA
+81124	NBA Action 98	USA
+81127	World Series Baseball 98	USA
+81128	Steep Slope Sliders	USA
+81129	Winter Heat	USA
+81200	Daytona USA	USA
+81202	Hang-On GP	USA
+81205	Cyber Speedway	USA
+81207	Sega Rally Championship	USA
+81210	Manx TT SuperBike	USA
+81211	WipEout	USA
+81213	Daytona USA: Championship Circuit Edition	USA
+81214	Scorcher	USA
+81215	Sega Rally Championship Plus Netlink Edition	USA
+81216	Sega Touring Car Championship	USA
+81218	Daytona USA C.C.E. Net Link Edition	USA
+81300	Mystaria: The Realms of Lore	USA
+81302	The Legend of Oasis	USA
+81303	Blazing Heroes	USA
+81304	Dark Savior	USA
+81306	Shining the Holy Ark	USA
+81307	Panzer Dragoon Saga (Disc 4)	USA
+81383	Shining Force III	USA
+81501	Baku Baku Animal: World Zookeeper Contest	USA
+81600	Sega Saturn Choice Cuts (USA) (R2)	USA
+81606	Virtua Fighter 2	USA
+81608	Virtual On: Cyber Troopers Net Link Edition	USA
+81800	Sonic R	USA, Brazil
+81802	The House of the Dead	USA
+81803	Burning Rangers	USA
+999999999	SegaSaturn - SGL Tool Kit - Sega 3D Game Library (Japan)	NTSC-J
+DGS-9004	Clockwork Knight: Pepperouchau no Daibouken Joukan	Japan
+GM-81004	Bug! (USA)	NTSC-U
+GS-0000	NiGHTS into Dreams... (Japan) (Demo)	NTSC-J
+GS-7101	Pad Nifty (Japan)	Japan
+GS-7103	Virtua Fighter Remix	Japan
+GS-7105	Habitat II (Japan)	Japan
+GS-7106	Dennou Senki - Virtual On - Cyber Troopers for SegaNet (Japan)	Japan
+GS-7107	Dennou Senki: Virtual On: Cyber Troopers for SegaNet	Japan
+GS-7109	Pad Nifty 1.1 & Habitat II (Japan)	Japan
+GS-7110	DecAthlete for SegaNet (Japan)	Japan
+GS-7111	Puyo Puyo Sun for SegaNet (Japan)	Japan
+GS-7113	Puzzle Bobble 3 for SegaNet (Japan)	Japan
+GS-7114	Dragon's Dream (Japan)	Japan
+GS-9001	Virtua Fighter (Japan)	Japan
+GS-9002	Victory Goal (Japan) (3A)	Japan
+GS-9003	Gale Racer (Japan) (En,Ja) (1A)	Japan
+GS-9004	Clockwork Knight - Pepperouchau no Daibouken Joukan (Japan)	Japan
+GS-9005	Shinsetsu Yumemi Yakata - Tobira no Oku ni Dareka ga... (Japan) (Rev A) (2A, 2B)	Japan
+GS-9006	Pebble Beach Golf Links - Stadler ni Chousen (Japan)	Japan
+GS-9007	WanChai Connection (Japan) (Disc A)	Japan
+GS-9008	Deadalus	Japan
+GS-9009	Gotha - Ismailia SenEki (Japan)	Japan
+GS-9010	Shin Shinobiden (Japan)	Japan
+GS-9011	Rampo (Japan) (Disc 2)	Japan
+GS-9012	Virtual Hydlide (Japan) (2M)	Japan
+GS-9013	Daytona USA (Japan)	Japan
+GS-9014	Blue Seed - Kushinada Hirokuden (Japan)	Japan
+GS-9015	Clockwork Knight Puzzle - Pengin War (Japan) (En,Ja) (Beta)	Japan
+GS-9017	Kanzen Chuukei Pro Yakyuu Greatest Nine (Japan) (Rev B)	Japan
+GS-9018	Magic Knight Rayearth (Japan) (4M)	Japan
+GS-9019	Kisuishou Densetsu Astal (Japan) (1M, 4M)	Japan
+GS-9020	Ayrton Senna Personal Talk - Message for the Future (Japan)	Japan
+GS-9021	Riglordsaga (Japan) (Made in Japan) (4M)	Japan
+GS-9022	Gran Chaser	Japan
+GS-9023	X Japan - Virtual Shock 001 (Japan) (3M)	Japan
+GS-9025	World Advanced Daisenryaku - Koutetsu no Senpuu (Japan) (Rev A) (10M)	Japan
+GS-9026	Gakkou no Kaidan (Japan)	Japan
+GS-9027	SimCity 2000 (Japan) (Rev A)	Japan
+GS-9028	Dragon Force (Japan) (Rev A) (10M)	Japan
+GS-9029	Clockwork Knight - Pepperouchau no Daibouken Gekan (Japan) (2M)	Japan
+GS-9030	Omakase! Savers (Japan)	Japan
+GS-9031	Guardian Heroes (Japan) (3M)	Japan
+GS-9032	Hang On GP '95 (Japan) (2M)	Japan
+GS-9034	J.League Pro Soccer Club o Tsukurou! (Japan) (Rev A)	Japan
+GS-9035	F-1 Live Information (Japan)	Japan
+GS-9036	Ninkuu - Tsuyokina Yatsura no Daigekitotsu! (Japan)	Japan
+GS-9037	Sakura Taisen (Japan) (Disc 1) (8M, 13M)	Japan
+GS-9038	Wing Arms - Kareinaru Gekitsuiou (Japan) (Rev A)	Japan
+GS-9039	Virtua Fighter Remix (Japan) (2M, 5M)	Japan
+GS-9040	Baku Baku Animal - Sekai Shiiku Gakari Senshuken (Japan)	Japan
+GS-9041	Golden Axe - The Duel (Japan) (2M)	Japan
+GS-9042	Sega Ages: Shukudai ga Tanto R	Japan
+GS-9043	Sega Ages - Rouka ni Ichidanto R (Japan)	Japan
+GS-9044	Sega International Victory Goal (Japan) (5M)	Japan
+GS-9046	NiGHTS into Dreams... (Japan)	Japan
+GS-9047	Sega Rally Championship (Japan)	Japan
+GS-9048	J.League Victory Goal '96 (Japan) (1M, 3M)	Japan
+GS-9049	Panzer Dragoon II Zwei (Japan)	Japan
+GS-9050	Godzilla - Rettou Shinkan (Japan)	Japan
+GS-9051	Shin Seiki Evangelion (Japan)	Japan
+GS-9053	Thor - Seireioukiden (Japan)	Japan
+GS-9054	Terra Phantastica (Japan)	Japan
+GS-9055	Linkle Liver Story	Japan
+GS-9056	Gekka Mugentan Torico (Japan) (Disc B) (Houkai-hen) (1M)	Japan
+GS-9057	Shining Wisdom (Japan) (Rev A)	Japan
+GS-9058	Magic Knight Rayearth	Japan
+GS-9059	Virtua Cop	Japan
+GS-9060	Virtua Cop (Japan) (2M)	Japan
+GS-9061	Hideo Nomo World Series Baseball (Japan)	Japan
+GS-9062	Virtua Fighter CG Portrait Series Vol. 1 - Sarah Bryant (Japan) (1M)	Japan
+GS-9063	Bug! Jump Shite, Funzukechatte, Petchanko (Japan)	Japan
+GS-9064	Virtua Fighter CG Portrait Series Vol. 2 - Jacky Bryant (Japan)	Japan
+GS-9065	Virtua Fighter CG Portrait Series Vol. 3 - Akira Yuki (Japan) (2M)	Japan
+GS-9066	Virtua Fighter CG Portrait Series Vol. 4 - Pai Chan (Japan) (2M)	Japan
+GS-9067	Virtua Fighter CG Portrait Series Vol. 9 - Kage Maru (Japan) (2M)	Japan
+GS-9068	Virtua Fighter CG Portrait Series Vol. 5 - Wolf Hawkfield (Japan)	Japan
+GS-9069	Virtua Fighter CG Portrait Series Vol. 6 - Lau Chan (Japan) (4M)	Japan
+GS-9070	Virtua Fighter CG Portrait Series Vol. 7 - Shun Di (Japan) (2M)	Japan
+GS-9071	Virtua Fighter CG Portrait Series Vol. 8 - Lion Rafale (Japan) (2M)	Japan
+GS-9072	Virtua Fighter CG Portrait Series Vol. 10 - Jeffry McWild (Japan) (4M)	Japan
+GS-9073	Virtua Fighter CG Portrait Series - The Final - Dural (Japan)	Japan
+GS-9074	Clockwork Knight - Pepperouchau no Fukubukuro (Japan)	Japan
+GS-9076	Azel - Panzer Dragoon RPG (Japan) (Disc 3) (2M)	Japan
+GS-9078	Toushinden S	Japan
+GS-9079	Virtua Fighter 2 (Japan) (Rev B) (36B, 36C)	Japan
+GS-9082	World Advanced Daisenryaku - Sakusen File (Japan) (2M)	Japan
+GS-9083	Eyeful Home (Japan)	Japan
+GS-9084	Riglordsaga 2 (Japan) (1M)	Japan
+GS-9086	Greatest Nine '96 (Japan) (Rev A) (10M)	Japan
+GS-9087	Advanced World War - Sennen Teikoku no Koubou - Last of the Millennium (Japan) (Rev B) (22M)	Japan
+GS-9088	Mechanical Violator Hakaider - Last Judgement (Japan)	Japan
+GS-9095	NiGHTS into Dreams...	Japan
+GS-9096	DecAthlete (Japan) (1M)	Japan
+GS-9097	Virtua Cop 2 (Japan) (2M)	Japan
+GS-9098	Virtua Fighter Kids	Japan
+GS-9099	Dennou Senki - Virtual On - Cyber Troopers (Japan)	Japan
+GS-9100	Daytona USA - Circuit Edition (Japan)	Japan
+GS-9101	Fighting Vipers (Japan) (Rev C)	Japan
+GS-9102	Manx TT SuperBike (Japan)	Japan
+GS-9103	Sky Target (Japan)	Japan
+GS-9104	Magical Drop 2 (Japan)	Japan
+GS-9107	Fighter's History Dynamite (Japan)	Japan
+GS-9108	Sega Ages - Space Harrier (Japan) (Rev A) (13M)	Japan
+GS-9109	Sega Ages - After Burner II (Japan)	Japan
+GS-9110	Sega Ages - OutRun (Japan) (Rev A)	Japan
+GS-9111	Sega Ages: Space Harrier	Japan
+GS-9112	Victory Goal Worldwide Edition (Japan)	Japan
+GS-9113	Virtua Fighter Kids (Japan) (Java Tea Original)	Japan
+GS-9115	Sakura Taisen (Disc 2)	Japan
+GS-9116	Sega Rally Championship Plus (Japan)	Japan
+GS-9117	Sakura Taisen (Disc 2)	Japan
+GS-9118	LuLu - Un Conte Interactif de Romain Victor-Pujebet (Japan)	Japan
+GS-9120	World Series Baseball II (Japan)	Japan
+GS-9121	Heim Waltz (Japan) (Rev A)	Japan
+GS-9122	Dynamite Deka (Japan)	Japan
+GS-9123	Die Hard Trilogy (Japan)	Japan
+GS-9124	Panzer Dragoon II Zwei	Japan
+GS-9125	World Advanced Daisenryaku: Sakusen File	Japan
+GS-9126	Fighters Megamix (Japan) (1M)	Japan
+GS-9127	Mr. Bones (Japan) (Disc 2)	Japan
+GS-9128	Bug Too! Motto Motto Jump Shite, Funzukechatte, Petchanko (Japan)	Japan
+GS-9129	Shin Seiki Evangelion - 2nd Impression (Japan) (Made in Japan)	Japan
+GS-9131	Command & Conquer (Japan) (Disc 1) (GDI Disc)	Japan
+GS-9133	Digital Dance Mix Vol. 1 - Namie Amuro (Japan) (Rev A) (11M)	Japan
+GS-9134	Sakura Taisen - Hanagumi Tsuushin (Japan) (1M)	Japan
+GS-9135	Sega Ages - Memorial Selection Vol. 1 (Japan)	Japan
+GS-9136	Sega Ages - Fantasy Zone (Japan)	Japan
+GS-9137	Three Dirty Dwarves (Japan) (2M)	Japan
+GS-9138	Sakura Taisen - Hanagumi Taisen Columns (Japan) (1M)	Japan
+GS-9139	Pro Yakyuu Greatest Nine '97 (Japan) (Rev A)	Japan
+GS-9140	J.League Victory Goal '97 (Japan)	Japan
+GS-9141	Shin Seiki Evangelion	Japan
+GS-9142	Kidou Senkan Nadesico - Yappari Saigo wa Ai ga Katsu (Japan)	Japan
+GS-9143	Sonic 3D - Flickies' Island (Japan)	Japan
+GS-9144	Baku Baku Animal: Sekai Shiiku Gakari Senshuken	Japan
+GS-9145	Dragon Force	Japan
+GS-9146	Virtua Fighter 2	Japan
+GS-9147	Sonic Jam (Japan) (Rev A)	Japan
+GS-9148	NiGHTS into Dreams...	Japan
+GS-9149	Sega Rally Championship Plus	Japan
+GS-9150	DecAthlete	Japan
+GS-9151	Sakura Taisen (Disc 2)	Japan
+GS-9152	Last Bronx (Japan) (Disc 2) (Special Disc)	Japan
+GS-9153	Fighter's History Dynamite	Japan
+GS-9155	Soeldnerschild (Japan)	Japan
+GS-9158	Zen Nihon Pro Wres featuring Virtua (Japan)	Japan
+GS-9159	Neon Genesis Evangelion - Digital Card Library (Japan)	Japan
+GS-9160	Sakura Taisen - Jouki Radio Show (Japan) (Disc 1) (Yuugi-ban)	Japan
+GS-9161	Sega Ages - Columns Arcade Collection (Japan)	Japan
+GS-9162	Lost World, The - Jurassic Park (Japan)	Japan
+GS-9163	Sega Ages - Memorial Selection Vol. 2 (Japan)	Japan
+GS-9164	Sega Touring Car Championship (Japan)	Japan
+GS-9165	Pro Yakyuu Team mo Tsukurou! (Japan)	Japan
+GS-9168	J.League Pro Soccer Club o Tsukurou! 2 (Japan) (Rev C) (32M)	Japan
+GS-9169	Sakura Taisen 2 - Kimi, Shinitamou Koto Nakare (Japan) (Disc 2) (Shokai Tokutenban) (1M, 2M, 4M)	Japan
+GS-9170	Sonic R (Japan) (1M)	Japan
+GS-9171	Pro Yakyuu Greatest Nine '97 - Make Miracle (Japan)	Japan
+GS-9172	Chisato Moritaka - Watarase Bashi & Lala Sunshine (Japan) (Disc 2)	Japan
+GS-9173	House of the Dead, The (Japan) (Rev A)	Japan
+GS-9174	Burning Rangers (Japan)	Japan
+GS-9175	Shining Force III - Scenario 1 - Outo no Kyoshin (Japan) (Rev A)	Japan
+GS-9176	Terra Phantastica	Japan
+GS-9177	Winter Heat (Japan)	Japan
+GS-9179	Sega Ages - I Love Mickey Mouse - Fushigi no Oshiro Daibouken & I Love Donald Duck - Georgia Ou no Hihou (Japan)	Japan
+GS-9181	Sega Ages - Power Drift (Japan)	Japan
+GS-9182	Shoujo Kakumei Utena - Itsuka Kakumei Sareru Monogatari (Japan) (Disc 1)	Japan
+GS-9183	Wachenroeder (Japan)	Japan
+GS-9184	Dragon Force II - Kami Sarishi Daichi ni (Japan)	Japan
+GS-9185	Pro Yakyuu Greatest Nine '98 (Japan) (Rev A)	Japan
+GS-9186	Sega Ages - Phantasy Star Collection (Japan)	Japan
+GS-9187	Sega Worldwide Soccer '98 (Japan)	Japan
+GS-9188	Shining Force III - Scenario 2 - Nerawareta Miko (Japan)	Japan
+GS-9189	Deep Fear (Japan) (Disc 1)	Japan
+GS-9190	Advanced World War: Sennen Teikoku no Koubou: Last of the Millennium	Japan
+GS-9191	Sakura Taisen (Disc 2)	Japan
+GS-9193	Command & Conquer (Disc 2) (NOD Disc)	Japan
+GS-9194	Neon Genesis - Evangelion - Koutetsu no Girlfriend (Japan) (Disc 1)	Japan
+GS-9195	Kidou Senkan Nadesico - The Blank of 3 Years (Japan) (Disc 1)	Japan
+GS-9196	World Cup '98 France - Road to Win (Japan)	Japan
+GS-9197	Sega Ages - Galaxy Force II (Japan)	Japan
+GS-9198	Sakura Taisen 2: Kimi, Shinitamou Koto Nakare (Disc 3)	Japan
+GS-9200	Sonic Jam	Japan
+GS-9202	Pro Yakyuu Greatest Nine '98 - Summer Action (Japan)	Japan
+GS-9203	Shining Force III - Scenario 3 - Hyouheki no Jashinguu (Japan)	Japan
+GS-9204	Segata Sanshirou - Shinken Yuugi (Japan)	Japan
+GS-9205	Zen Nihon Pro Wres featuring Virtua	Japan
+GS-9206	J.League Pro Soccer Club o Tsukurou! 2	Japan
+GS-9207	The House of the Dead	Japan
+GS-9208	Pro Yakyuu Greatest Nine '98	Japan
+GS-9503J	Virtua Fighter Remix	Korea
+GS-9504J	Worldwide Soccer: Sega International Victory Goal Edition	Korea
+GS-9506J	Sega Rally Championship	Korea
+GS-9507J	Virtua Fighter 2	Korea
+GS-9608J	NiGHTS into Dreams...	Korea
+GS-9609J	Virtua Fighter Kids	Korea
+GS-9610J	Fighting Vipers	Korea
+GS-9612J	Dennou Senki: Virtual On: Cyber Troopers	Korea
+GS-XXXX	Burning Rangers (Japan) (Proto)	NTSC-J
+GS9025	World Advanced Daisenryaku - Koutetsu no Senpuu (Japan) (2M)	NTSC-J
+HSS-0120	SegaSaturn Electronic Book Operator	Japan
+HSS-0121	SegaSaturn Photo CD Operator	Japan
+HSS-0128	SegaSaturn FDD Operator	Japan
+J-0101	Saturn CG Selection Vol. 1 (Japan) (Rev A)	NTSC-J
+L15-1000	SegaSaturn: SGL Tool Kit: Sega 3D Game Library	Japan
+L17-1000	SegaSaturn: Movie Tools: Cinepak for Sega Saturn	Japan
+MK-081066	Quake (USA)	PAL
+MK-81001	Ghen War (USA)	NTSC-U
+MK-81002	NHL All-Star Hockey (USA) (1S)	NTSC-U
+MK-8100250	NHL All-Star Hockey (Europe)	PAL
+MK-81003	BlackFire (USA) (2S)	NTSC-U
+MK-81004	Bug! (USA) (R)	PAL
+MK-81005	Virtua Fighter (USA)	NTSC-U
+MK-81007	Clockwork Knight - Pepperouchau's Adventure (USA)	PAL
+MK-81008	Robotica - Cybernation Revolt (Europe)	PAL
+MK-81009	Panzer Dragoon (USA) (1S)	PAL
+MK-81010	Congo - The Movie - The Lost City of Zinj (USA)	NTSC-U
+MK-81012	Mansion of Hidden Souls, The (USA)	PAL
+MK-81014	Virtua Fighter 2 (Korea)	PAL
+MK-81015	Virtua Cop (USA) (5S, 6S)	PAL
+MK-81016	Mr. Bones (USA) (Disc 1)	PAL
+MK-81018	Panzer Dragoon (USA) (Demo) (3S)	PAL
+MK-81019	Astal (USA) (3S)	NTSC-U
+MK-81020	NiGHTS into Dreams... (Korea)	PAL
+MK-81021	Clockwork Knight 2 - Pepperouchau's Adventure (USA) (Beta)	USA
+MK-81022	Panzer Dragoon II Zwei (USA)	PAL
+MK-81023	Virtua Fighter Remix (Korea)	NTSC-U
+MK-8102350	Virtua Fighter Remix (Europe)	PAL
+MK-81024	Wing Arms (USA) (5S)	PAL
+MK-81029V1	Battle Arena Toshinden Remix (USA)	PAL
+MK-81030	Bug! (USA) (Demo) (3S)	NTSC-U
+MK-81031	Bootleg Sampler (USA) (Rev A) (1S)	PAL
+MK-81033	Three Dirty Dwarves (Europe)	PAL
+MK-81035	Guardian Heroes (USA)	PAL
+MK-81036	Clockwork Knight 2 - Pepperouchau's Adventure (USA, Brazil)	NTSC-U
+MK-81040	Bug Too! (USA)	PAL
+MK-81041	Fighting Vipers (Korea)	PAL
+MK-81042	Dennou Senki - Virtual On - Cyber Troopers (Korea)	PAL
+MK-81043	Virtua Cop 2 (USA)	PAL
+MK-81045	Golden Axe - The Duel (USA)	PAL
+MK-81046	Gungriffon (USA)	PAL
+MK-81049	Virtua Fighter Kids (USA)	NTSC-U
+MK-81051	Sky Target (USA)	PAL
+MK-81053	Torico (Europe) (Disc 2)	PAL
+MK-81054	Battle Arena Toshinden URA - Ultimate Revenge Attack (USA)	PAL
+MK-81057	Die Hard Arcade (USA)	PAL
+MK-81062	Sonic 3D Blast (USA)	NTSC-U
+MK-8106250	Sonic 3D - Flickies' Island (Europe)	PAL
+MK-81063	NiGHTS into Dreams... (USA) (Demo)	NTSC-U
+MK-81064	Amok (USA)	PAL
+MK-81065	Lost World, The - Jurassic Park (USA)	PAL
+MK-81067	Christmas NiGHTS into Dreams... (USA)	NTSC-U
+MK-81068	Sega Saturn Bootleg II - On the Road (USA)	NTSC-U
+MK-81070	Saturn Bomberman (USA) (1S)	PAL
+MK-81071	Duke Nukem 3D (USA)	PAL
+MK-81072	Virtual On - Cyber Troopers Net Link Edition (USA)	NTSC-U
+MK-81073	Fighters Megamix (USA) (RE)	PAL
+MK-81076	Enemy Zero (USA) (Disc 3)	PAL
+MK-81077	Sega Screams Volume 2 (USA)	NTSC-U
+MK-81078	Last Bronx (USA)	PAL
+MK-81079	Sonic Jam (USA)	PAL
+MK-81081	Myst (Europe) (En,Fr,De,Es)	PAL
+MK-81082	Shinobi-X - Shin Shinobi Den (Europe)	PAL
+MK-81084	Exhumed (Europe) (En,Fr,De,Es)	PAL
+MK-81085	Darius II (Europe)	PAL
+MK-81086	Tomb Raider (Europe)	PAL
+MK-81087	Mighty Hits (Europe)	PAL
+MK-81088	King of Fighters '95, The (Europe)	PAL
+MK-81089	Mass Destruction (Europe) (En,Fr,De,Es)	PAL
+MK-8109050	Pandemonium! (Europe)	PAL
+MK-8109109	Atlantis - The Lost Tales (France) (Disc 2)	PAL
+MK-8109150	Atlantis - The Lost Tales (Europe) (En,De,Es) (Disc 1)	PAL
+MK-81092	Resident Evil (Europe)	PAL
+MK-81093	Discworld II - Missing Presumed...! (Europe) (En,Fr,De,Es,It)	PAL
+MK-81101	Pebble Beach Golf Links (USA)	PAL
+MK-81103	NBA Action (USA)	NTSC-U
+MK-81105	Worldwide Soccer - Sega International Victory Goal Edition (Korea)	PAL
+MK-81109	World Series Baseball (USA)	PAL
+MK-81111	NFL '97 (USA)	NTSC-U
+MK-81112	Sega Worldwide Soccer '97 (USA)	PAL
+MK-81113	World Series Baseball II (USA) (2S)	PAL
+MK-81115	DecAthlete (USA)	PAL
+MK-81122	NHL All-Star Hockey 98 (USA)	PAL
+MK-81123	Worldwide Soccer '98 (USA) (En,Fr,Es)	PAL
+MK-81124	NBA Action 98 (USA)	PAL
+MK-81125	Winter Heat (Europe) (Demo)	PAL
+MK-81127	World Series Baseball 98 (USA)	NTSC-U
+MK-81128	Steep Slope Sliders (USA)	PAL
+MK-81129	Winter Heat (USA)	PAL
+MK-81180	UEFA Euro 96 - England (Europe) (En,Fr,De,Es,It,Pt)	PAL
+MK-81181	World League Soccer '98 (Europe)	PAL
+MK-81200	Daytona USA (USA)	NTSC-U
+MK-81202	Hang-On GP (USA)	PAL
+MK-81204V1	Cyber Speedway (USA)	NTSC-U
+MK-81205	Cyber Speedway (Europe) (RE)	PAL
+MK-81206	F1 Challenge (USA)	USA
+MK-81207	Sega Rally Championship (Korea)	PAL
+MK-81210	Manx TT SuperBike (USA)	PAL
+MK-81213	Daytona USA - Championship Circuit Edition (USA)	PAL
+MK-81214	Scorcher (USA) (RE)	PAL
+MK-81215	Sega Rally Championship Plus Netlink Edition (USA)	NTSC-U
+MK-81216	Sega Touring Car Championship (USA)	PAL
+MK-81218	Daytona USA C.C.E. Net Link Edition (USA)	NTSC-U
+MK-81282	Formula Karts - Special Edition (Europe) (En,Fr,De,Es)	PAL
+MK-81300	Mystaria - The Realms of Lore (USA)	PAL
+MK-81302	Legend of Oasis, The (USA)	PAL
+MK-81303	Blazing Heroes (USA)	NTSC-U
+MK-81304	Dark Savior (USA)	PAL
+MK-81306	Shining the Holy Ark (USA)	PAL
+MK-81307	Panzer Dragoon Saga (USA) (Disc 1)	PAL
+MK-81380	Virtual Hydlide (Europe)	PAL
+MK-81381	Shining Wisdom (Europe)	PAL
+MK-8138250	Dragon Force (Europe)	PAL
+MK-81383	Shining Force III (USA)	PAL
+MK-81501	Baku Baku Animal - World Zookeeper Contest (USA)	PAL
+MK-81580	SimCity 2000 (Europe)	PAL
+MK-81604	Sega Ages Volume 1 (Europe)	PAL
+MK-81680	Digital Pinball (Europe) (4S)	PAL
+MK-81800	Sonic R (USA, Brazil)	PAL
+MK-81801	Riven - The Sequel to Myst (Europe) (Disc 4)	PAL
+MK-81801-45	Riven: A Sequência de Myst (Disc 4)	Brazil
+MK-8180145	Riven - A Sequencia de Myst (Brazil) (Disc 2)	NTSC-U
+MK-81802	House of the Dead, The (USA)	PAL
+MK-81803	Burning Rangers (USA)	PAL
+MK-81804	Deep Fear (USA) (Disc 2) (Unl)	PAL
+MK610-6288A	Sega Flash Vol. 1	Europe
+MK610-6288G	Sega Flash Vol. 7	Europe
+MK81004-50	Bug!	Europe
+MK81005-50	Virtua Fighter	Europe
+MK81007-50	Clockwork Knight: Pepperouchau's Adventure	Europe
+MK81008-50	Robotica: Cybernation Revolt	Europe
+MK81009-50	Panzer Dragoon	Europe
+MK81012-05	The Mansion of Hidden Souls	Europe
+MK81012-06	La Mansión de las Almas Ocultas	Spain
+MK81012-09	Le Manoir des Ames Perdues	France
+MK81012-18	Mystery Mansion: Das Haus der verlorenen Seelen	Germany
+MK81014-50	Virtua Fighter 2	Europe
+MK81015-50	Virtua Cop	Europe
+MK81016-50	Mr. Bones (Disc 2)	Europe
+MK81018-50	Panzer Dragoon	Europe
+MK81020-50	NiGHTS into Dreams...	Europe
+MK81021-50	Clockwork Knight 2: Pepperouchau's Adventure	Europe
+MK81024-50	Wing Arms	Europe
+MK81029-50	Battle Arena Toshinden Remix	Europe
+MK81033-50	Three Dirty Dwarves	Europe
+MK81035-50	Guardian Heroes	Europe
+MK81040-50	Bug Too!	Europe
+MK81041-50	Fighting Vipers	Europe
+MK81042-50	Virtual On: Cyber Troopers	Europe
+MK81043-50	Virtua Cop 2	Europe
+MK81045-50	Golden Axe: The Duel	Europe
+MK81046-50	Gun Griffon	Europe
+MK81048-50	NiGHTS into Dreams...	Europe
+MK81049-50	Virtua Fighter Kids	Europe
+MK81051-50	Sky Target	Europe
+MK81053-50	Torico (Disc 2)	Europe
+MK81054-50	Battle Arena Toshinden URA: Ultimate Revenge Attack	Europe
+MK81057-50	Die Hard Arcade	Europe
+MK81062-50	Sonic 3D: Flickies' Island	Europe
+MK81064-50	Amok	Europe
+MK81065-50	The Lost World: Jurassic Park	Europe
+MK81066-50	Quake	Europe
+MK81067-50	Christmas NiGHTS into Dreams...	Europe
+MK81070-50	Saturn Bomberman	Europe
+MK81071-50	Duke Nukem 3D	Europe
+MK81073-50	Fighters Megamix	Europe
+MK81076-50	Enemy Zero (Disc 3) (Game Disc)	Europe
+MK81078-50	Last Bronx	Europe
+MK81079-50	Sonic Jam	Europe
+MK81081-50	Myst	Europe
+MK81082-50	Shinobi-X: Shin Shinobi Den	Europe
+MK81083-50	Virtua Fighter Remix	Europe
+MK81085-50	Darius II	Europe
+MK81086-50	Tomb Raider	Europe
+MK81087-50	Mighty Hits	Europe
+MK81088-50	The King of Fighters '95	Europe
+MK81089-50	Mass Destruction	Europe
+MK81090-50	Pandemonium!	Europe
+MK81091-09	Atlantis: The Lost Tales (Disc 2)	France
+MK81091-50	Atlantis: The Lost Tales (Disc 2)	Europe
+MK8109250	Resident Evil	Europe
+MK81093-50	Discworld II: Missing Presumed...!?	Europe
+MK81099-50	Courier Crisis: The Saga of the Modern Fatalist	Europe
+MK8109950	Courier Crisis - The Saga of the Modern Fatalist (Europe) (En,Fr,De,It)	PAL
+MK81101-50	Pebble Beach Golf Links	Europe
+MK81102-50	NHL All-Star Hockey	Europe
+MK81103-50	NBA Action (Europe)	Europe
+MK81105-50	International Victory Goal	Europe
+MK81109-50	World Series Baseball	Europe
+MK81112-50	Sega Worldwide Soccer 97	Europe
+MK81113-50	World Series Baseball II	Europe
+MK81115-50	Athlete Kings	Europe
+MK81122-50	NHL All-Star Hockey 98	Europe
+MK81123-50	Sega Worldwide Soccer '98: Club Edition	Europe
+MK81124-50	NBA Action 98	Europe
+MK81125-50	Winter Heat	Europe
+MK81128-50	Steep Slope Sliders	Europe
+MK81129-50	Winter Heat	Europe
+MK81180-50	UEFA Euro 96: England	Europe
+MK81181-50	World League Soccer '98	Europe
+MK81200-50	Daytona USA	Europe
+MK81202-50	Hang On GP '96	Europe
+MK81205-50	Cyber Speedway	Europe
+MK81206-50	F-1 Challenge	Europe
+MK81207-50	Sega Rally Championship	Europe
+MK81210-50	Manx TT SuperBike	Europe
+MK81213-50	Daytona USA: Championship Circuit Edition	Europe
+MK81214-50	Scorcher	Europe
+MK81216-50	Sega Touring Car Championship	Europe
+MK81282-50	Formula Karts: Special Edition	Europe
+MK81300-50	Mystaria: The Realms of Lore	Europe
+MK81302-50	The Story of Thor 2	Europe
+MK81304-50	Dark Savior	Europe
+MK81306-50	Shining the Holy Ark	Europe
+MK81307-50	Panzer Dragoon Saga (Disc 4)	Europe
+MK81380-50	Virtual Hydlide	Europe
+MK81381-50	Shining Wisdom	Europe
+MK81382-50	Dragon Force	Europe
+MK81383-50	Shining Force III	Europe
+MK81501-50	Baku Baku Animal: World Zookeeper Contest	Europe
+MK81580-50	SimCity 2000	Europe
+MK81604-50	Sega Ages Volume 1	Europe
+MK81680-50	Digital Pinball	Europe
+MK81681-50	Photo CD Operating System	Europe
+MK81800-50	Sonic R	Europe
+MK81801-50	Riven: The Sequel to Myst (Disc 4)	Europe
+MK81803-50	Burning Rangers	Europe
+MK81804-50	Deep Fear (Disc 2)	Europe
+MK_8100550	Virtua Fighter (Europe) (Made in EU)	PAL
+MK_8120050	Daytona USA (Europe) (2S)	PAL
+N16-1000	SegaSaturn: Graphic & Sound Tools for Macintosh	Japan
+PD-002	Panzer Dragoon	Japan
+PD-DEMO	Panzer Dragoon	Japan
+SEGASYSTEM	System-Disc (KD02) Columbia (Japan) (16M)	NTSC-J
+SEGAVIEWER	SegaSaturn Photo CD Operator (Japan) (Rev A)	PAL
+SG-7103	Virtua Fighter Remix (Japan) (SegaNet)	NTSC-J
+SG-9008	Deadalus (Japan) (2A)	NTSC-J
+SG-9024	Kanzen Chuukei Pro Yakyuu Greatest Nine (Japan) (Demo)	NTSC-J
+SG0000000	Sakura Taisen Teikokukagekidan Taiin Meibo (Japan)	PAL
+SGS-9013	Daytona USA	Japan
+SGS-9021	Riglordsaga	Japan
+SGS-9024	Kanzen Chuukei Pro Yakyuu Greatest Nine	Japan
+SGS-9032	Hang On GP '95	Japan
+SGS-9038	Wing Arms: Kareinaru Gekitsuiou	Japan
+SGS-9047	Sega Rally Championship (Japan) (Demo)	Japan
+SGS-9057	Shining Wisdom	Japan
+SGS-9079	Virtua Fighter 2	Japan
+SKR-00468	Sakura Taisen Teikokukagekidan Taiin Meibo	Japan
+ST-10613G	Nissan Presents - Over Drivin' GT-R (Japan) (Demo)	NTSC-J
+ST-1202G	Vampire Hunter: Darkstalker's Revenge	Japan
+ST-1203G	X-Men: Children of the Atom	Japan
+ST-1212G	Street Fighter Zero 2 (Japan) (Demo)	Japan
+ST-1304G	Magical Drop	Japan
+ST-1305G	Suiko Enbu: Fuuun Saiki	Japan
+ST-1306G	Wizardry VI & VII Complete	Japan
+ST-13306G	Mobile Suit Gundam Side Story I: Senritsu no Blue	Japan
+ST-14302G	Saturn Bomberman	Japan
+ST-14405G	DonPachi	Japan
+ST-14407G	Strikers 1945	Japan
+ST-14409G	PriKura (Princess Kurara) Daisakusen	Japan
+ST-14410G	Sengoku Blade: Sengoku Ace Episode II	Japan
+ST-16705G	Idol Mahjong: Final Romance R (Kisekae Disc)	Japan
+ST-18901G	Digital Pinball - Last Gladiators (Japan) (5M) (Demo)	Japan
+ST-18902G	Digital Pinball - Necronomicon - Revelations (Japan) (Demo)	Japan
+ST-19703G	Can Can Bunny Premiere 2 (Disc 2) (Can Bani Himekuri Calendar)	Japan
+ST-20003G	Funky Head Boxers	Japan
+ST-21003G	Girls in Motion Puzzle Vol. 2: Body Special 264	Japan
+ST-2201G	Mahjong Kaigan Monogatari: Mahjong-kyou Jidai Sexy Idol-hen	Japan
+ST-27901G	Lunar - Silver Star Story (Japan) (Demo)	Japan
+ST-3105G	Real Bout Garou Densetsu	Japan
+ST-31501G	Vatlva	Japan
+ST-4302G	Fire Pro Gaiden Blazing Tornado	Japan
+ST-4501G	Yumimi Mix Remix (Japan) (Demo)	Japan
+ST-5303G	Gebockers (Japan) (Demo)	Japan
+ST-6005H	Victory Boxing	Europe
+ST-6010G	Tomb Raiders (Japan) (Demo)	Japan
+ST-7607G	Gotha II: Tenkuu no Kishi / Teitoku no Ketsudan II	Japan
+ST-7608G	Gotha II - Tenkuu no Kishi + Teitoku no Ketsudan II (Japan) (Demo)	Japan
+ST-7616G	Nanatsu no Hikan (Japan) (Demo)	Japan
+ST-8113G	Alien Trilogy	Japan
+ST-9102G	Wangan Dead Heat	Japan
+T-01304H	Creature Shock - Special Edition (USA) (Disc 1)	NTSC-U
+T-07004H	Grand Slam (USA)	NTSC-U
+T-07013H	NHL Powerplay '96 (USA)	NTSC-U
+T-07904H	Olympic Soccer (USA)	NTSC-U
+T-07904H-18	Olympic Soccer	Germany
+T-07904H18	Olympic Soccer (Germany)	PAL
+T-07904H50	Olympic Soccer (Europe) (En,Fr,De,Es,It)	PAL
+T-10001G	In the Hunt (USA)	PAL
+T-10001H	In the Hunt	USA
+T-10001H-50	In the Hunt	Europe
+T-10002H	Robo Pit (USA)	USA
+T-10002H50	Robo Pit (Europe)	PAL
+T-1002H-50	Robo Pit	Europe
+T-10301G	Steamgear Mash (Japan) (2M)	Japan
+T-10302G	Game of Life, The - DX Jinsei Game (Japan) (Rev A)	Japan
+T-10304G	Earthworm Jim 2 (Japan) (2M)	Japan
+T-10305G	Toushinden URA (Japan)	Japan
+T-10306G	DX Nippon Tokkyuu Ryokou Game - Let's Travel in Japan (Japan)	Japan
+T-10307G	D-Xhird (Japan) (1M)	Japan
+T-10308G	The Game of Life: DX Jinsei Game	Japan
+T-10309G	Eberouge (Japan) (Disc 2)	Japan
+T-10310G	Game of Life, The - DX Jinsei Game II (Japan) (2M)	Japan
+T-10311G	Arcana Strikes (Japan)	Japan
+T-10312G	Tour Party - Sotsugyou Ryokou ni Ikou (Japan) (Rev A)	Japan
+T-10314G	Choro Q Park (Japan)	Japan
+T-10315G	Eberouge Special - Koi to Mahou no Gakuen Seikatsu (Japan)	Japan
+T-10317G	Densha de Go! EX (Japan)	Japan
+T-10318G	Choro Q Park	Japan
+T-10501G	Kekkon - Marriage (Japan)	Japan
+T-10502G	Kekkon - Marriage - Zen'ya (Japan)	Japan
+T-10503G	Sotsugyou Crossworld (Japan)	Japan
+T-10504G	Sotsugyou Album (Japan)	Japan
+T-10505G	Sotsugyou III - Wedding Bell (Japan)	NTSC-J
+T-10506G	Sotsugyou III: Wedding Bell	Japan
+T-10601G	Mahjong Gokuu Tenjiku (Japan)	Japan
+T-10602G	Alone in the Dark 2 (Japan)	Japan
+T-10604G	Senryaku Shougi	Japan
+T-10605G	Theme Park	Japan
+T-10606G	FIFA Soccer 96 (Japan)	Japan
+T-10607G	Shellshock - Jus' Keepin' da Peace (Japan)	Japan
+T-10608G	Hi-Octane (Japan)	Japan
+T-10609G	Road Rash (Japan)	Japan
+T-1060SG	Theme Park (Japan)	NTSC-J
+T-10610G	Rabbit (Japan)	Japan
+T-10611G	Magic Carpet (Japan)	Japan
+T-10613G	Nissan Presents - Over Drivin' GT-R (Japan) (Rev A)	Japan
+T-10615G	Nissan Presents: Over Drivin' GT-R	Japan
+T-10616G	Soukyuu Gurentai (Japan)	Japan
+T-10618G	Shin Theme Park (Japan)	Japan
+T-10619G	PGA Tour 97 (Japan)	Japan
+T-10620G	NHL 97 (Japan)	Japan
+T-10621G	Soviet Strike (Japan)	Japan
+T-10623G	WarCraft II - The Dark Saga (Japan)	Japan
+T-10626G	Soukyuu Gurentai - Otokuyou (Japan)	Japan
+T-10627G	Battle Garegga (Japan)	Japan
+T-1101G	Layer Section (Japan) (Rev A) (11M)	Japan
+T-1102G	Darius Gaiden (Japan) (3M)	Japan
+T-1103G	HatTrick Hero S	Japan
+T-1104G	Darius II (Japan) (2M)	Japan
+T-1105G	Taito Chase H.Q. + S.C.I. (Japan)	Japan
+T-1106G	Puzzle Bobble 2X (Japan) (2M1, 2MB1)	Japan
+T-1107G	Space Invaders (Japan)	Japan
+T-1108G	Cleopatra Fortune (Japan)	Japan
+T-1109G	Puzzle Bobble 3 (Japan) (1M)	Japan
+T-11102H	Crime Patrol (USA) (Proto)	NTSC-U
+T-1110G	Tokyo Shadow (Japan) (Disc 3)	Japan
+T-1111G	Space Invaders	Japan
+T-1112G	Layer Section	Japan
+T-1114G	Puzzle Bobble 2X	Japan
+T-11301H	WipEout (Europe)	PAL
+T-11301H-50	WipEout	Europe
+T-11302H	Terry Pratchett's Discworld (Europe) (En,Fr,De,Es,It)	PAL
+T-11302H-50	Terry Pratchett's Discworld	Europe
+T-11303H	Destruction Derby (Europe)	PAL
+T-11303H-50	Destruction Derby	Europe
+T-11304H	3D Lemmings (Europe)	PAL
+T-11304H-50	3D Lemmings	Europe
+T-11305H	Krazy Ivan (Europe)	PAL
+T-11305H-18	Krazy Ivan	Germany
+T-11305H-50	Krazy Ivan	Europe
+T-11308H-5	WipEout 2097 (Europe)	PAL
+T-11308H-50	WipEout 2097	Europe
+T-11401G	Masters - Harukanaru Augusta 3 (Japan) (2M)	Japan
+T-11402G	Waialae no Kiseki - Extra 36 Holes (Japan)	Japan
+T-11403G	Junclassic C.C. & Rope Club (Japan) (2M)	Japan
+T-11501H-18	Firestorm: Thunderhawk 2	Germany
+T-11501H-50	Firestorm: Thunderhawk 2	Europe
+T-11501H00	Thunderstrike 2 (USA)	PAL
+T-11502H-09	Shellshock	France
+T-11502H-18	Shellshock	Germany
+T-11502H-5	Swagman (Europe) (En,Fr,De)	PAL
+T-11502H-50	Swagman	Europe
+T-11502H09	Shellshock (France)	PAL
+T-11502H18	Shellshock (Germany)	PAL
+T-11502H50	Shellshock (Europe)	PAL
+T-11505H-09	Blam! Machinehead	France
+T-11505H-18	Blam! Machinehead	Germany
+T-11505H-50	Blam! Machinehead	Europe
+T-11505H50	Blam! Machinehead (Europe)	PAL
+T-11506H-50	Virtual Golf	Europe
+T-11506H50	Virtual Golf (Europe)	PAL
+T-12003H-05	Jonah Lomu Rugby	Europe
+T-12003H-09	Jonah Lomu Rugby	France
+T-12003H-50	Jonah Lomu Rugby	Europe
+T-12003H09	Jonah Lomu Rugby (France)	PAL
+T-12003H50	Jonah Lomu Rugby (Europe)	PAL
+T-1201G	Street Fighter - Real Battle on Film (Japan) (2M)	Japan
+T-1202G	Vampire Hunter - Darkstalkers' Revenge (Japan) (1M)	Japan
+T-1203G	X-Men - Children of the Atom (Japan)	Japan
+T-1204G	Street Fighter II Movie (Japan) (Disc 2)	Japan
+T-1205G	Gakkou no Kowai Uwasa - Hanako-san ga Kita!! (Japan)	Japan
+T-1206G	Street Fighter Zero (Japan) (1M)	Japan
+T-1206H	Street Fighter Alpha - Warriors' Dreams (USA) (Beta)	USA
+T-1207G	Tenchi o Kurau II - Sekiheki no Tatakai (Japan)	Japan
+T-1208G	Ide Yousuke Meijin no Shin Jissen Mahjong (Japan) (2M)	Japan
+T-1208H	Night Warriors - Darkstalkers' Revenge (USA)	USA
+T-1209G	Arthur to Astaroth no Nazo Makaimura - Incredible Toons (Japan)	Japan
+T-12103H	BrainDead 13 (USA)	USA
+T-1210G	Rockman X3 (Japan) (2M)	Japan
+T-1212G	Street Fighter Zero 2 (Japan)	Japan
+T-1213G	Super Puzzle Fighter II X (Japan)	Japan
+T-1213H	Street Fighter Alpha 2 (USA)	USA
+T-1214G	Rockman 8 - Metal Heroes (Japan)	Japan
+T-1214H	Marvel Super Heroes (USA)	USA
+T-1215G	Marvel Super Heroes (Japan)	Japan
+T-1215H	Super Puzzle Fighter II Turbo (USA)	USA
+T-1216G	Cyberbots: Fullmetal Madness	Japan
+T-1216H	Mega Man 8 (USA)	USA
+T-1217G	Cyberbots - Fullmetal Madness (Japan) (1M)	Japan
+T-1219G	Bio Hazard (Japan)	Japan
+T-1219H	Mega Man X4 (USA)	USA
+T-1220G	Quiz Nanairo Dreams - Nijiirochou no Kiseki (Japan) (Rev A)	Japan
+T-1221G	Rockman X4 (Japan) (1M)	Japan
+T-1221H	Resident Evil (USA)	USA
+T-1222G	Rockman X4	Japan
+T-1222H	Street Fighter Collection (USA) (Disc 1)	USA
+T-1223G	Street Fighter Collection (Japan) (Disc 2)	Japan
+T-1224G	Dungeons & Dragons Collection (Disc 2) (Shadow over Mystara)	Japan
+T-1225G	Super Adventure Rockman (Japan) (Disc 1) (Episode 1 - Tsuki no Shinden) (1M)	Japan
+T-1226G	X-Men vs. Street Fighter (Japan) (2M)	Japan
+T-1227G	X-Men vs. Street Fighter	Japan
+T-1228G	Vampire Savior: The Lord of Vampire	Japan
+T-1229G	Vampire Savior (Japan)	Japan
+T-12301H	Gremlin Demo Disk (Europe)	PAL
+T-12301H-50	Loaded	Europe
+T-12302H	Actua Golf (Europe) (En,Fr,De)	PAL
+T-12302H-50	Actua Golf	Europe
+T-12303H	Hardcore 4x4 (Europe) (En,Fr,De)	PAL
+T-12303H-50	Hardcore 4x4	Europe
+T-12305H	Actua Soccer - Club Edition (Europe)	PAL
+T-12305H-50	Actua Soccer: Club Edition	Europe
+T-1230G	Pocket Fighter (Japan)	Japan
+T-12313H	Gremlin Demo Disc (Europe)	PAL
+T-12313H-50	Gremlin Demo Disc	Europe
+T-1232G	Capcom Generation - Dai-1-shuu Gekitsuiou no Jidai (Japan)	Japan
+T-1233G	Capcom Generation - Dai-2-shuu Makai to Kishi (Japan)	Japan
+T-1234G	Capcom Generation - Dai-3-shuu Koko ni Rekishi Hajimaru (Japan)	Japan
+T-1235G	Capcom Generation - Dai-4-shuu Kokou no Eiyuu (Japan)	Japan
+T-1236G	Capcom Generation - Dai-5-shuu Kakutouka-tachi (Japan)	Japan
+T-1237G	Rockman 8: Metal Heroes	Japan
+T-1238G	Marvel Super Heroes vs. Street Fighter (Japan)	Japan
+T-1239G	Marvel Super Heroes vs. Street Fighter	Japan
+T-1241G	Super Adventure Rockman (Disc 3) (Episode 3: Saigo no Tatakai!!)	Japan
+T-1242G	Shichisei Toushin Guyferd - Crown Kaimetsu Sakusen (Japan)	Japan
+T-1243G	Rockman X4	Japan
+T-1244G	Street Fighter Zero 2' (Japan)	Japan
+T-1245G	Dungeons & Dragons Collection (Japan) (Disc 1) (Tower of Doom)	NTSC-J
+T-1246G	Street Fighter Zero 3 (Japan)	NTSC-J
+T-1247G	Street Fighter Zero 3	Japan
+T-1248G	Final Fight Revenge (Japan)	Japan
+T-1249G	Final Fight Revenge	Japan
+T-12501G	Cyberia (Japan)	Japan
+T-12503G	Casper (Japan)	Japan
+T-12504G	Blood Factory (Japan)	Japan
+T-12508H	Cyberia (USA) (En,Fr,De)	USA
+T-12508H-50	Cyberia	Europe
+T-12511H	Frankenstein - Through the Eyes of the Monster (Europe)	PAL
+T-12511H-50	Frankenstein: Through the Eyes of the Monster	Europe
+T-12512H	Casper	USA
+T-12512H-50	Casper	Europe
+T-12516H	Tempest 2000 (USA)	USA
+T-12516H-50	Tempest 2000	Europe
+T-12517H	VR Soccer (USA)	USA
+T-12518H	VR Golf '97 (USA)	USA
+T-12519H	Loaded (USA) (En,Fr)	USA
+T-12520H	Pro-Pinball (USA)	USA
+T-12521H-50	Lost Vikings 2: Norse by Norsewest	Europe
+T-12521H50	Lost Vikings 2 - Norse by Norsewest (Europe) (En,Fr,De)	PAL
+T-12522H	Norse by Norsewest - The Return of the Lost Vikings (USA)	USA
+T-12601H	SimCity 2000 (USA)	USA
+T-12701H	Iron Storm (USA)	USA
+T-12702H	Shining Wisdom (USA)	USA
+T-12703H	Dragon Force (USA)	USA
+T-12705H	Albert Odyssey - Legend of Eldean (USA)	USA
+T-12706H	Magic Knight Rayearth (USA)	USA
+T-12707H	Sega Ages Volume 1 (USA)	USA
+T-13001	Shanghai - Triple-Threat (USA)	NTSC-U
+T-13001H	Shanghai: Triple-Threat	USA
+T-13003H	Blast Chamber (USA)	USA
+T-13003H-50	Blast Chamber	Europe
+T-13003H50	Blast Chamber (Europe) (En,Fr,De,Es,It)	PAL
+T-13004H	MechWarrior 2 - 31st Century Combat - Arcade Combat Edition (USA)	USA
+T-13004H-50	MechWarrior 2: 31st Century Combat: Arcade Combat Edition	Europe
+T-1301G	Side Pocket 2 - Densetsu no Hustler (Japan)	Japan
+T-1301H	Defcon 5 (Japan)	USA
+T-1302G	Suiko Enbu (Japan)	Japan
+T-1302H	Minnesota Fats - Pool Legend (USA) (R)	USA
+T-1303G	Creature Shock (Japan) (Disc 1)	Japan
+T-1304G	Magical Drop (Japan)	Japan
+T-1304H	Creature Shock: Special Edition (Disc 2)	USA
+T-1305G	Suiko Enbu - Fuuun Saiki (Japan)	Japan
+T-1305H	Dark Legend (USA)	USA
+T-1306G	Wizardry VI & VII Complete (Japan) (Sample-ban) (3M)	Japan
+T-1307G	Tantei Jinguuji Saburou - Mikan no Report (Japan)	Japan
+T-1311G	Skull Fang - Kuuga Gaiden (Japan)	Japan
+T-1312G	Voice Idol Maniacs - Pool Bar Story (Japan) (Disc 1) (2M)	Japan
+T-1313G	Magical Drop III - Toretate Zoukan-gou! (Japan) (2M)	Japan
+T-1314G	Side Pocket 3 (Japan)	Japan
+T-1315G	Doukoku Soshite... (Japan) (1M)	Japan
+T-1316G	Tantei Jinguuji Saburou - Yume no Owari ni (Japan) (3M)	Japan
+T-1317G	Doukoku Soshite...	Japan
+T-1318G	Magical Drop III: Toretate Zoukan-gou!	Japan
+T-13203H	Earthworm Jim 2 (USA)	USA
+T-13204-H	Skeleton Warriors	USA
+T-13204H	Skeleton Warriors (USA)	NTSC-U
+T-13205H	Powerslave (USA)	USA
+T-13301G	From TV Animation Slam Dunk - I Love Basketball (Japan)	Japan
+T-13301H	Dragon Ball Z - La Grande Legende des Boules de Cristal (France, Spain)	PAL
+T-13301H-06	Dragon Ball Z: La Grande Légende des Boules de Cristal	France, Spain
+T-13301H-09	Dragon Ball Z: La Grande Légende des Boules de Cristal	France, Spain
+T-13302G	Dragon Ball Z - Shinbutouden (Japan)	Japan
+T-13303G	Mobile Suit Gundam (Japan) (Rev A)	Japan
+T-13304G	PD Ultraman Link (Japan)	Japan
+T-13305G	Dragon Ball Z - Idainaru Dragon Ball Densetsu (Japan)	Japan
+T-13306G	Mobile Suit Gundam Side Story I - Senritsu no Blue (Japan)	Japan
+T-13307G	Mobile Suit Gundam Side Story I: Senritsu no Blue	Japan
+T-13308G	Ultraman - Hikari no Kyojin Densetsu (Japan)	Japan
+T-13309G	Mobile Suit Gundam Side Story II - Ao o Uketsugu Mono (Japan)	Japan
+T-13310G	GeGeGe no Kitarou - Gentou Kaikitan (Japan)	Japan
+T-13311G	Mobile Suit Gundam Side Story II: Ao o Uketsugu Mono	Japan
+T-13312G	Mobile Suit Gundam Side Story III - Sabakareshi Mono (Japan)	Japan
+T-13313G	Mobile Suit Gundam Side Story III: Sabakareshi Mono	Japan
+T-13315G	Kidou Senshi Z Gundam - Zenpen Zeta no Kodou (Japan)	Japan
+T-13316G	Magical Hoppers (Japan)	Japan
+T-13317G	Dragon Ball Z: Idainaru Dragon Ball Densetsu	Japan
+T-13318G	Mobile Suit Gundam Side Story - Optional Guide (Japan)	Japan
+T-13319G	Kochira Katsushikaku Kameari Kouenmae - Hashutsujo - Nakagawa Land Dai-Race! no Maki (Japan)	Japan
+T-13320G	Kidou Senshi Z Gundam - Kouhen Uchuu o Kakeru (Japan)	Japan
+T-13322G	RMJ - The Mystery Hospital (Japan)	Japan
+T-13323G	Next King: Koi no Sennen Oukoku	Japan
+T-13324G	SD Gundam - GCentury S (Japan)	Japan
+T-13325G	Sega Saturn de Hakken!! Tamagotchi Park (Japan)	Japan
+T-13327G	Kidou Senshi Gundam - Gihren no Yabou (Japan)	Japan
+T-13328G	Next King - Koi no Sennen Oukoku (Japan)	Japan
+T-13329G	Mobile Suit Gundam	Japan
+T-13330G	Kidou Senshi Gundam: Gihren no Yabou	Japan
+T-13331G	Digital Monster Ver. S - Digimon Tamers (Japan)	Japan
+T-13332G	Kochira Katsushikaku Kameari Kouenmae - Hashutsujo - Nakagawa Land Dai-Race! no Maki (Japan) (Satakore)	Japan
+T-13333G	Kidou Senshi Gundam - Gihren no Yabou - Kouryaku Shireisho (Japan)	Japan
+T-13703H	TNN Motor Sports HardCore 4X4 (USA)	USA
+T-13705H	Ten Pin Alley (USA)	USA
+T-14101G	Kamen Rider - Sakusen File 1 (Japan)	Japan
+T-14301G	Tengai Makyou - Daiyon no Mokushiroku - The Apocalypse IV (Japan) (Disc 2)	Japan
+T-14302G	Saturn Bomberman (Japan)	Japan
+T-14303G	Kuusou Kagaku Sekai Gulliver Boy (Japan) (Disc 2)	Japan
+T-14304G	Virus (Japan) (Disc 2)	Japan
+T-14305G	Saturn Bomberman (Japan) (SegaNet)	Japan
+T-14306G	Willy Wombat (Japan)	Japan
+T-14307G	Ginga Ojousama Densetsu Yuna Remix (Japan)	Japan
+T-14308G	Ginga Ojousama Densetsu Yuna - Mika Akitaka Illust Works (Japan)	Japan
+T-14309G	Momotarou Douchuuki (Japan) (2M)	Japan
+T-14310G	Bulk Slash (Japan)	Japan
+T-14311G	Ginga Ojousama Densetsu Yuna 3 - Lightning Angel (Japan)	Japan
+T-14312G	Koden Koureijutsu - Hyaku Monogatari - Honto ni Atta Kowai Hanashi (Japan) (Disc 1) (Joukan)	Japan
+T-14314G	Saturn Bomberman	Japan
+T-14315G	Kindaichi Shounen no Jikenbo - Hoshimitou Kanashimi no Fukushuuki (Japan)	Japan
+T-14316G	Denpa Shounen-teki Game (Japan) (Rev A)	Japan
+T-14318G	Denpa Shounen-teki Game (Japan) (Rerelease)	Japan
+T-14319G	Shadows of the Tusk (Japan)	Japan
+T-14320G	Bomberman Wars (Japan)	Japan
+T-14321G	Saturn Bomberman Fight!! (Japan)	Japan
+T-14322G	Shiroki Majo - Mou Hitotsu no Eiyuu Densetsu (Japan) (Disc 2)	Japan
+T-14323G	Ginga Ojousama Densetsu Yuna - Mika Akitaka Illust Works 2 (Japan)	Japan
+T-14324G	Koden Koureijutsu: Hyaku Monogatari: Honto ni Atta Kowai Hanashi (Disc 2) (Gekan)	Japan
+T-14325G	Bulk Slash	Japan
+T-14326G	Momotarou Douchuuki	Japan
+T-14401G	Touge King the Spirits (Japan)	Japan
+T-14401H	Virtual Hydlide (USA) (P4H)	USA
+T-14402G	Gunbird (Japan)	Japan
+T-14402H	High Velocity - Mountain Racing Challenge (USA)	USA
+T-14403G	Shin Megami Tensei - Devil Summoner (Japan) (Rev A)	Japan
+T-14403H	Lunacy (USA) (Disc 1)	USA
+T-14404G	My Best Friends - St. Andrew Jogakuin-hen (Japan)	Japan
+T-14405G	DonPachi (Japan)	Japan
+T-14406G	Shin Megami Tensei - Devil Summoner - Akuma Zensho (Japan)	Japan
+T-14407G	Strikers 1945 (Japan)	Japan
+T-14408G	Shin Megami Tensei: Devil Summoner: Akuma Zensho	Japan
+T-14409G	PriKura (Princess Kurara) Daisakusen (Japan)	Japan
+T-14410G	Sengoku Blade - Sengoku Ace Episode II (Japan) (Disc 2) (Sengoku Kawaraban - Digital Edition)	Japan
+T-14411G	Gouketsuji Ichizoku 3 - Groove on Fight (Japan)	Japan
+T-14412G	Touge King the Spirits 2 (Japan)	Japan
+T-14413G	Gouketsuji Ichizoku 3: Groove on Fight	Japan
+T-14414G	Minakata Hakudou Toujou (Japan) (Disc 2)	Japan
+T-14415G	Ronde (Japan) (Disc 2)	Japan
+T-14417G	Shin Megami Tensei: Devil Summoner	Japan
+T-14418G	Princess Crown (Japan) (Rev A) (13M)	Japan
+T-14419G	DoDonPachi (Japan)	Japan
+T-14420G	Devil Summoner - Soul Hackers (Japan) (Disc 02)	Japan
+T-14421G	Devil Summoner - Soul Hackers - Akuma Zensho Daini-shuu (Japan)	Japan
+T-14423G	Sol Divide (Japan)	Japan
+T-14424G	DoDonPachi	Japan
+T-14425G	Princess Crown	Japan
+T-15001G	Seifuku Densetsu - Pretty Fighter X (Japan) (1M)	Japan
+T-15002G	Jissen Mahjong (Japan)	Japan
+T-15004G	Mahou no Janshi - Poe Poe Poemy (Japan) (2M)	Japan
+T-15005G	Virtual Volleyball (Japan)	Japan
+T-15006G	Kaitei Daisensou (Japan)	Japan
+T-15007G	Virtual Open Tennis (Japan)	Japan
+T-15008G	Photograph of a Crime, The - Hankou Shashin - Shibarareta Shoujo-tachi no Mita Mono wa (Japan)	Japan
+T-15009G	Shouryuu Sangoku Engi (Japan)	Japan
+T-15010G	Panic-chan (Japan) (Rev A) (11M)	Japan
+T-15011G	Eve: Burst Error (Disc 4) (Making Disc)	Japan
+T-15012G	StarFighter 3000 (Japan)	Japan
+T-15013G	3D Lemmings (Japan)	Japan
+T-15014G	Heartbeat Scramble (Japan)	Japan
+T-15015G	Fist (Japan)	Japan
+T-15016G	MeltyLancer - Ginga Shoujo Keisatsu 2086 (Japan)	Japan
+T-15017G	MeltyLancer: Ginga Shoujo Keisatsu 2086	Japan
+T-15018G	Taiheiyou no Arashi 2 - Shippuu no Moudou (Japan)	NTSC-J
+T-15019G	Drift King Shutokou Battle '97 - Tsuchiya Keiichi & Bandou Masaaki (Japan)	Japan
+T-1501G	Myst (Japan)	Japan
+T-15022G	Eve - Burst Error (Japan) (Disc 1) (Kojiroh Disc)	NTSC-J
+T-15024G	Taiheiyou no Arashi 2 - 3D Heiki Data-shuu (Japan)	Japan
+T-15025G	Ryuuteki Gosennen - Dragons of China (Japan)	Japan
+T-15026G	Tenga Seiha (Japan)	NTSC-J
+T-15027G	Welcome House (Japan)	Japan
+T-15028G	Transport Tycoon (Japan)	Japan
+T-15029G	Panic-chan	Japan
+T-1502G	Game no Tatsujin (Japan) (Rev A)	Japan
+T-1502H	Hebereke's Popoitto (Europe)	PAL
+T-1502H-50	Hebereke's Popoitto	Europe
+T-15030G	Tenga Seiha	Japan
+T-15031G	Desire (Japan) (Disc 2) (2M)	Japan
+T-15033G	Marie no Atelier Ver. 1.3 - Salburg no Renkinjutsushi (Japan)	Japan
+T-15035G	Eve - The Lost One (Japan) (Disc 1) (Kyoko Disc) (1M)	Japan
+T-15036G	Eve: The Lost One	Japan
+T-15037G	Eve: The Lost One	Japan
+T-15038G	MeltyLancer - Re-inforce (Japan) (Disc 1)	Japan
+T-15039G	MeltyLancer: Re-inforce (Disc 3)	Japan
+T-1503G	Hissatsu Pachinko Collection (Japan) (Rev A)	Japan
+T-1503H	Jewels of the Oracle (USA) (En,Ja,Fr,De) (Proto 2)	USA
+T-1503H-50	Jewels of the Oracle (Europe) (En,Ja,Fr,De)	Europe
+T-15041G	Eve: The Lost One (Disc 4) (Extra Disc)	Japan
+T-1504G	Popoitto Hebereke (Japan)	Japan
+T-1504H	Galaxy Fight (USA)	USA
+T-1504H-50	Galaxy Fight (Europe)	Europe
+T-1505G	Shanghai - Banri no Choujou - The Great Wall (Japan) (Rev A) (15M)	Japan
+T-1506G	Game no Tetsujin - The Shanghai (Japan)	Japan
+T-1507G	Albert Odyssey Gaiden - Legend of Eldean (Japan) (2M)	Japan
+T-1508G	Oh-chan no Oekaki Logic (Japan)	Japan
+T-1509G	Game no Tatsujin 2 (Japan)	Japan
+T-15101H	Alone in the Dark - Jack Is Back (Europe) (En,Fr,De,Es,It)	PAL
+T-15101H-50	Alone in the Dark: Jack Is Back	Europe
+T-15102H	Chaos Control (Europe) (En,Fr,De) (Beta)	PAL
+T-15102H-50	Chaos Control	Europe
+T-1510G	Galaxy Fight - Universal Warriors (Japan)	Japan
+T-1511G	Oracle no Houseki - Jewels of the Oracle (Japan) (En,Ja,Fr,De)	Japan
+T-1512G	Shanghai - Great Moments (Japan) (1M)	Japan
+T-1513G	Amagi Shien (Japan)	Japan
+T-1514G	Albert Odyssey Gaiden: Legend of Eldean	Japan
+T-1515G	Waku Waku 7 (Japan)	Japan
+T-1516G	Waku Waku 7	Japan
+T-1517G	Albert Odyssey Gaiden: Legend of Eldean	Japan
+T-1521G	Astra Superstars (Japan)	Japan
+T-1524G	Photo Genic (Japan)	NTSC-J
+T-1525G	Photo Genic	Japan
+T-1527G	Shanghai: Banri no Choujou: The Great Wall	Japan
+T-15701G	Bishoujo Senshi Sailor Moon SuperS - Various Emotion (Japan)	Japan
+T-15901G	Off-World Interceptor Extreme (Japan)	Japan
+T-159028H	Slam 'n Jam '96 featuring Magic & Kareem - Signature Edition (USA)	NTSC-U
+T-15902G	The Horde	Japan
+T-15902H	Slam 'n Jam '96 featuring Magic & Kareem: Signature Edition	USA
+T-15902H-50	Slam 'n Jam '96 featuring Magic & Kareem: Signature Edition	Europe
+T-15902H50	Slam 'n Jam '96 featuring Magic & Kareem - Signature Edition (Europe)	PAL
+T-15903G	Titan Wars (Japan)	Japan
+T-15904G	Gex (Japan)	Japan
+T-15904H	Gex (USA)	USA
+T-15904H-50	Gex	Europe
+T-15904H50	Gex (Europe)	PAL
+T-159056	Slam 'n Jam '96 featuring Magic & Kareem (Japan)	NTSC-J
+T-15905G	Slam 'n Jam '96 featuring Magic & Kareem	Japan
+T-15906H	3D Baseball (USA)	USA
+T-15907H	Blazing Dragons (USA)	USA
+T-15908H	Off-World Interceptor Extreme (USA)	USA
+T-15908H-50	Off-World Interceptor Extreme	Europe
+T-15908H40	Off-World Interceptor Extreme (Europe)	PAL
+T-15909H	The Horde	USA
+T-15909H-09	The Horde	France
+T-15909H-18	The Horde	Germany
+T-15909H-50	The Horde	Europe
+T-15909H09	Horde, The (France)	PAL
+T-15909H18	Horde, The (Germany)	PAL
+T-15909H50	Horde, The (Japan)	PAL
+T-15911H	Solar Eclipse (USA) (2S)	USA
+T-15911H-50	Titan Wars	Europe
+T-15911H50	Titan Wars (Europe)	PAL
+T-15913H-09	Blazing Dragons	France
+T-15913H-18	Blazing Dragons	Germany
+T-15913H-50	Blazing Dragons	Europe
+T-15913H09	Blazing Dragons (France)	PAL
+T-15913H18	Blazing Dragons (Germany)	PAL
+T-15913H50	Blazing Dragons (Europe)	PAL
+T-15914H	Pandemonium! (USA)	USA
+T-16103H	Die Hard Trilogy (USA)	USA
+T-16103H-06	Die Hard Trilogy	Europe
+T-16103H-09	Die Hard Trilogy	Europe
+T-16103H-50	Die Hard Trilogy	Europe
+T-16104H	Independence Day (USA)	USA
+T-16104H-50	Independence Day: The Game	Europe
+T-16105H	Croc: Legend of the Gobbos	USA
+T-16201H	Corpse Killer - Graveyard Edition (USA) (Disc 1) (R)	USA
+T-16207H	Double Switch (USA) (Disc 1)	USA
+T-16213H	Quarterback Attack (USA)	USA
+T-16403H	Worms (USA)	USA
+T-16403H-50	Worms	Europe
+T-16406H	True Pinball (USA)	USA
+T-16406H-50	True Pinball	Europe
+T-16408H	Break Point (Europe) (En,Fr)	PAL
+T-16408H-50	Break Point	Europe
+T-16414H-50	Tunnel B1	Europe
+T-16414H50	Tunnel B1 (Europe) (En,Fr,De,Es,It)	PAL
+T-16501G	Super Real Mahjong P.V (Japan) (2M)	Japan
+T-16502G	Shougi Matsuri (Japan)	Japan
+T-16503G	Super Real Mahjong P.V	Japan
+T-16504G	Super Real Mahjong Graffiti (Japan) (2M)	Japan
+T-16505G	Kanazawa Shougi (Japan) (1M)	Japan
+T-16506G	Super Real Mahjong Graffiti (Japan) (P's Club Special Edition) (2M)	Japan
+T-16507G	Super Real Mahjong PVI (Japan)	Japan
+T-16508G	Super Real Mahjong PVI (Japan) (P's Club Special Edition)	Japan
+T-16509G	Super Real Mahjong P7 (Japan) (3M)	Japan
+T-16510G	Super Real Mahjong P7 (Japan) (P's Club Special Edition)	Japan
+T-16511G	Real Mahjong Adventure Umi e - Summer Waltz (Japan)	Japan
+T-16512G	Real Mahjong Adventure Umi e - Summer Waltz (Japan) (P's Club Genteiban)	Japan
+T-16602G	Tadaima Wakusei Kaitaku-chuu! (Japan)	Japan
+T-16603G	Robo Pit (Japan)	Japan
+T-16604G	Mighty Hits (Japan)	Japan
+T-16605G	Elf o Karu Monotachi (Japan) (Disc 1)	Japan
+T-16606G	Elf o Karu Monotachi - Hanafuda-hen (Japan)	Japan
+T-16607G	Jung Rhythm (Japan)	Japan
+T-16608G	Waku^2 Monster (Japan)	Japan
+T-16609G	Sorvice (Japan)	Japan
+T-16610G	Elf o Karu Monotachi II (Japan) (Disc 1)	Japan
+T-16611G	Honkaku Hanafuda (Japan)	Japan
+T-16612G	RoX - 6 = Six (Japan)	Japan
+T-16702G	Idol Mahjong - Final Romance 2 (Japan)	Japan
+T-16703G	Idol Mahjong - Final Romance R (Japan)	Japan
+T-16704G	Big Ichigeki! Pachi-Slot Daikouryaku - Universal Museum (Japan) (1M)	Japan
+T-16705G	Idol Mahjong - Final Romance R (Japan) (Kisekae Disc)	Japan
+T-16705G-01	Idol Mahjong: Final Romance R	Japan
+T-16706G	Voice Fantasia S - Ushinawareta Voice Power (Japan) (Disc 2) (Premium CD-ROM)	Japan
+T-16708G	Asuka 120% Limited - Burning Fest. Limited (Japan)	Japan
+T-16801G	Pro Mahjong Kiwame-S (Japan) (Rev A)	Japan
+T-16802G	Joshikousei no Houkago... Pukunpa (Japan)	Japan
+T-16804G	Dezaemon 2 (Japan)	Japan
+T-16806G	Crows - The Battle Action for SegaSaturn (Japan)	Japan
+T-16807G	Pro Mahjong Kiwame-S	Japan
+T-17001G	Heisei Tensai Bakabon - Susume! Bakabons (Japan)	Japan
+T-17002G	Game-Ware (Japan)	NTSC-J
+T-17002G-T	Game-Ware	Japan
+T-17003G	Game-Ware Vol. 2 (Japan)	Japan
+T-17004G-T	Game-Ware Vol. 3 (Japan)	Japan
+T-17005G	Game-Ware Vol. 4	Japan
+T-17006G	Game-Ware Vol. 5 (Japan) (Disc A)	Japan
+T-17401G	QuoVadis	Japan
+T-17402G	QuoVadis 2 - Wakusei Kyoushuu Ovan Rei (Japan) (Disc 1)	Japan
+T-17601G	AI Igo (Japan)	Japan
+T-17602G	AI Shougi 2 (Japan)	Japan
+T-17701G	Rayman (Japan)	Japan
+T-17701H	Rayman (Europe) (En,Fr,De) (1S)	USA
+T-17701H-50	Rayman	Europe
+T-17702G	Street Racer Extra (Japan)	Japan
+T-17702H	Street Racer (Europe)	PAL
+T-17702H-50	Street Racer	Europe
+T-17703G	Tennis Arena (Japan)	Japan
+T-17809G	VirtuaNavi V2.00 Version Up CD	Japan
+T-17811G	PictFlash Don Don	Japan
+T-18001G	Seireki 1999 - Pharaoh no Fukkatsu (Japan)	Japan
+T-18003G	3D Baseball - The Majors (Japan)	Japan
+T-18005G	Seikai Risshiden - Yoi Kuni, Yoi Seiji (Japan)	Japan
+T-18007G	Mass Destruction - Otousan ni mo Dekiru Soft (Japan)	Japan
+T-18007H	Mass Destruction (USA)	USA
+T-18008G	Jungle Park - Saturn Shima (Japan) (Rev A)	Japan
+T-18009G	Jungle Park: Saturn Shima	Japan
+T-18010G	Courier Crisis - The Saga of the Modern Fatalist (Japan)	Japan
+T-1801G	Kyuutenkai (Japan)	Japan
+T-1802G	Nekketsu Oyako (Japan)	Japan
+T-1803G	Hyper Reverthion (Japan) (2M)	Japan
+T-1805G	Koutetsu Reiiki - Steeldom (Japan) (2M)	Japan
+T-1806G	Koutetsu Reiiki: Steeldom	Japan
+T-1807G	Thunder Force Gold Pack 1 (Japan)	Japan
+T-1808G	Thunder Force Gold Pack 2 (Japan) (Rev A)	Japan
+T-1809G	Hyper Duel (Japan)	Japan
+T-1810G	Blast Wind (Japan)	Japan
+T-1811G	Thunder Force V (Japan)	Japan
+T-1812G	Thunder Force V	Japan
+T-1813G	Kumitate Battle Kuttu Ketto (Japan)	Japan
+T-1814G	Thunder Force V	Japan
+T-18501G	Darkseed (Japan)	Japan
+T-18502G	Quantum Gate I - Akumu no Joshou (Japan)	Japan
+T-18503G	The Psychotron	Japan
+T-18504G	Father Christmas (Japan)	Japan
+T-18505G	Tekkyuu - True Pinball (Japan)	Japan
+T-18506G	Shippuu Mahou Daisakusen - Kingdom-Grandprix (Japan)	Japan
+T-18510G	Daisuki (Japan) (Disc 1)	Japan
+T-18511G	3D Mission Shooting - Finalist (Japan)	Japan
+T-18601H	WipEout (USA)	NTSC-U
+T-18602G	AI Shougi	Japan
+T-18603G	WipEout (Japan) (2M)	Japan
+T-18604G	Destruction Derby (Japan)	Japan
+T-18605G	Krazy Ivan (Japan)	Japan
+T-18606G	Assault Rigs (Japan)	Japan
+T-18610G	Doom (Japan)	Japan
+T-18611G	Simulation Zoo (Japan)	Japan
+T-18612G	Hexen - Beyond Heretic (Japan)	Japan
+T-18613G	Area 51 (Japan)	Japan
+T-18614G	Primal Rage (Japan)	Japan
+T-18619G	Wipeout XL (Japan)	Japan
+T-18701G	Battle Monsters (Japan)	Japan
+T-18702G	Heiwa Pachinko Soushingeki (Japan) (1M)	Japan
+T-18703G	Shunsai (Japan)	Japan
+T-18704G	Mahjong Yon Shimai - Wakakusa Monogatari (Japan)	Japan
+T-18705G	Top Anglers - Super Fishing Big Fight 2 (Japan)	Japan
+T-18706G	Actua Soccer (Japan)	Japan
+T-18707G	Japan Super Bass Classic '96 (Japan)	Japan
+T-18709G	Honkaku Pro Mahjong - Tetsuman Special (Japan)	Japan
+T-18710G	Actua Golf (Japan)	Japan
+T-18711G	Planet Joker (Japan)	Japan
+T-18712G	Motteke Tamago with Ganbare! Kamonohashi (Japan)	Japan
+T-18714G	Nihon Pro Mahjong Renmei Kounin - Doujou Yaburi (Japan)	Japan
+T-18715G	Kyuukyoku Tiger II Plus (Japan)	Japan
+T-18716G	Honkaku Pro Mahjong: Tetsuman Special	Japan
+T-18801G	Lupin the 3rd - The Master File (Japan)	Japan
+T-18802G	Isto E Zico - Zico no Kangaeru Soccer (Japan)	Japan
+T-18804G	Lupin the 3rd Chronicles (Japan) (Disc 1)	Japan
+T-18805G	Lupin the 3rd Chronicles (Disc 2)	Japan
+T-18806G	Lupin the 3rd Chronicles (Disc 2)	Japan
+T-18807G	DJ Wars (Japan) (Rev A) (10M)	Japan
+T-18901G	Digital Pinball - Last Gladiators (Japan)	Japan
+T-18902G	Digital Pinball - Necronomicon (Japan)	Japan
+T-18903G	Digital Pinball - Last Gladiators Ver.9.7 (Japan)	Japan
+T-19401G	Cubic Gallery - Edy & Disy (Japan)	Japan
+T-19501G	Shichuu Suimei Pitagraph (Japan) (2M)	Japan
+T-19502G	Roommate - Inoue Ryouko (Japan) (Rev A)	Japan
+T-19503G	Dragon Master Silk (Japan)	Japan
+T-19504G	Roommate - Ryouko in Summer Vacation (Japan) (2M)	Japan
+T-19505G	Sugoventure - Dragon Master Silk Gaiden (Japan)	Japan
+T-19507G	Roommate 3 - Ryouko Kaze no Kagayaku Asa ni (Japan)	Japan
+T-19508G	Roommate W - Futari (Japan) (Disc 1)	Japan
+T-19509G	Ryouko no Oshaberi Room (Japan)	Japan
+T-19510G	Ryouko no Oshaberi Room	Japan
+T-19701G	Can Can Bunny Premiere (Japan) (1M)	Japan
+T-19702G	Can Can Bunny Premiere 2 (Japan) (Disc 2) (Can Bani Himekuri Calendar) (Hibaihin)	NTSC-J
+T-19703G	Can Can Bunny Premiere 2 (Japan) (Disc 2) (Can Bani Himekuri Calendar)	Japan
+T-19704G	Can Can Bunny Premiere	Japan
+T-19705	Can Can Bunny Premiere 2 (Disc 1)	Japan
+T-19705G	Can Can Bunny Premiere 2 (Disc 1)	Japan
+T-19706G	Can Can Bunny Extra (Japan)	Japan
+T-19707G	Tenant Wars (Japan)	Japan
+T-19708G	Pia Carrot e Youkoso!! We've Been Waiting for You (Japan)	Japan
+T-19709G	Sakamoto Ryouma - Ishin Kaikoku (Japan)	Japan
+T-19710G	GunBlaze-S (Japan)	Japan
+T-19711G	Game de Seishun (Japan) (Rev A)	Japan
+T-19713G	Houkago Ren'ai Club: Koi no Etude (Disc 2)	Japan
+T-19714G	Houkago Ren'ai Club - Koi no Etude (Japan) (Disc 1)	Japan
+T-19715G	Highschool Terra Story (Japan)	Japan
+T-19717G	She'sn (Japan)	Japan
+T-19718G	Virtuacall S (Japan) (Disc 1) (Game Honpen)	Japan
+T-19719G	Pia Carrot e Youkoso!! We've Been Waiting for You	Japan
+T-19720G	Virtuacall S (Disc 1) (Game Honpen)	Japan
+T-19721G	6 Inch My Darling (Japan)	Japan
+T-19722G	Ruriiro no Yuki (Japan)	Japan
+T-19723G	Kiss yori... (Japan)	Japan
+T-19724G	Kiss yori... (Japan) (Rev A)	Japan
+T-19801G	Doraemon - Nobita to Fukkatsu no Hoshi (Japan)	Japan
+T-19901G	Night Striker S (Japan)	Japan
+T-19902G	Metal Black (Japan) (3M)	Japan
+T-19903G	Elevator Action^2 - Returns (Japan)	Japan
+T-19904G	Harukaze Sentai V-Force (Japan) (Disc 2)	Japan
+T-19905G	Bubble Symphony (Japan)	Japan
+T-19906G	BackGuiner - Yomigaeru Yuusha-tachi - Kakusei-hen - Guiner Tensei (Japan) (Disc 1)	Japan
+T-19907G	BackGuiner - Yomigaeru Yuusha-tachi - Hishou-hen - Uragiri no Senjou (Japan) (Disc 2)	Japan
+T-19909G	Metal Black	Japan
+T-19910G	Mizubaku Daibouken (Japan)	Japan
+T-20001G	Bakushou!! All Yoshimoto Quiz-ou Kettei-sen DX (Japan)	Japan
+T-20002G	Funky Fantasy (Japan)	Japan
+T-20003G	Funky Head Boxers (Japan)	Japan
+T-20004G	Funky Head Boxers Plus (Japan)	Japan
+T-2001G	Houma Hunter Lime Perfect Collection (Disc 2)	Japan
+T-2002G	World Evolution Soccer (Japan)	Japan
+T-2003G	Sid Meier's Civilization - Shin Sekai Shichidai Bunmei (Japan)	Japan
+T-2004G	Lupin Sansei - Pyramid no Kenja (Japan)	Japan
+T-20101G	Tanjou - Debut S (Japan) (1M)	Japan
+T-20102G	Doukyuusei - if (Japan) (1M, 2M)	Japan
+T-20103G	Sotsugyou - Graduation S (Japan)	Japan
+T-20104G	Doukyuusei 2 (Japan) (Disc A)	Japan
+T-20106G	Sentimental Graffiti (Japan) (Disc 2) (Second Window) (1M, 2M)	Japan
+T-20109G	Friends - Seishun no Kagayaki (Japan) (Disc 2) (Special Disc)	Japan
+T-20110G	Mahou Shoujo Pretty Samy - Osorubeshi Shintai Sokutei! Kakubakuhatsu 5-Byou-mae!! (Japan)	Japan
+T-20111G	Sentimental Graffiti - First Window (Japan)	Japan
+T-20112G	Mahou Shoujo Pretty Samy - Heart no Kimochi (Japan)	Japan
+T-20113G	Black-Matrix (Japan)	Japan
+T-20114G	Pia Carrot e Youkoso!! 2 (Japan) (Disc 2) (Special Disc) (1M)	Japan
+T-20115G	Black-Matrix (Japan) (Rerelease)	Japan
+T-20117G	With You - Mitsumeteitai (Japan) (Disc 2)	Japan
+T-20118G	Black/Matrix	Japan
+T-20201G	Tokimeki Mahjong Paradise - Koi no Tenpai Beat (Japan)	Japan
+T-20202G	Tokimeki Mahjong Graffiti - Toshishita no Tenshi-tachi (Japan)	Japan
+T-20203G	Nightruth - Explanation of the Paranormal - The Making of Nightruth (Japan) (2M)	Japan
+T-20204G	Nightruth - Explanation of the Paranormal 01 - Yami no Tobira (Japan) (2M)	Japan
+T-20205G	Nightruth - Explanation of the Paranormal - Making of Nightruth II - Voice Selection (Japan)	Japan
+T-20206G	Nightruth - Explanation of the Paranormal - Maria (Japan)	Japan
+T-20207G	Nightruth - Explanation of the Paranormal - Nightruth Voice Selection - Radio Drama-hen (Japan) (2M)	Japan
+T-20301G	Airs Adventure	Japan
+T-20402G	Strikers 1945 II (Japan)	Japan
+T-20403G	Yoshimoto Mahjong Club (Japan)	Japan
+T-20501G	Strahl - Himerareshi Nanatsu no Hikari (Japan)	Japan
+T-20502G	Discworld (Japan)	Japan
+T-20504G	Free Talk Studio - Mari no Kimamana Oshaberi (Japan)	Japan
+T-20505G	Derby Analyst (Japan)	Japan
+T-20506G	Free Talk Studio: Mari no Kimamana Oshaberi	Japan
+T-20507G	Hop Step Idol (Japan)	Japan
+T-20601G	Hokuto no Ken (Japan)	Japan
+T-20602G	Tokuso Kidoutai J-SWAT (Japan)	Japan
+T-20603G	GranDread (Japan)	Japan
+T-20604G	Zoku Gussun Oyoyo	Japan
+T-20605G	Batsugun (Japan)	Japan
+T-20606G	Gekka no Kishi - Ouryuu-sen (Japan)	Japan
+T-20607G	Time Bokan Series - Bokan to Ippatsu! Doronbow Kanpekiban (Japan)	Japan
+T-20608G	Baldy Land (Japan)	Japan
+T-20610G	Super Robot Taisen F (Japan) (Rev B) (21M)	Japan
+T-20611G	Sokkou Seitokai - Sonic Council (Japan)	Japan
+T-20612G	Super Robot Taisen F - Kanketsu-hen (Japan) (Rev A) (11M)	Japan
+T-20701G	Thunder Storm & Road Blaster (Japan) (Disc 2) (Road Blaster)	Japan
+T-20702G	Time Gal & Ninja Hayate (Japan) (En,Ja) (Disc 2) (Ninja Hayate) (3M)	Japan
+T-20802G	Tetris S (Japan) (Rev A)	Japan
+T-20804G	Tetris S	Japan
+T-20902G	Hansha de Spark! (Japan)	Japan
+T-21001G	FEDA Remake! The Emblem of Justice (Japan)	Japan
+T-21002G	Girls in Motion Puzzle Vol. 1 - Hiyake no Omoide + Himekuri (Japan)	Japan
+T-21003G	Girls in Motion Puzzle Vol. 2 - Body Special 264 (Japan)	Japan
+T-21004G	Cube Battler - Story of Shou (Japan)	Japan
+T-21006G	Cube Battler - Story of Anna (Japan)	Japan
+T-2101G	Mahjong Ganryuujima (Japan) (4M)	Japan
+T-2103G	Jikuu Tantei DD (Dracula Detective) - Maboroshi no Lorelei (Japan) (Disc A)	Japan
+T-2104G	Kakinoki Shougi (Japan)	Japan
+T-2105G	Shin Kaitei Gunkan - Koutetsu no Kodoku (Japan)	Japan
+T-2106G	Simulation RPG Tkool (Japan)	Japan
+T-2108G	Sound Novel Tkool 2 (Japan)	Japan
+T-2111G	Game Basic for SegaSaturn (Japan)	Japan
+T-2112G	Linda^3 Kanzenban (Japan)	Japan
+T-2113G	Derby Stallion (Japan)	Japan
+T-21201G	Mainichi Kawaru Quiz Bangumi - Quiz 365 (Japan)	Japan
+T-21202G	Daisenryaku - Strong Style (Japan)	Japan
+T-21203G	Kuro no Danshou - The Literary Fragment (Japan) (3M)	Japan
+T-21204G	Kuro no Danshou: The Literary Fragment	Japan
+T-21301G	3x3 Eyes - Kyuusei Koushu S (Japan) (Disc 2)	Japan
+T-21302G	Tryrush Deppy (Japan)	Japan
+T-21303G	My Dream - On Air ga Matenakute (Japan) (Disc 1)	Japan
+T-21401G	Zero4 Champ DooZy-J Type-R (Japan)	Japan
+T-21402G	Tactical Fighter (Japan)	Japan
+T-21501G	BreakThru! (Japan)	Japan
+T-21502G	Zork I - The Great Underground Empire (Japan)	Japan
+T-21503G	Rapyulus Panic (Japan)	Japan
+T-21504G	Tsuukai!! Slot Shooting (Japan)	Japan
+T-21507G	Wara Wara Wars - Gekitou! Daigundan Battle (Japan)	Japan
+T-21508G	Bouken Katsugeki Monomono (Japan)	Japan
+T-21510G	Paneltia Story - Koeln no Daibouken (Japan)	Japan
+T-21512G	Ayakashi Ninden Kunoichiban Plus (Japan) (Disc 1)	Japan
+T-21601G	Tower, The (Japan)	Japan
+T-21701G	Fuusui Sensei - Feng-Shui Master (Japan)	Japan
+T-21702G	Ryouri no Tetsujin - Kitchen Stadium Tour (Japan)	Japan
+T-21801G	Tenchi Muyou! Ryououki Gokuraku CD-ROM for Sega Saturn	Japan
+T-21801G00	Tenchi Muyou! Ryououki Gokuraku CD-ROM for Sega Saturn (Japan) (1M)	NTSC-J
+T-21802G	Tenchi Muyou! Mimiri Onsen - Yukemuri no Tabi (Japan) (Disc 2)	Japan
+T-21803G	Kurubushi Kyoudai Gekijou Dai-ikkan - Mahjong-hen (Japan) (2M)	Japan
+T-21804G	Star Bowling, The (Japan) (Disc 1)	Japan
+T-21805G	Star Bowling Vol. 2, The (Japan) (Disc 2)	Japan
+T-21901G	The Yakyuuken Special: Kon'ya wa 12-kaisen!!	Japan
+T-21902G	Haunted Casino	Japan
+T-21903G	Album Club (Mune Kyun) - St. Paulia Jogakuin (Japan)	Japan
+T-21904G	Ousama Game (Japan) (Disc 2) (Momo Disc)	Japan
+T-22001G	Wizard's Harmony (Japan)	Japan
+T-22004G	Wizard's Harmony 2 (Japan) (2M)	Japan
+T-2201G	Mahjong Kaigan Monogatari - Mahjong-kyou Jidai Sexy Idol-hen (Japan) (2M)	Japan
+T-2203G	Mahjong-kyou Jidai Cogal Houkago-hen (Japan)	Japan
+T-2204G	Mahjong-kyou Jidai Cebu Island '96 (Japan) (Disc 2) (Omake Disk)	Japan
+T-2205G	Soukuu no Tsubasa - Gotha World (Japan) (Disc 2)	Japan
+T-2206G	Virtual Mahjong (Japan)	Japan
+T-2207G	Virtual Mahjong 2 - My Fair Lady (Japan)	Japan
+T-22101G	Dark Savior (Japan)	Japan
+T-22202G	Shinpi no Sekai El-Hazard - El-Hazard - The Magnificent World for Sega Saturn (Japan) (2M)	Japan
+T-22204G	Tenchi Muyou! Rensa Hitsuyou (Japan)	Japan
+T-22205G	NOeL 3 - Not Digital (Japan) (Disc 2)	Japan
+T-22206G	NOëL 3: Not Digital (Disc 3)	Japan
+T-22301G	Ginga Eiyuu Densetsu (Japan)	Japan
+T-22302G	ClockWerx (Japan)	Japan
+T-22303G	Ginga Eiyuu Densetsu Plus (Japan)	Japan
+T-22401G	Cyber Doll (Japan)	Japan
+T-22402G	Bakuretsu Hunter (Japan) (Disc 2) (Omake CD)	Japan
+T-22403G	Irem Arcade Classics (Japan)	Japan
+T-22404G	Worms (Japan)	NTSC-J
+T-22405G	Worms	Japan
+T-22406G	Cyber Doll	Japan
+T-22701G	DeathMask (Japan) (Disc 1)	Japan
+T-23001H	Herc's Adventures (USA) (RE)	USA
+T-2301G	The Hyper Golf: Devil's Course	Japan
+T-2301H	Shinobi Legions (USA)	USA
+T-2302-H	Criticom	USA
+T-2302G	Criticom - The Critical Combat (Japan)	Japan
+T-2302H	Criticom (USA)	NTSC-U
+T-2303-H	Valora Valley Golf	USA
+T-2303G	Playboy: Karaoke Collection Volume 1	Japan
+T-2303H	Hyper Golf, The - Devil's Course (Japan)	NTSC-U
+T-2303H-50	Valora Valley Golf (Europe)	Europe
+T-2304G	Playboy: Karaoke Collection Volume 2	Japan
+T-2305G	Playboy - Karaoke Collection Volume 2 (Japan) (2M)	NTSC-J
+T-23101G	Daibouken - Great Adventure - St. Elmos no Kiseki (Japan)	Japan
+T-23102G	Texthoth Ludo - Arcana Senki (Japan)	Japan
+T-23103G	Texthoth Ludo: Arcana Senki	Japan
+T-23201G	Pappara Paoon	Japan
+T-23202G	Death Crimson (Japan)	Japan
+T-23401G	Return to Zork (Japan) (1M)	Japan
+T-23402G	Hissatsu! (Japan)	Japan
+T-23403G	Chou Jikuu Yousai Macross - Ai Oboete Imasu ka (Japan) (Disc 1)	Japan
+T-23406G	MechWarrior 2 (Japan)	Japan
+T-23407G	Koi no Summer Fantasy - in Miyazaki Seagaia (Japan)	Japan
+T-23501G	Solo Crisis (Japan) (1M)	Japan
+T-23502G	Code R (Japan)	Japan
+T-24001G	Aquazone: Desktop Life	Japan
+T-24002G	Aquazone - Desktop Life Option Disc Series 1 - Angel Fish (Japan) (Rev A)	Japan
+T-24003G	Aquazone - Desktop Life Option Disc Series 2 - Black Molly (Japan) (Rev A)	Japan
+T-24004G	Aquazone - Desktop Life Option Disc Series 3 - Blue Emperor (Japan) (Rev A)	Japan
+T-24005G	Aquazone - Desktop Life Option Disc Series 4 - Clown Loach (Japan) (Rev A)	Japan
+T-24006G	Aquazone - Desktop Life Option Disc Series 5 - False Rummy-Nose (Japan) (Rev A)	Japan
+T-2401G	Jissen! Pachi-Slot Hisshou-hou! 3 (Japan)	Japan
+T-2402G	Mahjong Hyper Reaction R (Japan)	Japan
+T-2403G	Angel Paradise Vol. 1 - Sakaki Yuko - Koi no Yokan in Hollywood (Japan)	Japan
+T-2404G	Jissen! Pachi-Slot Hisshou-hou! Iron Hook - The Great Marine Adventures (Japan)	Japan
+T-2405G	Angel Paradise Vol. 2 - Yoshino Kimika - Isshoni I-ta-i in Hawaii (Japan)	Japan
+T-2406G	Jissen! Pachi-Slot Hisshou-hou! 4 (Japan)	Japan
+T-2407G	Jissen Pachinko Hisshou-hou! Twin (Japan)	Japan
+T-24101G	Defcon 5	Japan
+T-24201G	Kururin Pa! (Japan)	Japan
+T-24202G	Shingata Kururin Pa! (Japan)	Japan
+T-24301G	Horror Tour (Japan) (Rev B) (12M)	Japan
+T-24601G	Battle Athletess Daiundoukai (Japan)	Japan
+T-24603G	Princess Quest (Japan) (Rev A) (11M)	Japan
+T-24604G	Princess Quest (Japan)	Japan
+T-24801G	Matsukata Hiroki no World Fishing (Japan)	NTSC-J
+T-24901G	Fishing Koushien (Japan)	Japan
+T-24902G	Shusse Mahjong Daisettai (Japan)	Japan
+T-24903G	Bakuretsu Hunter R (Japan)	Japan
+T-24904G	Fishing Koushien II (Japan)	Japan
+T-24905G	Mario Mushano no Chou Shougi Juku - Mario Mushano's Hyper Shogi School (Japan)	Japan
+T-25001G	MediaROMancer - DA - Daisuke Asakura (Japan)	Japan
+T-2501G	Assault Suit Leynos 2 (Japan)	Japan
+T-2502G	Langrisser III (Japan) (Rev A) (5M)	Japan
+T-2503G	Chou Aniki - Kyuukyoku... Otoko no Gyakushuu (Japan)	Japan
+T-2504G	Langrisser III	Japan
+T-2505G	Langrisser IV (Japan) (1M, 3M)	Japan
+T-2506G	Langrisser IV	Japan
+T-2507G	Langrisser - Dramatic Edition (Japan) (2M)	Japan
+T-2509G	Langrisser V - The End of Legend (Japan) (3M)	Japan
+T-25101G	Lode Runner - The Legend Returns (Japan)	Japan
+T-25102G	Taklamakan - Tonkou Denki (Japan)	Japan
+T-25103G	Lode Runner Extra (Japan)	Japan
+T-2510G	Langrisser III	Japan
+T-2511G	Dream Generation - Koi ka Shigoto ka!... (Japan)	Japan
+T-2512G	Langrisser IV	Japan
+T-2513G	Langrisser: Dramatic Edition	Japan
+T-25201G	Ai Iijima Interactive Video Clip - Good Island Cafe (Japan)	Japan
+T-25301G	Mahjong Doukyuusei Special (Japan)	Japan
+T-25302G	Mahjong Doukyuusei Special (Disc 2) (Portrait CD)	Japan
+T-25302G1	Mahjong Doukyuusei Special (Japan) (Disc 1) (Shokai Genteiban)	NTSC-J
+T-25302G2	Mahjong Doukyuusei Special (Japan) (Disc 2) (Portrait CD) (Shokai Genteiban)	NTSC-J
+T-25303G	Maboroshi no Black Bass (Japan)	Japan
+T-25304G	Mahjong Gakuensai (Japan)	Japan
+T-25305G	Mahjong Gakuensai (Disc 2) (Seiyuu Interview Hi CD)	Japan
+T-25305G1	Mahjong Gakuensai (Japan) (Disc 1) (Shokai Genteiban)	NTSC-J
+T-25305G2	Mahjong Gakuensai (Japan) (Disc 2) (Seiyuu Interview Hi CD) (Shokai Genteiban)	NTSC-J
+T-25306G	Mahjong Gakuensai DX - Zenjitsu ni Matsuwaru Funsenki (Japan)	Japan
+T-25401H	Defcon 5 (Europe)	PAL
+T-25401H-09	Defcon 5	France
+T-25401H-50	Defcon 5	Europe
+T-25403H	Ultimate Mortal Kombat 3 (Europe)	PAL
+T-25403H-50	Ultimate Mortal Kombat 3	Europe
+T-25405H	Doom (USA)	USA
+T-25405H-50	Hexen	Europe
+T-25405H50	Hexen (Europe) (En,Fr,De,Es,It)	PAL
+T-25406H	Hexen (USA)	USA
+T-25406H-50	Doom	Europe
+T-25406H50	Doom (Europe) (R)	PAL
+T-25407H45	Bedlam (USA) (Proto)	NTSC-U
+T-25408H	Area 51 (Europe) (En,Fr,De,Es)	PAL
+T-25408H-50	Area 51	Europe
+T-25411450	Trash It (Europe) (En,Fr,De,Es,It)	PAL
+T-25411H-50	Trash It	Europe
+T-25412H-5	Z (Europe)	PAL
+T-25412H-50	Z	Europe
+T-25413H	Arcade's Greatest Hits - The Atari Collection 1 (Europe)	PAL
+T-25413H-50	Arcade's Greatest Hits: The Atari Collection 1	Europe
+T-25414-H-50	Mortal Kombat Trilogy	Europe
+T-25414H-50	Mortal Kombat Trilogy	Europe
+T-25414H50	Mortal Kombat Trilogy (Europe)	PAL
+T-25415H	Courier Crisis - The Saga of the Modern Fatalist (USA)	USA
+T-25416H-50	Rampage: World Tour	Europe
+T-25416H50	Rampage - World Tour (Europe)	PAL
+T-25417H	Maximum Force (Europe)	PAL
+T-25417H-50	Maximum Force	Europe
+T-25501G	Ultraman Zukan (Japan)	Japan
+T-25502G	Ultraman Zukan 2 (Japan)	Japan
+T-25503G	Koudou Saisoku Densetsu - Initial D (Japan)	Japan
+T-25505G	Ultraman Zukan 3 (Japan)	Japan
+T-25506G	Mizuki Shigeru no Youkai Zukan Soushuuhen (Japan)	Japan
+T-25701G	Brain Battle Q (Japan)	Japan
+T-25901H	Cleaning Kit for Sega Saturn (USA)	USA
+T-26001G	Okudera Yasuhiko no Sekai o Mezase! Soccer Kids - Nyuumon-hen (Japan)	Japan
+T-26101G	Gussun Oyoyo S (Japan)	Japan
+T-26102G	K-1 Grand Prix - Fighting Illusion Shou (Japan)	Japan
+T-26103G	Tenchi Muyou! Toukou Muyou - Aniraji Collection (Japan) (Disc 1)	Japan
+T-26104G	Kouryuu Sangoku Engi (Japan)	Japan
+T-26105G	Wolf Fang SS - Kuuga 2001 (Japan)	Japan
+T-26106G	Arcade Gears Vol. 1 - Pu-Li-Ru-La (Japan)	Japan
+T-26107G	Arcade Gears Vol. 3 - Wonder 3 (Japan)	Japan
+T-26109G	Arcade Gears Vol. 2 - Gun Frontier (Japan)	Japan
+T-26110G	Arcade Gears Vol. 4 - ImageFight & XMultiply (Japan)	Japan
+T-26112G	Prisoner of Ice - Jashin Kourin (Japan)	Japan
+T-26113G	K-1 Grand Prix: Fighting Illusion Shou	Japan
+T-26401G	Matsukata Hiroki no World Fishing	Japan
+T-26402G	Sonic Wings Special (Japan)	Japan
+T-26403G	Death Throttle - Kakuzetsu Toshi kara no Dasshutsu (Japan)	Japan
+T-26405G	LifeScape - Seimei 40 Okunen Haruka na Tabi (Japan) (Disc 2) (Landsphere) (3M)	Japan
+T-26406G	Zoop (Japan)	Japan
+T-26407G	Fully Cowled Mini Yonku - Super Factory (Japan) (Rev A) (11M)	NTSC-J
+T-26408G	Fully Cowled Mini Yonku: Super Factory	Japan
+T-26409G	Layer Section II (Japan)	Japan
+T-26410G	Croc! Pau-Pau Island (Japan)	Japan
+T-26411G	LifeScape 2 - Body Bionics - Kyoui no Shouuchuu Jintai (Japan)	Japan
+T-26413G	Super Tempo (Japan)	Japan
+T-26414G	Uno DX (Japan)	Japan
+T-26801H-08	Myst	Korea
+T-26801H-16	Myst	Taiwan
+T-26801H08	Myst (Taiwan)	NTSC-J
+T-27001G	Mahjong Tenshi - Angel Lips (Japan)	Japan
+T-27101G	Minami no Shima ni Buta ga Ita - Lucas no Daibouken (Japan) (2M)	Japan
+T-27301G	Virtual Casino (Japan)	Japan
+T-27302G	Monster Slider (Japan)	Japan
+T-27801G	AnEarth Fantasy Stories - The First Volume (Japan)	Japan
+T-27802G	Eternal Melody (Japan) (Rev A)	Japan
+T-27803G	Ojousama Express (Japan) (Disc 1)	Japan
+T-27804G	Yuukyuu Gensoukyoku (Japan) (Alt)	NTSC-J
+T-27805G	Yuukyuu Gensoukyoku	Japan
+T-27806G	Yuukyuu no Kobako Official Collection (Japan)	Japan
+T-27807G	Yuukyuu Gensoukyoku 2nd Album (Japan) (2M)	Japan
+T-27808G	Yuukyuu Gensoukyoku Ensemble (Japan)	NTSC-J
+T-27809G	Yuukyuu Gensoukyoku Ensemble 2 (Japan)	Japan
+T-27810G	Device Reign (Japan)	Japan
+T-27811G	Yuukyuu no Kobako Official Collection	Japan
+T-27901G	Lunar - Silver Star Story (Japan) (Rev A)	Japan
+T-27902G	Mahou Gakuen Lunar! (Japan) (1M)	Japan
+T-27903G	Slayers Royal (Japan)	Japan
+T-27904G	Lunar - Silver Star Story Complete (Japan)	Japan
+T-27906G	Lunar 2 - Eternal Blue (Japan) (Disc 1)	Japan
+T-27907G	Slayers Royal 2 (Japan) (1M)	Japan
+T-28001G	Nonomura Byouin no Hitobito (Japan)	Japan
+T-28002G	Kakyuusei (Japan) (Disc 3) (2M)	Japan
+T-28004G	Yu-No - Konoyo no Hate de Koi o Utau Shoujo (Japan) (Disc A)	Japan
+T-28005G	Yu-No: Konoyo no Hate de Koi o Utau Shoujo (Disc C)	Japan
+T-28201G	Kaitou Saint Tail (Japan)	Japan
+T-28901G	Mujintou Monogatari R - Futari no Love Love Island (Japan)	Japan
+T-28902G	Goiken Muyou - Anarchy in the Nippon (Japan)	Japan
+T-29001G	Taikyoku Shougi - Kiwame II (Japan)	Japan
+T-29002G	Gals Panic SS	Japan
+T-29003G	Go III Professional - Taikyoku Igo (Japan)	Japan
+T-29004G	Beach de Riichi! (Japan)	Japan
+T-29005G	Himitsu Sentai Metamor V (Japan)	Japan
+T-29101G	Gal Jan (Japan)	Japan
+T-29102G	Shienryuu (Japan)	Japan
+T-29201G	Daitoride (Japan)	Japan
+T-29301G	Pup-Breeder (Japan)	Japan
+T-29401H	Alone in the Dark - One-Eyed Jack's Revenge (USA)	USA
+T-29601G	Gekiretsu Pachinkers (Japan)	Japan
+T-29602G	Ippatsu Gyakuten - Gambling King e no Michi (Japan)	Japan
+T-29701H	StarFighter 3000 (Europe) (En,Fr,De,Es,It)	PAL
+T-29701H-50	StarFighter 3000	Europe
+T-30001G	Enemy Zero (Japan) (Disc 1) (Game Disc) (1M)	Japan
+T-30002G	Real Sound - Kaze no Regret (Japan) (Disc 4) (3M)	Japan
+T-30004G	Enemy Zero (Japan) (Disc 1) (Game Disc) (Satakore)	Japan
+T-3001G	Honkaku 4-nin Uchi Geinoujin Taikyoku Mahjong - The Wareme de Pon (Japan)	Japan
+T-3002G	Dream Square - Hinagata Akiko (Japan) (2M)	Japan
+T-3003G	Idol Mahjong - Final Romance 4 (Japan)	Japan
+T-30301G	Aqua-world - Umi Monogatari (Japan)	Japan
+T-30302G	DeJig - Tin Toy (Japan)	Japan
+T-30303G	DeJig - Aqua World (Japan)	Japan
+T-30304G	DeJig - Lassen - Art Collection (Japan)	Japan
+T-30305G	DeJig - McKnight - Art Collection (Japan)	Japan
+T-30306G	Keriotosse! (Japan)	Japan
+T-30401H	Three Dirty Dwarves (USA) (RE)	NTSC-U
+T-30403H	Scud - The Disposable Assassin (USA)	NTSC-U
+T-30602G	Pastel Muses (Japan)	Japan
+T-30603G	G Vector (Japan)	Japan
+T-30701H	Pro-Pinball - The Web (Europe)	PAL
+T-30701H-50	Pro-Pinball: The Web	Europe
+T-30801G	Private Idol Disc Vol. 1 - Yuu Kinoshita (Japan)	Japan
+T-30802G	Private Idol Disc Vol. 2 - Miki Uchiyama (Japan)	Japan
+T-30803G	Private Idol Disc Vol. 3 - Akemi Ooshima (Japan) (2M)	Japan
+T-30804G	Private Idol Disc - Tokubetsu-hen - Cosplayers (Japan) (2M)	Japan
+T-30805G	Private Idol Disc - Data-hen - Race Queen F (Japan)	Japan
+T-30806G	Private Idol Disc - Data-hen - Race Queen G (Japan)	Japan
+T-30807G	Private Idol Disc - Tokubetsu-hen - Kogal Daihyakka 100 (Japan)	Japan
+T-30808G	Private Idol Disc - Tokubetsu-hen - Can Gal '97 (Japan)	Japan
+T-30809G	Private Idol Disc Vol. 4 - Mirei Kuroda (Japan)	Japan
+T-30811G	Private Idol Disc Vol. 5 - Nanako Fujisaki (Japan)	Japan
+T-30812G	Shutsudou! Miniskirt Police (Japan) (2M)	Japan
+T-30813G	Private Idol Disc Vol. 6 - Satomi Yoshida (Japan)	Japan
+T-30814G	Private Idol Disc Vol. 7 - Kaori Asou (Japan)	Japan
+T-30815G	Private Idol Disc Vol. 8 - Emiko Furukawa (Japan)	Japan
+T-30816G	Private Idol Disc Vol. 9 - Keiko Nagamatsu (Japan)	Japan
+T-30817G	Private Idol Disc Vol. 10 - Mai Masaki (Japan)	Japan
+T-30818G	Private Idol Disc Vol. 11 - Mayumi Hirose (Japan) (2M)	Japan
+T-30902G	Senkutsu Katsuryu Taisen - Chaos Seed (Japan) (Disc 2) (Omake Disc)	Japan
+T-30904G	Senkutsu Katsuryu Taisen: Chaos Seed (Disc 1) (Game Disc)	Japan
+T-31001G	Mezase Idol Star!! Natsuiro Memories - Mahjong-hen (Japan) (2M)	Japan
+T-3101G	King of Fighters '95, The (Japan) (2M)	Japan
+T-3102G	Garou Densetsu 3 - Road to the Final Victory (Japan)	Japan
+T-3103G	World Heroes Perfect (Japan)	Japan
+T-3104G	Samurai Spirits - Zankurou Musouken (Japan)	Japan
+T-3105G	Real Bout Garou Densetsu (Japan) (2M)	Japan
+T-3106G	Samurai Spirits: Zankurou Musouken	Japan
+T-3107G	Stakes Winner - GI Kanzen Seiha e no Michi (Japan)	Japan
+T-3108G	King of Fighters '96, The (Japan) (1M)	Japan
+T-3109G	The King of Fighters '96	Japan
+T-31101G	Pyon Pyon Kyaruru no Mahjong Biyori (Japan) (2M)	Japan
+T-31101H	Highway 2000 (USA)	USA
+T-31102H	Virtual Casino (USA)	USA
+T-31103H	Bust-A-Move 3 (USA)	USA
+T-3110G	The King of Fighters '96	Japan
+T-3111G	Metal Slug - Super Vehicle-001 (Japan)	Japan
+T-3112G	Shinsetsu Samurai Spirits - Bushidou Retsuden (Japan)	Japan
+T-3113G	Shinouken (Japan)	Japan
+T-3115G	Stakes Winner 2 - Saikyouba Densetsu (Japan)	Japan
+T-3116G	Samurai Spirits - Amakusa Kourin (Japan) (En,Ja,Es,Pt)	Japan
+T-3117G	Real Bout Garou Densetsu Special	Japan
+T-3118G	Samurai Spirits: Amakusa Kourin	Japan
+T-3119G	Real Bout Garou Densetsu Special (Japan)	Japan
+T-31202G	m [emu] - Kimi o Tsutaete (Japan) (2M)	Japan
+T-3120G	The King of Fighters '97	Japan
+T-3121G	King of Fighters '97, The (Japan)	NTSC-J
+T-3123G	Samurai Spirits: Zankurou Musouken	Japan
+T-3124G	Real Bout Garou Densetsu Special	Japan
+T-3125G	The King of Fighters '97	Japan
+T-31301G	SegaSaturn Internet Vol. 1 (Japan)	Japan
+T-31302G	SegaSaturn Internet 2 (Japan)	Japan
+T-31303G	Special Disc with SegaSaturn Internet 2 (Japan)	Japan
+T-31401G	Culdcept (Japan) (Rev B) (20M)	Japan
+T-31402G	Culdcept	Japan
+T-31501G	Vatlva (Japan) (Rev A)	Japan
+T-31502G	Falcom Classics (Disc 1) (Game Disc)	Japan
+T-31503G	Falcom Classics (Japan) (Disc 2) (Special CD)	Japan
+T-31504G	Falcom Classics II (Japan) (Genteiban)	Japan
+T-31505G	Falcom Classics II (Japan)	Japan
+T-31506G	Falcom Classics (Disc 1) (Game Disc)	Japan
+T-31507G	Falcom Classics II	Japan
+T-31601G	Zero Divide - The Final Conflict (Japan)	Japan
+T-319-01H	Custom Web Browser (Version 3.0) (USA)	NTSC-U
+T-32101G	Sankyo Fever: Jikki Simulation S	Japan
+T-32102G	Sankyo Fever - Jikki Simulation S (Japan)	Japan
+T-32103G	Sankyo Fever - Jikki Simulation S Vol. 2 (Japan)	Japan
+T-32104G	Sankyo Fever: Jikki Simulation S	Japan
+T-32105G	Sankyo Fever - Jikki Simulation S Vol. 3 (Japan)	NTSC-J
+T-32106G	Sankyo Fever: Jikki Simulation S Vol. 3	Japan
+T-32201G	Sekai no Shasou kara - I Swiss-hen - Alps Tozantetsudou no Tabi (Japan)	Japan
+T-32501G	Advanced V.G. (Japan)	NTSC-J
+T-32502G	Steam-Heart's (Japan)	Japan
+T-32505G	Farland Story - Habou no Mai (Japan)	Japan
+T-32506G	Advanced V.G.	Japan
+T-32507G	Farland Saga (Japan)	Japan
+T-32508G	Tilk - Aoi Umi kara Kita Shoujo (Japan)	Japan
+T-32509G	Farland Saga: Toki no Michishirube	Japan
+T-32510G	Mahoutsukai ni Naru Houhou (Japan)	Japan
+T-32511G	Farland Saga - Toki no Michishirube (Japan)	Japan
+T-32602G	Sakura Taisen - Teigeki Graph - Teigeki Graph in Sakura Wars (Japan) (Disc 1)	Japan
+T-32801G	Saturn Music School (Japan)	Japan
+T-32803G	Saturn Music School 2 (Japan) (Rev A)	Japan
+T-32901G	Silhouette Mirage (Japan)	Japan
+T-32902G	Radiant Silvergun (Japan)	Japan
+T-32903G	Silhouette Mirage	Japan
+T-33003G	Digital Ange - Dennou Tenshi SS (Japan)	Japan
+T-33004G	Hatsukoi Monogatari (Japan)	Japan
+T-33005G	Zoku Hatsukoi Monogatari - Shuugaku Ryokou (Japan) (Disc 3) (Koukousei Jidai)	Japan
+T-33101G	Shining the Holy Ark (Japan) (1M)	Japan
+T-33901G	Baroque (Japan)	Japan
+T-34001G	Sound Novel Machi (Japan) (Disc 1) (10.11-10.13 Incl.) (1M)	Japan
+T-34101G	Tactics Formula (Japan)	Japan
+T-34601G	Jantei Battle Cos-Player (Japan) (Disc 1)	Japan
+T-34602G	Zenkoku Seifuku Bishoujo Grand Prix - Find Love (Japan)	Japan
+T-34604G	Find Love 2 - The Prologue (Japan)	Japan
+T-34605G	Find Love 2 - Rhapsody (Japan) (Disc 2)	Japan
+T-34801G	Gaia Breeder (Japan)	Japan
+T-35001G	Umanari 1 Furlong Theater (Japan)	Japan
+T-35101G	Princess Maker - Yumemiru Yousei (Japan)	Japan
+T-35102G	Yoshiyuki Sadamoto Illustrations (Japan)	Japan
+T-35103G	Shin Seiki Evangelion - Eva to Yukaina Nakama-tachi (Japan)	Japan
+T-35501G	Nanatsu Kaze no Shima Monogatari (Japan) (Disc 2) (Premium CD)	Japan
+T-35502G	Ninpen Manmaru (Japan)	Japan
+T-35503G	Riven - The Sequel to Myst (Japan) (Disc 1)	Japan
+T-35504G	Nihon Daihyou Team no Kantoku ni Naruu! Sekaihatsu Soccer RPG - Become the Coach for the National Team! (Japan)	Japan
+T-35601G	Tutankhamen no Nazo - A.N.K.H (Japan) (Disc 2)	Japan
+T-35701G	Cat the Ripper - 13Ninme no Tanteishi (Japan)	Japan
+T-36001G	PhantasM (Japan) (Disc 6) (4M)	Japan
+T-3601G	Deroon Dero Dero (Japan) (1M)	Japan
+T-3602G	J.League Go Go Goal! (Japan)	Japan
+T-3603G	Dead or Alive (Japan) (Rev A) (10M)	Japan
+T-3604G	Dead or Alive	Japan
+T-36101G	Dark Seed II (Japan)	Japan
+T-36102G	Whizz (Japan)	Japan
+T-36201G	Nightruth - Explanation of the Paranormal - Futatsu Dake no Shinjitsu (Japan)	Japan
+T-36202G	Universal Nuts (Japan)	Japan
+T-36302G	Maria - Kimi-tachi ga Umareta Wake (Japan) (Disc 2)	Japan
+T-36401G	Cross Tantei Monogatari - Motsureta Nanatsu no Labyrinth (Japan) (Disc 1)	Japan
+T-36501G	Pachi-Slot Kanzen Kouryaku Uni-Colle '97 - Universal Collection (Japan)	Japan
+T-36701G	Bishoujo Hanafuda Kikou - Michinoku Hitou Koi Monogatari Special (Japan)	Japan
+T-37001G	Wizardry Nemesis - The Wizardry Adventure (Japan) (Disc 1)	Japan
+T-37002G	Girl Doll Toy - Tamashii o Kudasai (Japan)	Japan
+T-37101G	Legend of Heroes I & II, The - Eiyuu Densetsu (Japan)	Japan
+T-37301G	Twinkle Star Sprites (Japan) (Disc 1) (Game Disc)	Japan
+T-37401G	Senken Kigyouden (Japan)	Japan
+T-37401H	Xianjian Qixiazhuan (Taiwan)	NTSC-J
+T-37401H-16	Xianjian Qixiazhuan	Taiwan
+T-37501G	Pachinko Hall - Shinsou Daikaiten (Japan)	Japan
+T-37601G	Techno Motor (Japan)	Japan
+T-37901G	Etude Prologue - Yureugoku Kokoro no Katachi (Japan)	Japan
+T-38001G	Another Memories (Japan)	Japan
+T-38101G	Ojousama o Nerae!! (Japan)	Japan
+T-38201G	Zanma Chou Ougi - Valhollian (Japan)	Japan
+T-38202G	Touryuu Densetsu Elan Doree (Japan)	Japan
+T-38401G	Sakura Tsuushin (Japan)	Japan
+T-38501G	Pro Shinan Mahjong - Tsuwamono (Japan)	Japan
+T-38601G	Wizardry - Llylgamyn Saga (Japan)	Japan
+T-4302G	Fire Pro Gaiden Blazing Tornado (Japan)	Japan
+T-4303G	Logic Puzzle Rainbow Town (Japan)	Japan
+T-4304G	No-appointment Gals Olympos (Japan)	NTSC-J
+T-4305G	2Tax Gold	Japan
+T-4306G	No-appointment Gals Olympos	Japan
+T-4308G	Fire Prowrestling S - 6Men Scramble (Japan) (1M)	Japan
+T-4309G	Standby Say You! (Japan)	Japan
+T-4310G	Conveni, The - Ano Machi o Dokusen seyo (Japan)	Japan
+T-4311G	Standby Say You!	Japan
+T-4313G	Deka 4-ku - Tough the Truck (Japan)	Japan
+T-4314G	Blue Breaker: Ken yori mo Hohoemi o	Japan
+T-4315G	Blue Breaker - Ken yori mo Hohoemi o (Japan)	NTSC-J
+T-4316G	Fire Prowrestling S: 6Men Scramble	Japan
+T-4317G	Conveni 2, The - Zenkoku Chain Tenkai da! (Japan)	Japan
+T-4318G	Sound Qube (Japan)	Japan
+T-4401G	Message Navi (Japan)	Japan
+T-4402G	Honkaku Shougi Shinan - Wakamatsu Shougi Juku (Japan)	Japan
+T-4403G	Stellar Assault SS (Japan)	Japan
+T-4404G	Message Navi Vol. 2 (Japan)	Japan
+T-4501G	Yumimi Mix Remix (Japan)	Japan
+T-4502G	Gungriffon - The Eurasian Conflict (Japan)	Japan
+T-4503G	Dino Island (Japan)	Japan
+T-4504G	Gyuwambler Jiko Chuushinha - Tokyo Mahjongland (Japan)	Japan
+T-4505G	Dino Island - Yokoku-hen (Japan)	Japan
+T-4507G	Grandia (Japan) (Disc 1) (1M)	Japan
+T-4508G	Gyuwambler Jiko Chuushinha: Tokyo Mahjongland	Japan
+T-4509G	Gungriffon: The Eurasian Conflict	Japan
+T-4510G	Gungriffon II	Japan
+T-4511G	Gungriffon II (Japan)	Japan
+T-4512G	Grandia - Digital Museum (Japan)	Japan
+T-4513G	Grandia (Disc 2)	Japan
+T-4801G	Tama - Adventurous Ball in Giddy Labyrinth (Japan)	Japan
+T-4801H	Virtua Racing (USA) (12S)	USA
+T-4801H-50	Virtua Racing	Europe
+T-4802G	Race Drivin' (Japan) (2M)	Japan
+T-4802H	Primal Rage (USA)	USA
+T-4802H-50	Primal Rage (Europe) (En,Fr,De,Es,It,Pt)	Europe
+T-4803G	Virtua Racing (Japan)	Japan
+T-4804G	Shinrei Jusatsushi Taroumaru (Japan)	Japan
+T-4804H	Last Gladiators - Digital Pinball (USA) (4S)	USA
+T-5001H	Theme Park (USA)	USA
+T-5001H-50	Theme Park	Europe
+T-5002H	Hi-Octane - The Track Fights Back! (USA) (En,Fr,De,Es)	USA
+T-5002H-50	Hi-Octane	Europe
+T-5003H	FIFA Soccer 96 (USA)	USA
+T-5003H-50	FIFA Soccer 96	Europe
+T-5005H	Shockwave Assault (USA)	USA
+T-5005H-50	Shockwave Assault	Europe
+T-5006H	Magic Carpet (USA)	USA
+T-5006H-50	Magic Carpet	Europe
+T-5007H	Space Hulk - Vengeance of the Blood Angels (USA)	USA
+T-5007H-50	Space Hulk: Vengeance of the Blood Angels	Europe
+T-5008H	Road Rash (USA)	USA
+T-5008H-50	Road Rash	Europe
+T-5009H	Road & Track Presents - The Need for Speed (USA)	USA
+T-5009H-50	Road & Track Presents: The Need for Speed	Europe
+T-5010H	Madden NFL 97 (USA)	USA
+T-5011H	PGA Tour 97 (USA)	USA
+T-5011H-50	PGA Tour 97	Europe
+T-5013H	Soviet Strike (USA)	USA
+T-5013H-09	Soviet Strike	France
+T-5013H-18	Soviet Strike	Germany
+T-5013H-50	Soviet Strike	Europe
+T-5014H	Crusader - No Remorse (USA)	USA
+T-5014H-09	Crusader: No Remorse	France
+T-5014H-18	Crusader: No Remorse	Germany
+T-5014H-50	Crusader: No Remorse	Europe
+T-5015H	NBA Live 97 (USA)	USA
+T-5015H-50	NBA Live 97	Europe
+T-5016H	NHL 97 (USA)	USA
+T-5016H-18	NHL 97	Germany
+T-5016H-50	NHL 97	Europe
+T-5017H	FIFA Soccer 97 (USA)	USA
+T-5017H-09	FIFA 97	France
+T-5017H-18	FIFA 97	Germany
+T-5017H-50	FIFA 97	Europe
+T-5018H-50	Madden NFL 97	Europe
+T-5020H	Andretti Racing (USA)	USA
+T-5020H-09	Andretti Racing	France
+T-5020H-18	Andretti Racing	Germany
+T-5020H-50	Andretti Racing	Europe
+T-5021H	Battle Stations (USA)	USA
+T-5021H-50	Battle Stations	Europe
+T-5022H	Darklight Conflict (USA) (En,Fr,De,Es,It,Sv)	USA
+T-5022H-50	Darklight Conflict	Europe
+T-5023H	WarCraft II - The Dark Saga (USA)	USA
+T-5023H-50	WarCraft II - The Dark Saga (Europe) (En,Fr,De,Es,It)	Europe
+T-5024H	Madden NFL 98 (USA)	USA
+T-5024H-50	Madden NFL 98	Europe
+T-5025H	FIFA - Road to World Cup 98 (USA)	USA
+T-5025H-50	FIFA - Die WM-Qualifikation 98 (Germany)	Spain
+T-5026H	NHL 98 (USA)	USA
+T-5026H-50	NHL 98 (Europe)	Europe
+T-5027H	NBA Live 98 (USA)	USA
+T-5027H-50	NBA Live 98	Europe
+T-5028H	NASCAR 98 (USA)	USA
+T-5028H-09	NASCAR 98	France
+T-5028H-18	NASCAR 98	Germany
+T-5028H-50	NASCAR 98	Europe
+T-5029H-18	Croc: Legend of the Gobbos	Europe
+T-5029H-50	Croc - Legend of the Gobbos (USA)	PAL
+T-5201G	Princess Maker 2 (Japan) (1M)	Japan
+T-5202G	Sword & Sorcery (Japan) (2M)	Japan
+T-5203G	Princess Maker 2	Japan
+T-5204G	Eiyuu Shigan - Gal Act Heroism (Japan)	Japan
+T-5206G	Noon (Japan) (Rev A)	Japan
+T-5207G	Sword & Sorcery	Japan
+T-5208G	Savaki (Japan) (2M)	Japan
+T-5301G	Sotsugyou II - Neo Generation (Japan) (1M)	Japan
+T-5302G	J. B. Harold - Blue Chicago Blues (Japan) (Disc 2)	Japan
+T-5303G	Gebockers (Japan)	Japan
+T-5304G	Gebockers	Japan
+T-5305G	Densetsu no Ogre Battle (Japan)	Japan
+T-5306G	Tactics Ogre - Let Us Cling Together (Japan)	Japan
+T-5307G	Minton Keibu no Sousa File - Doukeshi Satsujin Jiken (Japan)	Japan
+T-5308G	Refrain Love - Anata ni Aitai (Japan) (Disc 1)	Japan
+T-5701G	Idol Janshi Suchie-Pai Special (Japan)	Japan
+T-5703G	Moero!! Pro Yakyuu '95 - Double Header (Japan)	Japan
+T-5703H	Bases Loaded '96 - Double Header (USA)	USA
+T-5704G	Idol Janshi Suchie-Pai Remix (Japan)	Japan
+T-5704H	Tetris Plus (USA)	USA
+T-5704H-50	Tetris Plus (Europe)	Europe
+T-5705G	Idol Janshi Suchie-Pai II (Japan) (Disc 2) (Omake Disc)	Japan
+T-5707G	TurfWind '96 - Take Yutaka Kyousouba Ikusei Game (Japan)	Japan
+T-5708G	Tetris Plus (Japan)	Japan
+T-5709G	Ninja Jajamaru-kun - Onigiri Ninpouchou Gold (Japan)	Japan
+T-5710G	Fantastep (Japan)	Japan
+T-5711G	Game Tengoku: The Game Paradise!	Japan
+T-5712G	Game Tengoku - The Game Paradise! (Japan)	Japan
+T-5713G	Suchie-Pai Adventure - Doki Doki Nightmare (Japan) (Disc 2)	Japan
+T-5714G	GT24 (Japan)	Japan
+T-5715G	Suchie-Pai Adventure: Doki Doki Nightmare (Disc 2)	Japan
+T-5716G	Idol Janshi Suchie-Pai Mecha Genteiban - Hatsubai 5 Shuunen Toku Package (Japan) (Disc 3)	Japan
+T-5717G	Idol Janshi Suchie-Pai Secret Album (Japan)	Japan
+T-5801G	Lovely Pop 2 in 1 - Jan Jan Koi Shimasho (Japan)	Japan
+T-5802G	Lovely Pop 2 in 1: Jan Jan Koi Shimasho	Japan
+T-6001G	King of Boxing, The (Japan)	Japan
+T-6002G	Metal Fighter Miku (Japan)	Japan
+T-6003G	Keiou Yuugekitai - Katsugeki-hen (Japan)	Japan
+T-6004G	America Oudan Ultra Quiz (Japan)	Japan
+T-6005G	SeaBass Fishing (Japan)	Japan
+T-6005H	Center Ring Boxing (USA)	USA
+T-6005H-50	Victory Boxing (Europe) (Demo)	Europe
+T-6006G	Thunderhawk II (Japan)	Japan
+T-6007G	Tournament Leader (Japan)	Japan
+T-6008G	Marica - Shinjitsu no Sekai (Japan)	Japan
+T-6008H-50	Keio Flying Squadron 2 (Europe)	Europe
+T-6009G	Yuushun - Classic Road (Japan)	Japan
+T-6009H-50	Sea Bass Fishing (Europe) (En,Fr,De)	Europe
+T-6010G	Tomb Raiders (Japan)	Japan
+T-6010H-50	Impact Racing (Europe) (Demo)	Europe
+T-6011G	SeaBass Fishing 2 (Japan)	Japan
+T-6011H-50	Pinball Graffiti (Europe) (Demo)	Europe
+T-6012H-50	Highway 2000 (Europe)	Europe
+T-610-6529	Swagman (Europe) (Demo)	PAL
+T-6106698	WipEout 2097 (Europe) (Demo)	PAL
+T-6301G	Master of Monsters - Neo Generations (Japan)	Japan
+T-6601G	Puyo Puyo Tsuu (Japan) (1M)	Japan
+T-6603G	Puyo Puyo Sun (Japan) (2M)	Japan
+T-6604G	Puyo Puyo Tsuu	Japan
+T-6606G	Waku Waku Puyo Puyo Dungeon	Japan
+T-6607G	Madou Monogatari (Japan)	Japan
+T-6608G	Waku Waku Puyo Puyo Dungeon (Japan) (3M)	Japan
+T-6609G	Puyo Puyo Sun	Japan
+T-6701G	Gekitotsu Koushien (Japan)	Japan
+T-6801G	Sento Monogatari Sono I (Japan)	Japan
+T-6802G	2do Aru Koto wa Sando R (Japan)	Japan
+T-6803G	Kunoichi Torimonochou (Japan)	Japan
+T-6804G	2do Aru Koto wa Sando R	Japan
+T-7001H	Spot Goes to Hollywood (USA)	USA
+T-7001H-50	Spot Goes to Hollywood (Europe)	Europe
+T-7002G	Chaos Control (Japan)	Japan
+T-7003G	BlackFire (Japan)	Japan
+T-7004G	Ghen War (Japan)	Japan
+T-7004H	Grand Slam	USA
+T-7006G	Chaos Control Remix (Japan)	Japan
+T-7007G	Hyper 3D Pinball (Japan)	Japan
+T-7008G	Gekirindan (Japan)	Japan
+T-7008H-50	Street Fighter Alpha - Warriors' Dreams (Europe)	Europe
+T-7009G	Grid Runner (Japan)	Japan
+T-7009H-50	Night Warriors - Darkstalkers' Revenge (Europe)	Europe
+T-7010G	Mouja (Japan)	Japan
+T-7010H-50	Ghen War (Europe)	Europe
+T-7011H-50	BlackFire (Europe)	Europe
+T-7012G	NHL Powerplay '96 (Japan)	Japan
+T-7013G	Black Dawn (Japan)	Japan
+T-7013H	NHL Powerplay '96	USA
+T-7013H-50	NHL Powerplay '96 (Europe)	Europe
+T-7014G	Spot Goes to Hollywood (Japan)	Japan
+T-7015G	Blam! Machinehead (Japan)	Japan
+T-7015H	Hyper 3-D Pinball (USA)	USA
+T-7015H-50	Tilt!	Europe
+T-7016H-50	Grid Run (Europe)	PAL
+T-7017G	Unsolved, The (Japan) (Disc 2)	Japan
+T-7017H-50	Grid Run	Europe
+T-7018G	Crimewave (Japan)	Japan
+T-7018H-50	Skeleton Warriors (Europe) (En,Fr,De,Es,It)	Europe
+T-7019H-50	Earthworm Jim 2 (Europe)	Europe
+T-7025H	Grid Runner (USA)	USA
+T-7026H-50	Street Fighter Alpha 2 (Europe)	Europe
+T-7027H	Black Dawn (USA)	USA
+T-7027H-50	Black Dawn (Europe)	Europe
+T-7028H	Command & Conquer (USA) (Disc 1) (GDI Disc)	USA
+T-7028H-09	Command & Conquer (France) (Disc 1) (GDI)	France
+T-7028H-18	Command & Conquer - Teil 1 - Der Tiberiumkonflikt (Germany) (Disc 1) (GDI)	Germany
+T-7028H-50	Command & Conquer (Europe) (En,Fr,De) (Disc 1) (GDI)	Europe
+T-7029H-50	Mega Man X3 (Europe)	Europe
+T-7030H-50	Super Puzzle Fighter II Turbo (Europe)	Europe
+T-7032H-05	Marvel Super Heroes	Europe
+T-7032H-50	Marvel Super Heroes (Europe)	Europe
+T-7033H-50	Street Fighter Collection (Europe) (Disc 2) (R)	Europe
+T-7101G	Virtual Kyoutei (Japan)	Japan
+T-7102G	Terra Cresta 3D (Japan) (2M)	Japan
+T-7103G	Cross Romance - Koi to Mahjong to Hanafuda to (Japan)	Japan
+T-7104G	Virtual Kyoutei 2 (Japan) (2M)	Japan
+T-7301G	World Cup Golf - In Hyatt Dorado Beach (Japan) (En,Ja)	Japan
+T-7302G	Johnny Bazooka (Japan)	Japan
+T-7304G	Olympic Soccer (Japan)	Japan
+T-7305G	BrainDead 13 (Japan)	Japan
+T-7306G	Super Casino Special (Japan)	Japan
+T-7307G	Impact Racing (Japan)	Japan
+T-7308G	Angel Graffiti S - Anata e no Profile (Japan)	Japan
+T-7309G	Formula Grand Prix - Team Un'ei Simulation (Japan)	Japan
+T-7501G	Legend of K-1 - The Best Collection (Japan)	Japan
+T-7502G	Zap! Snowboarding Trix (Japan)	Japan
+T-7503G	Legend of K-1 - Grand Prix '96 (Japan)	Japan
+T-7504G	Zap! Snowboarding Trix '98 (Japan)	Japan
+T-7601G	Sangokushi IV (Japan)	Japan
+T-7601H	Romance of the Three Kingdoms IV - Wall of Fire (USA)	USA
+T-7601H-11	Sanguozhi IV	Taiwan
+T-7601H-16	Sanguozhi IV	Taiwan
+T-7601H-40	Sanguozhi IV (Taiwan)	NTSC-J
+T-7602G	Emit Vol. 1 - Toki no Maigo (Japan)	Japan
+T-7602H	Winning Post (USA)	USA
+T-7603G	Emit Vol. 2 - Inochigake no Tabi (Japan) (Rev A)	Japan
+T-7603H-11	Sanguozhi Yingjiezhuan	Taiwan
+T-7603H-16	Sanguozhi Yingjiezhuan (Taiwan)	Taiwan
+T-7604G	Emit Vol. 3 - Watashi ni Sayonara o (Japan) (Rev A)	Japan
+T-7604H	P.T.O. - Pacific Theater of Operations II (USA)	USA
+T-7605G	Nobunaga no Yabou Tenshouki (Japan)	Japan
+T-7605H	Heir of Zendor - The Legend and The Land (USA)	USA
+T-7606G	Winning Post EX (Japan) (2M)	Japan
+T-7606H-11	Sanguozhi V	Taiwan
+T-7606H-16	Sanguozhi V (Taiwan)	Taiwan
+T-7607G	Teitoku no Ketsudan II (Japan)	Japan
+T-7608G	Gotha II - Tenkuu no Kishi (Japan)	Japan
+T-7611G	Air Management '96 (Japan)	Japan
+T-7612G	Winning Post 2 (Japan) (Rev A) (10M)	Japan
+T-7613G	Sangokushi Eiketsuden (Japan)	Japan
+T-7614G	Nobunaga no Yabou Returns (Japan)	Japan
+T-7615G	Angelique Special (Japan)	Japan
+T-7616G	Nanatsu no Hikan (Japan) (Disc 2) (2M)	Japan
+T-7617G	Sangokushi Returns (Japan)	Japan
+T-7618G	Taikou Risshiden II (Japan) (Rev A) (10M)	Japan
+T-7620G	Winning Post 2 - Program '96 (Japan)	Japan
+T-7621G	Mahjong Taikai II Special (Japan) (2M)	Japan
+T-7622G	Angelique Special	Japan
+T-7623G	Sangokushi V (Japan) (Rev A)	Japan
+T-7624G	Suikoden - Tenmei no Chikai (Japan) (2M)	Japan
+T-7625G	Taikou Risshiden II	Japan
+T-7626G	EGWord (Japan) (1M)	Japan
+T-7627G	Angelique Special 2 (Japan)	Japan
+T-7628G	Daikoukai Jidai II (Japan)	Japan
+T-7629G	Sangokushi Koumeiden (Japan)	Japan
+T-7631G	Dark Hunter Jou - Ijigen Gakuen (Japan)	Japan
+T-7632G	Dark Hunter Ge - Youma no Mori (Japan)	Japan
+T-7633G	Game Nihonshi - Kakumeiji Oda Nobunaga (Japan)	Japan
+T-7634G	Fushigi no Kuni no Angelique (Japan)	Japan
+T-7635G	Nobunaga no Yabou: Returns	Japan
+T-7636G	Sangokushi V	Japan
+T-7637G	Amok (Japan)	Japan
+T-7638G	Angelique Special 2	Japan
+T-7640G	Teitoku no Ketsudan III (Japan)	Japan
+T-7641G	EGWord Ver 2.00 (Japan)	NTSC-J
+T-7642G	EGWord Ver 2.00	Japan
+T-7643G	Nobunaga no Yabou Tenshouki with Power-Up Kit (Japan)	Japan
+T-7644G	Sangokushi IV with Power-Up Kit (Japan)	Japan
+T-7645G	Ishin no Arashi (Japan)	Japan
+T-7646G	Mouri Motonari - Chikai no Sanshi (Japan)	Japan
+T-7647G	Winning Post 2 - Final '97 (Japan)	Japan
+T-7650G	Angelique Special	Japan
+T-7652G	Sangokushi Eiketsuden	Japan
+T-7656G	Suikoden - Tendou Hyaku Hachi-sei (Japan)	Japan
+T-7657G	Daikoukai Jidai Gaiden (Japan)	Japan
+T-7658G	Nobunaga no Yabou Sengoku Gunyuuden (Japan)	Japan
+T-7660G	Winning Post 3 (Japan) (2M)	Japan
+T-7661G	Teitoku no Ketsudan III with Power-Up Kit (Japan)	Japan
+T-7662G	Angelique Duet (Japan)	Japan
+T-7664G	Nobunaga no Yabou - Shouseiroku (Japan) (2M)	Japan
+T-7667G	Taikou Risshiden II	Japan
+T-7668G	Air Management '96	Japan
+T-7670G	Druid - Yami e no Tsuisekisha (Japan)	Japan
+T-7671G	Winning Post 3 - Program '98 (Japan)	Japan
+T-7901H	Shellshock (USA)	USA
+T-7902H	Thunderstrike 2 (USA) (Rev A)	USA
+T-7903H	World Cup Golf - Professional Edition (USA) (RE2)	USA
+T-7903H-09	World Cup Golf: Professional Edition	France
+T-7903H-18	World Cup Golf: Professional Edition	Germany
+T-7903H-50	World Cup Golf: Professional Edition	Europe
+T-7903H09	World Cup Golf - Professional Edition (France)	PAL
+T-7903H18	World Cup Golf - Professional Edition (Germany) (Rev A)	PAL
+T-7903H50	World Cup Golf - Professional Edition (Europe) (3S)	PAL
+T-7904H	Olympic Soccer	USA
+T-7904H-09	Olympic Soccer	Europe
+T-7904H-50	Olympic Soccer	Europe
+T-7905H	Incredible Hulk, The - The Pantheon Saga (USA)	USA
+T-7905H-50	The Incredible Hulk: The Pantheon Saga	Europe
+T-7905H50	Incredible Hulk, The - The Pantheon Saga (Europe) (En,Fr,De,Es,It)	PAL
+T-7909H	Johnny Bazookatone (USA)	USA
+T-7909H-50	Johnny Bazookatone	Europe
+T-7909H50	Johnny Bazookatone (Europe)	PAL
+T-7910H	Tomb Raider (USA)	USA
+T-7914H	Machine Head (USA)	USA
+T-810000	Rise 2 - Resurrection (Europe) (En,Fr,De,Es,It) (Beta)	PAL
+T-8101G	D no Shokutaku (Disc 2)	Japan
+T-8101H	Myst (USA)	USA
+T-8102G	NBA Jam - Tournament Edition (Japan) (4S)	Japan
+T-8102H	NBA Jam - Tournament Edition (USA) (3S)	USA
+T-8102H-50	NBA Jam - Tournament Edition (Europe)	Europe
+T-8103G	Virtua Photo Studio - Cameraman Simulation (Japan) (1M, 2M)	Japan
+T-8103H	Mortal Kombat II (USA)	USA
+T-8103H-50	Mortal Kombat II (Europe)	Europe
+T-8104G	Rise 2 - Resurrection (Japan) (En,Fr,De,Es,It)	Japan
+T-8104H	Robotica (USA)	USA
+T-8105G	NFL Quarterback Club '96 (Japan)	Japan
+T-8105H	Street Fighter - The Movie (USA)	USA
+T-8105H-50	Street Fighter - The Movie (Europe) (2S)	Europe
+T-8106G	Revolution X - Music Is the Weapon (Japan) (10S)	Japan
+T-8106H	D (USA) (Disc I)	USA
+T-8106H-50	D (France) (Disc II)	PAL
+T-8106H-50-E	D (Disc II)	Europe
+T-8106H-50-F	D (Disc II)	France
+T-8106H-50-G	D (Disc II)	Germany
+T-8107G	Mortal Kombat II Kanzenban (Japan) (4S)	Japan
+T-8107H	Revolution X - Music Is the Weapon (USA)	USA
+T-8107H-18	Revolution X - Music Is the Weapon (Germany) (5S)	PAL
+T-8107H-50	Revolution X - Music Is the Weapon (Europe)	Europe
+T-8107H-50G	Revolution X: Music Is the Weapon	Germany
+T-8108H	X-Men - Children of the Atom (USA)	USA
+T-8108H-50	X-Men - Children of the Atom (Europe) (3S)	Europe
+T-8109G	Yellow Brick Road (Japan) (3M)	Japan
+T-8109H	NFL Quarterback Club '96 (USA) (5S)	USA
+T-8109H-50	NFL Quarterback Club 96 (Europe)	Europe
+T-8111G	Frank Thomas Big Hurt Baseball (Japan)	Japan
+T-8111H	College Slam (USA)	USA
+T-8112G	WWF WrestleMania - The Arcade Game (Japan)	Japan
+T-8112H	WWF WrestleMania - The Arcade Game (USA)	USA
+T-8112H-50	WWF WrestleMania - The Arcade Game (Europe)	Europe
+T-8113G	Alien Trilogy (Japan)	Japan
+T-8113H	Alien Trilogy (USA)	USA
+T-8113H-18	Alien Trilogy (Germany)	Germany
+T-8113H-50	Alien Trilogy (Europe) (En,Fr,Es,It) (4S)	Europe
+T-8114-H	Rise 2 - Resurrection (USA) (En,Fr,De,Es,It)	NTSC-U
+T-8114G	Striker 96 (Japan) (En,Fr,De,Es,It)	Japan
+T-8114H	Rise 2: Resurrection	USA
+T-8114H-50	Rise 2 - Resurrection (Europe) (En,Fr,De,Es,It)	Europe
+T-8115G	Iron Man & X-O Manowar in Heavy Metal (Japan)	Japan
+T-8116G	NFL Quarterback Club '97 (Japan)	Japan
+T-8116H	Galactic Attack (USA)	USA
+T-8116H-50	Galactic Attack (Europe)	Europe
+T-8117H	DragonHeart - Fire & Steel (USA)	USA
+T-8117H-50	DragonHeart - Fire & Steel (Europe) (En,Fr,De)	Europe
+T-8118G	Batman Forever - The Arcade Game (Japan)	Japan
+T-8119G	Space Jam (Japan)	Japan
+T-8119H	Iron Man & X-O Manowar in Heavy Metal (USA)	USA
+T-8119H-50	Iron Man & X-O Manowar in Heavy Metal (Europe)	Europe
+T-8120G	WWF In Your House (Japan)	Japan
+T-8120H	NBA Jam Extreme (USA)	USA
+T-8120H-50	NBA Jam Extreme (Europe)	PAL
+T-8122G	NBA Jam Extreme (Japan)	Japan
+T-8123G	Crow, The - City of Angels (Japan)	Japan
+T-8123H	Darius Gaiden (USA)	USA
+T-8123H-50	Darius Gaiden (Europe)	Europe
+T-8124G	D no Shokutaku (Disc 2)	Japan
+T-8124H	Crow, The - City of Angels (USA)	USA
+T-8124H-18	Crow, The - City of Angels (Germany)	Germany
+T-8124H-50	Crow, The - City of Angels (Europe)	Europe
+T-8125H	Space Jam (USA)	USA
+T-8125H-50	Space Jam (Europe)	Europe
+T-8126H	WWF In Your House (USA)	USA
+T-8126H-50	WWF In Your House (Europe)	Europe
+T-8129G	Time Commando (Japan)	Japan
+T-8129H	Virtual Open Tennis (USA)	USA
+T-8129H-50	Virtual Open Tennis (Europe)	Europe
+T-8131H	Bubble Bobble also featuring Rainbow Islands (USA)	USA
+T-8131H-50	Bubble Bobble also featuring Rainbow Islands (Europe)	Europe
+T-8132H	Bust-A-Move 2 - Arcade Edition (USA)	USA
+T-8132H-50	Bust-A-Move 2 - Arcade Edition (Europe)	Europe
+T-8133H	Striker 96 (USA)	USA
+T-8133H-50	Striker 96 (Europe) (En,Fr,De,Es,It)	Europe
+T-8135H	Star Fighter (USA)	USA
+T-8136H	NFL Quarterback Club 97 (USA)	USA
+T-8136H-50	NFL Quarterback Club 97 (Europe)	Europe
+T-8137H	Battle Monsters (USA)	USA
+T-8137H-50	Battle Monsters (Europe)	Europe
+T-8138H	Frank Thomas Big Hurt Baseball (USA)	USA
+T-8138H-50	Frank Thomas Big Hurt Baseball (Europe)	Europe
+T-8139H	Impact Racing (USA)	USA
+T-8140H	Batman Forever - The Arcade Game (USA)	USA
+T-8140H-50	Batman Forever - The Arcade Game (Europe)	Europe
+T-8144H	Tunnel B1 (USA)	USA
+T-8145H	Break Point Tennis (USA)	USA
+T-8149H	BattleSport (USA)	USA
+T-8150H	All-Star Baseball '97 Featuring Frank Thomas (USA)	USA
+T-8151H-50	NBA Jam Extreme	Europe
+T-8155H-50	Bust-A-Move 3 (Europe)	Europe
+T-8807H	Crimewave (USA)	USA
+T-8807H-50	Crimewave	Europe
+T-9101G	Pinball Graffiti (Japan)	Japan
+T-9102G	Wangan Dead Heat (Japan)	Japan
+T-9103G	Wangan Dead Heat + Real Arrange (Japan) (Disc 2) (Addition)	Japan
+T-9104G	Ooedo Renaissance (Japan)	Japan
+T-9105G	Hyper Securities S (Japan)	Japan
+T-9106G	Nile-gawa no Yoake (Japan) (Rev A)	Japan
+T-9107G	Break Point (Japan)	Japan
+T-9108G	Ochigee Designer Tsukutte Pon! (Japan)	Japan
+T-9109G	Moon Cradle (Japan) (Disc 1)	Japan
+T-9110G	Wangan Trial Love (Japan)	Japan
+T-9111G	Dungeon Master Nexus (Japan)	Japan
+T-9112G	Steep Slope Sliders (Japan)	Japan
+T-9113G	Tomb Raiders	Japan
+T-9114G	SeaBass Fishing 2	Japan
+T-9115G	Murakoshi Seikai no Bakuchou Nihon Rettou (Japan)	Japan
+T-9501G	Gokujou Parodius Da! Deluxe Pack (Japan) (Rev A)	Japan
+T-9501H-50	Parodius (Europe)	Europe
+T-9502G	Jikkyou Powerful Pro Yakyuu '95 - Kaimakuban (Japan) (2M)	Japan
+T-9504G	Tokimeki Memorial - Forever with You (Japan) (2M)	Japan
+T-9505G	Detana Twinbee Yahoo! Deluxe Pack (Japan) (3M)	Japan
+T-9505H	Bottom of the 9th (USA)	USA
+T-9506G	Eisei Meijin (Japan) (2M)	Japan
+T-9507G	Chibi Maruko-chan no Taisen Puzzle-dama (Japan)	Japan
+T-9507H	Contra - Legacy of War (USA)	USA
+T-9508G	Snatcher (Japan)	Japan
+T-9509G	Gradius Deluxe Pack (Japan)	Japan
+T-9509H	Crypt Killer (USA)	USA
+T-9509H-50	Crypt Killer (Europe) (R)	Europe
+T-9510G	Policenauts (Japan) (Disc 2)	Japan
+T-9511G	Tokimeki Memorial: Forever with You	Japan
+T-9512G	Tokimeki Memorial Taisen Puzzledama (Japan) (2M)	Japan
+T-9513G	Jikkyou Oshaberi Parodius - Forever with Me (Japan)	Japan
+T-9514G	Sexy Parodius (Japan)	Japan
+T-9514H-50	Whizz	Europe
+T-9515H-50	Whizz (Europe)	PAL
+T-9516G	Eisei Meijin II (Japan)	Japan
+T-9517G	Tokimeki Memorial Selection - Fujisaki Shiori (Japan)	Japan
+T-9518G	Henry Explorers (Japan)	Japan
+T-9520G	Salamander Deluxe Pack Plus (Japan)	Japan
+T-9522G	Tokimeki Memorial Drama Series Vol. 1 - Nijiiro no Seishun (Japan)	Japan
+T-9523G	Jikkyou Powerful Pro Yakyuu S (Japan)	Japan
+T-9524G	Tokimeki Memorial Taisen Tokkaedama (Japan)	Japan
+T-9525G	Gensou Suikoden (Japan)	Japan
+T-9526G	Vandal Hearts - Ushinawareta Kodai Bunmei (Japan)	Japan
+T-9527G	Akumajou Dracula X - Gekka no Yasoukyoku (Japan) (2M)	Japan
+T-9528G	J.League Jikkyou Honoo no Striker (Japan) (2M)	Japan
+T-9529G	Tokimeki Memorial Drama Series Vol. 2 - Irodori no Love Song (Japan) (Disc 2) (2M)	Japan
+T-9530G	Konami Antiques - MSX Collection Ultra Pack (Japan) (2M)	Japan
+T-9531G	Yoshimura Shougi (Japan)	Japan
+T-9532G	Tokimeki Memorial Drama Series Vol. 3 - Tabidachi no Uta (Japan) (Disc 2)	Japan
+T-9701H	Ultimate Mortal Kombat 3 (USA)	USA
+T-9703H	Arcade's Greatest Hits (USA)	USA
+T-9704H	Mortal Kombat Trilogy (USA)	USA
+T-9705H	Area 51 (USA)	USA
+T-9706H	Arcade's Greatest Hits - The Atari Collection 1 (USA)	USA
+T-9707H	Maximum Force (USA)	USA
+T-9708H	Rampage - World Tour (USA)	USA
+T-9904G	Magical Night Dreams - Cotton 2 (Japan)	Japan
+T-9905G	Guardian Force (Japan)	Japan
+T-9906G	Magical Night Dreams - Cotton Boomerang (Japan)	Japan
+T-99901G	WWF WrestleMania - The Arcade Game (Europe) (Demo)	PAL
+T12516H-50	Tempest 2000 (Europe)	PAL
+T18602G	AI Shougi (Japan)	NTSC-J
+TS-18503G	Psychotron, The (Japan)	NTSC-J
+VFCG-001	Virtua Fighter CG Portrait Collection	Japan
+VFDEMO	Virtua Fighter	Japan

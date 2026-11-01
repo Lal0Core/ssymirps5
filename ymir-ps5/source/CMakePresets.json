@@ -1,0 +1,24 @@
+{
+  "version": 9,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "include": [
+    "cmake/presets/full-x86_64-AVX2-clang.json",
+    "cmake/presets/full-x86_64-AVX2-msvc.json",
+    "cmake/presets/full-x86_64-SSE2-clang.json",
+    "cmake/presets/full-x86_64-SSE2-msvc.json",
+    "cmake/presets/libonly-x86_64-AVX2-clang.json",
+    "cmake/presets/libonly-x86_64-AVX2-msvc.json",
+    "cmake/presets/libonly-x86_64-SSE2-clang.json",
+    "cmake/presets/libonly-x86_64-SSE2-msvc.json",
+
+    "cmake/presets/wip/arm-clang.json",
+    "cmake/presets/wip/linux.json",
+    "cmake/presets/wip/macos.json"
+  ],
+  "configurePresets": [
+  ]
+}

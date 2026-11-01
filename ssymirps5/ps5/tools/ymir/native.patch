@@ -1,0 +1,804 @@
+diff --git a/apps/ymir-libretro/CMakeLists.txt b/apps/ymir-libretro/CMakeLists.txt
+index f1186c2..370477e 100644
+--- a/apps/ymir-libretro/CMakeLists.txt
++++ b/apps/ymir-libretro/CMakeLists.txt
+@@ -27,3 +27,8 @@ endif ()
+ if (IPO_SUPPORTED AND Ymir_ENABLE_IPO)
+     set_property(TARGET ymir_libretro PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+ endif ()
++
++# PS5 (PS5_RetroArch native shared core): link and import policy in the port's tooling.
++if (PS5)
++    include("${PS5_PORT_DIR}/native.cmake")
++endif ()
+diff --git a/apps/ymir-libretro/src/cdrom_loader.cpp b/apps/ymir-libretro/src/cdrom_loader.cpp
+index 69b8626..783b9b8 100644
+--- a/apps/ymir-libretro/src/cdrom_loader.cpp
++++ b/apps/ymir-libretro/src/cdrom_loader.cpp
+@@ -11,6 +11,7 @@
+ #include <algorithm>
+ #include <array>
+ #include <cctype>
++#include <charconv>
+ #include <cstdint>
+ #include <memory>
+ #include <span>
+@@ -50,15 +51,16 @@ bool ParseMSF(const std::string &msf, uint32 &outFrames) {
+     if (msf.size() < 8 || msf[2] != ':' || msf[5] != ':') {
+         return false;
+     }
+-    try {
+-        const uint32 m = static_cast<uint32>(std::stoul(msf.substr(0, 2)));
+-        const uint32 s = static_cast<uint32>(std::stoul(msf.substr(3, 2)));
+-        const uint32 f = static_cast<uint32>(std::stoul(msf.substr(6, 2)));
+-        outFrames = ymir::media::TimestampToFrameAddress(m, s, f);
+-        return true;
+-    } catch (...) {
+-        return false;
++    uint32 parts[3]{};
++    for (size_t i = 0; i < 3; ++i) {
++        const char *first = msf.data() + i * 3;
++        const auto [ptr, ec] = std::from_chars(first, first + 2, parts[i]);
++        if (ec != std::errc{} || ptr != first + 2) {
++            return false;
++        }
+     }
++    outFrames = ymir::media::TimestampToFrameAddress(parts[0], parts[1], parts[2]);
++    return true;
+ }
+ 
+ } // namespace
+diff --git a/apps/ymir-libretro/src/libretro.cpp b/apps/ymir-libretro/src/libretro.cpp
+index 21cb5e9..7b61f80 100644
+--- a/apps/ymir-libretro/src/libretro.cpp
++++ b/apps/ymir-libretro/src/libretro.cpp
+@@ -1,3 +1,4 @@
++#include <cstdio>
+ #include "libretro.h"
+ 
+ #include "cdrom_loader.hpp"
+@@ -23,6 +24,7 @@
+ #include <ymir/version.hpp>
+ 
+ #include <algorithm>
++#include <cctype>
+ #include <array>
+ #include <cstdint>
+ #include <cstring>
+@@ -354,6 +356,14 @@ static struct {
+     // Multi-disc state
+     std::vector<std::string> disc_paths;
+     unsigned disc_index = 0;
++
++    // SSYmirPS5: the cheats on (Action Replay codes), written to memory every frame
++    struct CheatCode {
++        uint8_t type;      // 0x1: a 16-bit write, 0x3: an 8-bit write, 0xD: the next code only if the word here is value
++        uint32_t address;
++        uint16_t value;
++    };
++    std::vector<std::vector<CheatCode>> cheats; // by index (retro_cheat_set's)
+ } core;
+ 
+ // ---------------------------------------------------------------------------
+@@ -651,7 +661,12 @@ static ymir::db::SystemRegion area_code_to_bios_region(uint8_t area_code) {
+ static std::vector<BiosCandidate> scan_bios_candidates() {
+     std::vector<BiosCandidate> candidates;
+     for (const char *name : kBiosFilenames) {
+-        const auto path = vfs::Join(core.system_dir, name);
++        auto path = vfs::Join(core.system_dir, name);
++#if defined(PS5)
++        // PS5_RetroArch keeps Beetle Saturn's BIOS, which uses the same file names, in system/Saturn.
++        if (vfs::FileSize(path) != ymir::sys::kIPLSize)
++            path = vfs::Join(vfs::Join(core.system_dir, "Saturn"), name);
++#endif
+         if (vfs::FileSize(path) != ymir::sys::kIPLSize)
+             continue;
+ 
+@@ -773,6 +788,16 @@ static void configure_cartridge(const ymir::db::GameInfo *game_info) {
+         return;
+     }
+ 
++    // SSYmirPS5: the 4 Mbit backup memory cartridge (Sega's "Power Memory"); the frontend keeps its contents in a file
++    // (ymir_ps5_cart_backup)
++    if (cart_str == "backup_4mbit") {
++        ymir::bup::BackupMemory bup;
++        bup.CreateInMemory(ymir::bup::BackupMemorySize::_4Mbit);
++        core.saturn->InsertCartridge<ymir::cart::BackupMemoryCartridge>(std::move(bup));
++        LOG(RETRO_LOG_INFO, "[Ymir] Inserted 4 Mbit backup memory cartridge\n");
++        return;
++    }
++
+     if (cart_str == "dram_8mbit") {
+         core.saturn->InsertCartridge<ymir::cart::DRAM8MbitCartridge>();
+         LOG(RETRO_LOG_INFO, "[Ymir] Inserted 1 MB DRAM expansion cartridge\n");
+@@ -825,6 +850,13 @@ static void configure_cartridge(const ymir::db::GameInfo *game_info) {
+             LOG(RETRO_LOG_WARN, "[Ymir] Auto: Ultraman ROM cart needed but not found\n");
+             break;
+         default:
++            // SSYmirPS5: a game that needs no cartridge of its own gets the backup memory one, when the frontend asks
++            if (get_variable("ymir_ps5_auto_backup_cart") == "enabled") {
++                ymir::bup::BackupMemory bup;
++                bup.CreateInMemory(ymir::bup::BackupMemorySize::_4Mbit);
++                core.saturn->InsertCartridge<ymir::cart::BackupMemoryCartridge>(std::move(bup));
++                LOG(RETRO_LOG_INFO, "[Ymir] Auto: inserted 4 Mbit backup memory cartridge\n");
++            }
+             break;
+         }
+     }
+@@ -849,6 +881,10 @@ static std::vector<std::string> parse_m3u(const std::string &m3u_path) {
+             line.pop_back();
+         if (line.empty() || line[0] == '#')
+             continue;
++        // SSYmirPS5: a playlist written on Windows separates folders with '\'
++        std::replace(line.begin(), line.end(), '\\', '/');
++        while (line.rfind("./", 0) == 0)
++            line.erase(0, 2);
+ 
+         auto p = vfs::ToPath(line);
+         if (p.is_relative())
+@@ -865,15 +901,19 @@ static std::vector<std::string> parse_m3u(const std::string &m3u_path) {
+ // Loads a disc image (through the frontend VFS when available) or a physical CD-ROM drive. Loader exceptions, e.g.
+ // for a file that can be stat'ed but not opened or a malformed cue sheet, must not cross the libretro C API.
+ static bool load_disc(const std::string &path, ymir::media::Disc &disc, ymir::media::CbLoaderMessage disc_log) {
++#if defined(__cpp_exceptions)
+     try {
++#endif
+         if (ymir_libretro::IsCDROMPath(path))
+             return ymir_libretro::LoadCDROMDisc(vfs::Interface(), path, disc, disc_log);
+         return ymir::media::LoadDisc(vfs::ToPath(path), disc, false, disc_log);
++#if defined(__cpp_exceptions)
+     } catch (const std::exception &e) {
+         LOG(RETRO_LOG_ERROR, "[Ymir] %s\n", e.what());
+         disc.Invalidate();
+         return false;
+     }
++#endif
+ }
+ 
+ static bool disc_set_eject_state(bool ejected) {
+@@ -1232,6 +1272,9 @@ RETRO_API bool retro_load_game(const struct retro_game_info *game) {
+     if (bios_candidates.empty()) {
+         LOG(RETRO_LOG_ERROR, "[Ymir] No Saturn BIOS found in system directory.\n");
+         LOG(RETRO_LOG_ERROR, "[Ymir] Looked for: sega_101.bin, mpr-17933.bin, saturn_bios.bin\n");
++#if defined(PS5)
++        LOG(RETRO_LOG_ERROR, "[Ymir] (in the system folder and in its Saturn subfolder)\n");
++#endif
+         return false;
+     }
+     size_t bios_index = select_bios_candidate(bios_candidates, preferred_bios_region());
+@@ -1380,8 +1423,11 @@ RETRO_API void retro_unload_game(void) {
+     core.cached_state_size = 0;
+     core.disc_paths.clear();
+     core.disc_index = 0;
++    core.cheats.clear();
+ }
+ 
++static void apply_cheats();
++
+ // ---------------------------------------------------------------------------
+ // libretro API: execution
+ // ---------------------------------------------------------------------------
+@@ -1399,6 +1445,9 @@ RETRO_API void retro_run(void) {
+     // Latch input
+     core.input_poll_cb();
+ 
++    // SSYmirPS5: the cheats, before the frame (the game reads them during it)
++    apply_cheats();
++
+     // Run one frame
+     core.saturn->RunFrame();
+ 
+@@ -1738,10 +1787,132 @@ RETRO_API bool retro_unserialize(const void *data, size_t size) {
+ // libretro API: cheats (stubbed)
+ // ---------------------------------------------------------------------------
+ 
++// SSYmirPS5: Saturn Action Replay codes, as RetroArch's .cht files have them: groups of 12 hex digits, AAAAAAAA VVVV,
++// separated by anything ("+", spaces, ":", new lines). 1AAAAAAA VVVV writes the word VVVV, 3AAAAAAA 00VV the byte VV,
++// DAAAAAAA VVVV makes the next code apply only while the word at AAAAAAA is VVVV. The master codes (F6000914 C305,
++// B6002800 0000) only start the cartridge on a real console: skipped. A code with anything else ("??") is left out.
+ RETRO_API void retro_cheat_reset(void) {
++    core.cheats.clear();
++}
++
++RETRO_API void retro_cheat_set(unsigned index, bool enabled, const char *code) {
++    if (index > 4096)
++        return;
++    if (core.cheats.size() <= index)
++        core.cheats.resize(index + 1);
++    auto &out = core.cheats[index];
++    out.clear();
++    if (!enabled || !code)
++        return;
++    std::string hex;
++    std::vector<std::string> groups;
++    auto flush = [&] {
++        // a group: a run of hex digits; several codes may be written together without separators
++        if (hex.empty())
++            return;
++        if (hex.size() % 12 == 0) {
++            for (size_t i = 0; i < hex.size(); i += 12)
++                groups.push_back(hex.substr(i, 12));
++        } else
++            groups.push_back(hex); // an address and its value apart ("1605C942+270F"): joined below
++        hex.clear();
++    };
++    bool bad = false;
++    for (const char *c = code; *c; c++) {
++        if (std::isxdigit(static_cast<unsigned char>(*c)))
++            hex += *c;
++        else if (*c == '?')
++            bad = true;
++        else
++            flush();
++    }
++    flush();
++    if (bad)
++        return;
++    // "AAAAAAAA" + "VVVV" written apart
++    std::vector<std::string> codes;
++    for (size_t i = 0; i < groups.size(); i++) {
++        if (groups[i].size() == 12)
++            codes.push_back(groups[i]);
++        else if (groups[i].size() == 8 && i + 1 < groups.size() && groups[i + 1].size() == 4) {
++            codes.push_back(groups[i] + groups[i + 1]);
++            i++;
++        } else
++            return; // not a code this reads
++    }
++    for (const std::string &c : codes) {
++        const uint32_t a = static_cast<uint32_t>(std::stoul(c.substr(0, 8), nullptr, 16));
++        const uint16_t v = static_cast<uint16_t>(std::stoul(c.substr(8, 4), nullptr, 16));
++        const uint8_t type = static_cast<uint8_t>(a >> 28);
++        if (a == 0xF6000914u || a == 0xB6002800u)
++            continue; // the master code
++        if (type != 0x1 && type != 0x3 && type != 0xD)
++            continue;
++        out.push_back({type, a & 0x0FFFFFFFu, v});
++    }
+ }
+ 
+-RETRO_API void retro_cheat_set(unsigned, bool, const char *) {
++static void apply_cheats() {
++    if (!core.saturn || core.cheats.empty())
++        return;
++    auto &bus = core.saturn->mainBus;
++    for (const auto &codes : core.cheats) {
++        bool skip = false;
++        for (const auto &c : codes) {
++            if (skip) {
++                skip = false;
++                continue;
++            }
++            switch (c.type) {
++            case 0x1: bus.Poke<uint16>(c.address, c.value); break;
++            case 0x3: bus.Poke<uint8>(c.address, static_cast<uint8>(c.value)); break;
++            case 0xD: skip = bus.Peek<uint16>(c.address) != c.value; break;
++            }
++        }
++    }
++}
++
++// SSYmirPS5: the backup memory cartridge's contents (4 Mbit), when one is in the slot: *data and *size, else false.
++RETRO_API bool ymir_ps5_cart_backup(uint8_t **data, size_t *size) {
++    if (!core.saturn || !data || !size)
++        return false;
++    auto *cart = core.saturn->GetCartridge().As<ymir::cart::CartType::BackupMemory>();
++    if (!cart)
++        return false;
++    auto &bup = static_cast<ymir::bup::BackupMemory &>(cart->GetBackupMemory());
++    *data = bup.Data();
++    *size = bup.Size();
++    return *data != nullptr && *size > 0;
++}
++
++// SSYmirPS5: formats (empties) the internal backup memory (which = 0) or the cartridge's (which = 1).
++RETRO_API bool ymir_ps5_format_backup(int which) {
++    if (!core.saturn)
++        return false;
++    if (which == 0) {
++        core.saturn->mem.GetInternalBackupRAM().Format();
++        return true;
++    }
++    auto *cart = core.saturn->GetCartridge().As<ymir::cart::CartType::BackupMemory>();
++    if (!cart)
++        return false;
++    cart->GetBackupMemory().Format();
++    return true;
++}
++
++// SSYmirPS5: the machine's state in one line, for the frontend's game log (a game stuck on a black screen).
++RETRO_API int ymir_ps5_debug_state(char *buf, size_t size) {
++    if (!buf || size == 0)
++        return 0;
++    buf[0] = 0;
++    if (!core.saturn)
++        return 0;
++    auto &s = *core.saturn;
++    const uint32_t mpc = s.masterSH2.GetProbe().PC();
++    const uint32_t spc = s.slaveSH2.GetProbe().PC();
++    return snprintf(buf, size, "master SH-2 PC %08X, slave SH-2 PC %08X (%s), tray %s, framebuffer %ux%u",
++                    (unsigned)mpc, (unsigned)spc, s.slaveSH2Enabled ? "running" : "off",
++                    s.IsTrayOpen() ? "open" : "closed", core.fb_width, core.fb_height);
+ }
+ 
+ } // extern "C"
+diff --git a/libs/ymir-core/CMakeLists.txt b/libs/ymir-core/CMakeLists.txt
+index d1b963d..98aa02f 100644
+--- a/libs/ymir-core/CMakeLists.txt
++++ b/libs/ymir-core/CMakeLists.txt
+@@ -537,6 +537,8 @@ elseif (APPLE)
+     )
+ elseif (ANDROID)
+     # Bionic only provides iconv from API 28 onwards; util/string.cpp skips it below that.
++elseif (PS5)
++    # The PS5 libc has no iconv; util/string.cpp converts UTF-8 <-> UTF-32 itself.
+ elseif (UNIX) # Linux and FreeBSD
+     find_package(Iconv REQUIRED)
+     target_link_libraries(ymir-core PUBLIC
+diff --git a/libs/ymir-core/include/ymir/util/result.hpp b/libs/ymir-core/include/ymir/util/result.hpp
+index 22fcb93..661fdf9 100644
+--- a/libs/ymir-core/include/ymir/util/result.hpp
++++ b/libs/ymir-core/include/ymir/util/result.hpp
+@@ -7,9 +7,17 @@
+ 
+ #include <algorithm>
+ #include <array>
++#include <cstdlib>
+ #include <optional>
+ #include <stdexcept>
+ #include <string>
++
++// Builds without exceptions (the PS5 core) abort where the result was misused.
++#if defined(__cpp_exceptions)
++    #define YMIR_RESULT_FAIL(msg) throw std::logic_error(msg)
++#else
++    #define YMIR_RESULT_FAIL(msg) std::abort()
++#endif
+ #include <tuple>
+ #include <utility>
+ #include <variant>
+@@ -65,7 +73,7 @@ struct Result {
+         if (HasValue()) {
+             return std::move(std::get<T>(m_result));
+         }
+-        throw std::logic_error("Result doesn't hold a value");
++        YMIR_RESULT_FAIL("Result doesn't hold a value");
+     }
+ 
+     /// @brief Moves the error out of the result if present, otherwise throws an exception.
+@@ -75,7 +83,7 @@ struct Result {
+         if (HasError()) {
+             return std::move(std::get<E>(m_result));
+         }
+-        throw std::logic_error("Result doesn't hold an error");
++        YMIR_RESULT_FAIL("Result doesn't hold an error");
+     }
+ 
+ private:
+@@ -108,7 +116,7 @@ struct Result<void, E> {
+     /// @exception std::logic_error if this object doesn't hold an error (`HasError() == false`)
+     [[nodiscard]] E &Error() {
+         if (!m_error.has_value()) {
+-            throw std::logic_error("Result does not hold an error");
++            YMIR_RESULT_FAIL("Result does not hold an error");
+         }
+         return *m_error;
+     }
+@@ -118,7 +126,7 @@ struct Result<void, E> {
+     /// @exception std::logic_error if this object doesn't hold an error (`HasError() == false`)
+     [[nodiscard]] const E &Error() const {
+         if (!m_error.has_value()) {
+-            throw std::logic_error("Result does not hold an error");
++            YMIR_RESULT_FAIL("Result does not hold an error");
+         }
+         return *m_error;
+     }
+diff --git a/libs/ymir-core/src/ymir/media/file_access.cpp b/libs/ymir-core/src/ymir/media/file_access.cpp
+index fab6bb0..725f2d1 100644
+--- a/libs/ymir-core/src/ymir/media/file_access.cpp
++++ b/libs/ymir-core/src/ymir/media/file_access.cpp
+@@ -118,14 +118,17 @@ void SetProvider(IFileProvider *provider) {
+ 
+ bool is_regular_file(const std::filesystem::path &path) {
+     if (g_provider == nullptr) {
+-        return std::filesystem::is_regular_file(path);
++        std::error_code err{};
++        return std::filesystem::is_regular_file(path, err);
+     }
+     return g_provider->IsRegularFile(path);
+ }
+ 
+ uintmax_t file_size(const std::filesystem::path &path) {
+     if (g_provider == nullptr) {
+-        return std::filesystem::file_size(path);
++        std::error_code err{};
++        const uintmax_t size = std::filesystem::file_size(path, err);
++        return err ? 0 : size;
+     }
+     std::error_code err{};
+     auto reader = OpenWithProvider(path, err);
+diff --git a/libs/ymir-core/src/ymir/media/loader/loader_bin_cue.cpp b/libs/ymir-core/src/ymir/media/loader/loader_bin_cue.cpp
+index cb78793..5dca943 100644
+--- a/libs/ymir-core/src/ymir/media/loader/loader_bin_cue.cpp
++++ b/libs/ymir-core/src/ymir/media/loader/loader_bin_cue.cpp
+@@ -9,6 +9,7 @@
+ #include <fmt/format.h>
+ #include <fmt/std.h>
+ 
++#include <charconv>
+ #include <fstream>
+ #include <optional>
+ #include <set>
+@@ -22,6 +23,24 @@
+ 
+ namespace ymir::media::loader::bincue {
+ 
++namespace {
++
++// Parses an MM:SS:FF timestamp. Returns false for a malformed one instead of throwing, so a bad cue sheet is
++// reported and rejected even in builds without exceptions.
++bool ParseMSF(const std::string &msf, uint32 &m, uint32 &s, uint32 &f) {
++    if (msf.size() != 8 || msf[2] != ':' || msf[5] != ':') {
++        return false;
++    }
++    auto parse = [&](size_t pos, uint32 &out) {
++        const char *first = msf.data() + pos;
++        const auto [ptr, ec] = std::from_chars(first, first + 2, out);
++        return ec == std::errc{} && ptr == first + 2;
++    };
++    return parse(0, m) && parse(3, s) && parse(6, f);
++}
++
++} // namespace
++
+ const std::set<std::string> kValidCueKeywords = {
+     // General commands
+     "CATALOG", "CD_DA", "CD_ROM", "CD_ROM_XA", "CDTEXTFILE", "FILE", "REM", "TRACK",
+@@ -263,9 +282,11 @@ static std::optional<CueSheet> LoadSheet(std::filesystem::path cuePath, CbLoader
+             std::string msf{};
+             ins >> index.number >> msf;
+ 
+-            uint32 m = std::stoi(msf.substr(0, 2));
+-            uint32 s = std::stoi(msf.substr(3, 5));
+-            uint32 f = std::stoi(msf.substr(6, 8));
++            uint32 m{}, s{}, f{};
++            if (!ParseMSF(msf, m, s, f)) {
++                errorMsg(fmt::format("BIN/CUE: Invalid timestamp \"{}\" (line {})", msf, lineNum));
++                return std::nullopt;
++            }
+             debugMsg(fmt::format("BIN/CUE:     Index {:d} - {:02d}:{:02d}:{:02d}", index.number, m, s, f));
+             index.pos = TimestampToFrameAddress(m, s, f);
+         } else if (keyword == "PREGAP") {
+@@ -288,9 +309,11 @@ static std::optional<CueSheet> LoadSheet(std::filesystem::path cuePath, CbLoader
+             std::string msf{};
+             ins >> msf;
+ 
+-            const uint32 m = std::stoi(msf.substr(0, 2));
+-            const uint32 s = std::stoi(msf.substr(3, 5));
+-            const uint32 f = std::stoi(msf.substr(6, 8));
++            uint32 m{}, s{}, f{};
++            if (!ParseMSF(msf, m, s, f)) {
++                errorMsg(fmt::format("BIN/CUE: Invalid timestamp \"{}\" (line {})", msf, lineNum));
++                return std::nullopt;
++            }
+             debugMsg(fmt::format("BIN/CUE:     Pregap - {:02d}:{:02d}:{:02d}", m, s, f));
+ 
+             track.pregap = TimestampToFrameAddress(m, s, f);
+@@ -315,9 +338,11 @@ static std::optional<CueSheet> LoadSheet(std::filesystem::path cuePath, CbLoader
+ 
+             std::string msf{};
+             ins >> msf;
+-            uint32 m = std::stoi(msf.substr(0, 2));
+-            uint32 s = std::stoi(msf.substr(3, 5));
+-            uint32 f = std::stoi(msf.substr(6, 8));
++            uint32 m{}, s{}, f{};
++            if (!ParseMSF(msf, m, s, f)) {
++                errorMsg(fmt::format("BIN/CUE: Invalid timestamp \"{}\" (line {})", msf, lineNum));
++                return std::nullopt;
++            }
+             debugMsg(fmt::format("BIN/CUE:     Postgap - {:02d}:{:02d}:{:02d}", m, s, f));
+ 
+             track.postgap = TimestampToFrameAddress(m, s, f);
+@@ -710,38 +735,64 @@ bool Load(std::filesystem::path cuePath, Disc &disc, bool preloadToRAM, CbLoader
+             const uint32 gapSectors = prevSheetTrack.pregap + prevSheetTrack.postgap;
+             trackSectors += gapSectors;
+ 
+-            // If we're dealing with a raw data track, check where it actually ends
+-            if (prevTrack.controlADR == 0x41 && prevTrack.hasHeader) {
+-                for (uint32 sector = trackSectors - 1; sector < trackSectors; --sector) {
+-                    const uintmax_t headerPos = sector * prevTrack.sectorSize;
++            // If we're dealing with a raw data track, check where it actually ends.
++            // SSYmirPS5: the sectors in the file start after the track's PREGAP (which is not in the file), so file sector
++            // `sector` is at FAD frameAddress + pregap + sector, and only the sectors in the file are scanned. Before this
++            // a track with a PREGAP never matched its headers: every sector was stripped, the sector count wrapped
++            // around, and every later track got a garbage file offset (a game reading that track stayed on a black
++            // screen). The scan also gives up, keeping the track as the sheet says, when no header matches within
++            // 4096 sectors (a dump whose headers don't follow the sheet's addresses).
++            if (prevTrack.controlADR == 0x41 && prevTrack.hasHeader && trackSectors > gapSectors) {
++                const uint32 pregapSectors = prevSheetTrack.pregap;
++                const uint32 origTrackSectors = trackSectors;
++                const uint32 origPostgap = prevSheetTrack.postgap;
++                const uint32 fileSectors = trackSectors - gapSectors;
++                bool matched = false;
++                uint32 scanned = 0;
++                for (uint32 sector = fileSectors - 1; sector < fileSectors && scanned < 4096; --sector, ++scanned) {
++                    const uintmax_t headerPos = static_cast<uintmax_t>(sector) * prevTrack.sectorSize;
+                     std::array<uint8, 16> header;
+-                    if (reader->Read(binOffset + headerPos, 16, header) == 16) {
+-                        if (prevTrack.hasSyncBytes) {
+-                            static constexpr std::array<uint8, 12> syncBytes = {0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+-                                                                                0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00};
+-                            if (!std::equal(syncBytes.begin(), syncBytes.end(), header.begin())) {
+-                                // Couldn't match sync bytes; subtract sector from data range and add as postgap
+-                                --trackSectors;
+-                                ++prevSheetTrack.postgap;
+-                                continue;
+-                            }
+-                        }
+-
+-                        const uint32 currFAD = frameAddress + sector;
+-                        const std::array<uint8, 4> expectedHeader{
+-                            static_cast<uint8>(util::to_bcd(currFAD / 75 / 60)),
+-                            static_cast<uint8>(util::to_bcd((currFAD / 75) % 60)),
+-                            static_cast<uint8>(util::to_bcd(currFAD % 75)),
+-                            static_cast<uint8>(prevTrack.mode2 ? 0x02 : 0x01),
+-                        };
+-                        if (std::equal(expectedHeader.begin(), expectedHeader.end(),
+-                                       header.begin() + prevTrack.headerOffset)) {
+-                            break;
+-                        }
+-                        // Couldn't match header; subtract sector from data range and add as postgap
++                    if (reader->Read(binOffset + headerPos, 16, header) != 16) {
+                         --trackSectors;
+                         ++prevSheetTrack.postgap;
++                        continue;
+                     }
++                    if (prevTrack.hasSyncBytes) {
++                        static constexpr std::array<uint8, 12> syncBytes = {0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
++                                                                            0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00};
++                        if (!std::equal(syncBytes.begin(), syncBytes.end(), header.begin())) {
++                            // Couldn't match sync bytes; subtract sector from data range and add as postgap
++                            --trackSectors;
++                            ++prevSheetTrack.postgap;
++                            continue;
++                        }
++                    }
++
++                    const uint32 currFAD = frameAddress + pregapSectors + sector;
++                    const std::array<uint8, 4> expectedHeader{
++                        static_cast<uint8>(util::to_bcd(currFAD / 75 / 60)),
++                        static_cast<uint8>(util::to_bcd((currFAD / 75) % 60)),
++                        static_cast<uint8>(util::to_bcd(currFAD % 75)),
++                        static_cast<uint8>(prevTrack.mode2 ? 0x02 : 0x01),
++                    };
++                    if (std::equal(expectedHeader.begin(), expectedHeader.end(),
++                                   header.begin() + prevTrack.headerOffset)) {
++                        matched = true;
++                        break;
++                    }
++                    // Couldn't match header; subtract sector from data range and add as postgap
++                    --trackSectors;
++                    ++prevSheetTrack.postgap;
++                }
++                if (!matched) {
++                    debugMsg(fmt::format("BIN/CUE: Track {:02d}: no sector header matches its addresses; keeping the "
++                                         "sheet's length",
++                                         sheetTrackIndex));
++                    trackSectors = origTrackSectors;
++                    prevSheetTrack.postgap = origPostgap;
++                } else if (trackSectors != origTrackSectors) {
++                    debugMsg(fmt::format("BIN/CUE: Track {:02d}: the last {} sector(s) are not data: postgap",
++                                         sheetTrackIndex, origTrackSectors - trackSectors));
+                 }
+             }
+ 
+diff --git a/libs/ymir-core/src/ymir/media/loader/loader_chd.cpp b/libs/ymir-core/src/ymir/media/loader/loader_chd.cpp
+index 8a13010..82c518c 100644
+--- a/libs/ymir-core/src/ymir/media/loader/loader_chd.cpp
++++ b/libs/ymir-core/src/ymir/media/loader/loader_chd.cpp
+@@ -186,7 +186,9 @@ bool Load(std::filesystem::path chdPath, Disc &disc, bool preloadToRAM, CbLoader
+     auto debugMsg = [&](std::string message) { cbMsg(MessageType::Debug, message); };
+ 
+     chd_file *file = nullptr;
++#if defined(__cpp_exceptions)
+     try {
++#endif
+         chd_error error = io::chd_open(chdPath, CHD_OPEN_READ, nullptr, &file);
+         if (error != CHDERR_NONE) {
+             if (error == CHDERR_INVALID_DATA) {
+@@ -196,10 +198,12 @@ bool Load(std::filesystem::path chdPath, Disc &disc, bool preloadToRAM, CbLoader
+             }
+             return false;
+         }
++#if defined(__cpp_exceptions)
+     } catch (const std::exception &e) {
+         errorMsg(fmt::format("CHD: Failed to open file: {}", e.what()));
+         return false;
+     }
++#endif
+     const chd_header *header = chd_get_header(file);
+ 
+     if (preloadToRAM) {
+diff --git a/libs/ymir-core/src/ymir/media/loader/loader_img_ccd_sub.cpp b/libs/ymir-core/src/ymir/media/loader/loader_img_ccd_sub.cpp
+index 3ec2802..7dc0a5d 100644
+--- a/libs/ymir-core/src/ymir/media/loader/loader_img_ccd_sub.cpp
++++ b/libs/ymir-core/src/ymir/media/loader/loader_img_ccd_sub.cpp
+@@ -10,6 +10,7 @@
+ #include <fmt/std.h>
+ 
+ #include <algorithm>
++#include <charconv>
+ #include <fstream>
+ #include <memory>
+ #include <set>
+@@ -167,10 +168,15 @@ bool Load(std::filesystem::path ccdPath, Disc &disc, bool preloadToRAM, CbLoader
+                 const std::string key = line.substr(0, pos);
+                 const std::string valueStr = ToLower(line.substr(pos + 1));
+                 sint64 value{};
+-                if (valueStr.starts_with("0x")) {
+-                    value = std::stoll(valueStr.substr(2), nullptr, 16);
+-                } else {
+-                    value = std::stoll(valueStr);
++                const bool hex = valueStr.starts_with("0x");
++                const char *first = valueStr.data() + (hex ? 2 : 0);
++                const char *last = valueStr.data() + valueStr.size();
++                if (const auto [ptr, ec] = std::from_chars(first, last, value, hex ? 16 : 10);
++                    ec != std::errc{} || ptr == first) {
++                    // Lenient like the missing-value case above: report the line and skip it.
++                    debugMsg(fmt::format("IMG/CCD: Line \"{}\" has an invalid value (line {}); skipping", line,
++                                         lineNum));
++                    continue;
+                 }
+                 debugMsg(fmt::format("IMG/CCD:   {} = {}", key, value));
+ 
+diff --git a/libs/ymir-core/src/ymir/util/string.cpp b/libs/ymir-core/src/ymir/util/string.cpp
+index b624501..f54da42 100644
+--- a/libs/ymir-core/src/ymir/util/string.cpp
++++ b/libs/ymir-core/src/ymir/util/string.cpp
+@@ -1,6 +1,7 @@
+ #include <ymir/util/string.hpp>
+ 
+ #include <array>
++#include <type_traits>
+ 
+ // For string <-> wstring conversions
+ #if defined(_WIN32)
+@@ -13,6 +14,8 @@
+     #include <stringapiset.h>
+ #elif defined(__ANDROID__) && __ANDROID_API__ < 28
+     // Bionic only provides iconv from API 28 onwards
++#elif defined(PS5)
++    // The PS5's libc has no iconv; wchar_t is UTF-32 there, converted by hand below.
+ #else
+     #include <cassert>
+     #include <iconv.h>
+@@ -111,6 +114,55 @@ std::wstring StringToWString(std::string_view str) {
+     // TODO: implement without iconv
+     return L"";
+ 
++#elif defined(PS5)
++    // UTF-8 -> wchar_t (UTF-16 on the PS5 target, UTF-32 elsewhere). Malformed input yields an empty string, like
++    // the iconv path.
++    std::wstring wstr;
++    wstr.reserve(str.size());
++    for (size_t i = 0; i < str.size();) {
++        const unsigned char lead = static_cast<unsigned char>(str[i]);
++        size_t len;
++        char32_t cp;
++        if (lead < 0x80) {
++            len = 1, cp = lead;
++        } else if ((lead & 0xE0) == 0xC0) {
++            len = 2, cp = lead & 0x1F;
++        } else if ((lead & 0xF0) == 0xE0) {
++            len = 3, cp = lead & 0x0F;
++        } else if ((lead & 0xF8) == 0xF0) {
++            len = 4, cp = lead & 0x07;
++        } else {
++            return L"";
++        }
++        if (i + len > str.size()) {
++            return L"";
++        }
++        for (size_t j = 1; j < len; ++j) {
++            const unsigned char cont = static_cast<unsigned char>(str[i + j]);
++            if ((cont & 0xC0) != 0x80) {
++                return L"";
++            }
++            cp = (cp << 6) | (cont & 0x3F);
++        }
++        static constexpr char32_t kMin[] = {0, 0, 0x80, 0x800, 0x10000};
++        if (cp < kMin[len] || cp > 0x10FFFF || (cp >= 0xD800 && cp <= 0xDFFF)) {
++            return L"";
++        }
++        if constexpr (sizeof(wchar_t) == 2) {
++            if (cp >= 0x10000) {
++                cp -= 0x10000;
++                wstr.push_back(static_cast<wchar_t>(0xD800 | (cp >> 10)));
++                wstr.push_back(static_cast<wchar_t>(0xDC00 | (cp & 0x3FF)));
++            } else {
++                wstr.push_back(static_cast<wchar_t>(cp));
++            }
++        } else {
++            wstr.push_back(static_cast<wchar_t>(cp));
++        }
++        i += len;
++    }
++    return wstr;
++
+ #else
+     // Linux/macOS/FreeBSD implementation
+ 
+@@ -163,6 +215,43 @@ std::string WStringToString(std::wstring_view wstr) {
+     // TODO: implement without iconv
+     return "";
+ 
++#elif defined(PS5)
++    // wchar_t (UTF-16 on the PS5 target, UTF-32 elsewhere) -> UTF-8. Invalid input yields an empty string, like
++    // the iconv path.
++    std::string str;
++    str.reserve(wstr.size());
++    for (size_t i = 0; i < wstr.size(); ++i) {
++        char32_t cp = static_cast<char32_t>(static_cast<std::make_unsigned_t<wchar_t>>(wstr[i]));
++        if constexpr (sizeof(wchar_t) == 2) {
++            if (cp >= 0xD800 && cp <= 0xDBFF && i + 1 < wstr.size()) {
++                const char32_t lo = static_cast<char16_t>(wstr[i + 1]);
++                if (lo >= 0xDC00 && lo <= 0xDFFF) {
++                    cp = 0x10000 + ((cp - 0xD800) << 10) + (lo - 0xDC00);
++                    ++i;
++                }
++            }
++        }
++        if (cp > 0x10FFFF || (cp >= 0xD800 && cp <= 0xDFFF)) {
++            return "";
++        }
++        if (cp < 0x80) {
++            str.push_back(static_cast<char>(cp));
++        } else if (cp < 0x800) {
++            str.push_back(static_cast<char>(0xC0 | (cp >> 6)));
++            str.push_back(static_cast<char>(0x80 | (cp & 0x3F)));
++        } else if (cp < 0x10000) {
++            str.push_back(static_cast<char>(0xE0 | (cp >> 12)));
++            str.push_back(static_cast<char>(0x80 | ((cp >> 6) & 0x3F)));
++            str.push_back(static_cast<char>(0x80 | (cp & 0x3F)));
++        } else {
++            str.push_back(static_cast<char>(0xF0 | (cp >> 18)));
++            str.push_back(static_cast<char>(0x80 | ((cp >> 12) & 0x3F)));
++            str.push_back(static_cast<char>(0x80 | ((cp >> 6) & 0x3F)));
++            str.push_back(static_cast<char>(0x80 | (cp & 0x3F)));
++        }
++    }
++    return str;
++
+ #else
+     // Linux/macOS/FreeBSD implementation
+ 
+diff --git a/libs/ymir-core/src/ymir/util/thread_name.cpp b/libs/ymir-core/src/ymir/util/thread_name.cpp
+index 6f48a9c..81a345f 100644
+--- a/libs/ymir-core/src/ymir/util/thread_name.cpp
++++ b/libs/ymir-core/src/ymir/util/thread_name.cpp
+@@ -71,6 +71,11 @@ void SetCurrentThreadName(const char *threadName) {
+ 
+     pthread_setname_np(pthread_self(), threadName);
+ 
++#elif defined(PS5)
++
++    // Thread naming is optional and unsupported by PS5_RetroArch's native runtime.
++    (void)threadName;
++
+ #elif defined(__FreeBSD__)
+ 
+     pthread_setname_np(pthread_self(), threadName);
+diff --git a/vendor/xxHash/CMakeLists.txt b/vendor/xxHash/CMakeLists.txt
+index bfe7635..3338ec0 100644
+--- a/vendor/xxHash/CMakeLists.txt
++++ b/vendor/xxHash/CMakeLists.txt
+@@ -4,7 +4,8 @@ add_library(xxHash
+ 	xxHash/xxh3.h
+ )
+ 
+-if ("x86_64" IN_LIST ARCHITECTURES)
++# The PS5 has one known CPU (Zen 2, AVX2): no runtime dispatch.
++if ("x86_64" IN_LIST ARCHITECTURES AND NOT PS5)
+     set(XXHSUM_DISPATCH ON)
+ 	# Apple is the only target that supports fat binaries
+ 	if (APPLE)

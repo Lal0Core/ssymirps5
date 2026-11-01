@@ -1,0 +1,11 @@
+# SSYmirPS5 build outputs
+build/
+proto/native/build/
+*.o
+*.part
+__pycache__/
+
+# release files (published as GitHub Releases, not in the source)
+*.elf
+*.bundle
+*-src.zip
